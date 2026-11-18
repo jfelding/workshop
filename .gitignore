@@ -15,3 +15,5 @@ scratch/
 !projects/*/vendor/**
 stream.pid
 progress.sqlite3
+# Site tokens for publish scripts (Thingiverse). Never commit.
+.env
