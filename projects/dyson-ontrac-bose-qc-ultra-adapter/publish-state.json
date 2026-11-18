@@ -2,5 +2,22 @@
   "github": {
     "tag": "dyson-ontrac-bose-qc-ultra-adapter-v1.0.0",
     "url": "https://github.com/jfelding/workshop/releases/tag/dyson-ontrac-bose-qc-ultra-adapter-v1.0.0"
+  },
+  "printables": {
+    "id": 1920861,
+    "url": "https://www.printables.com/model/1920861-dyson-ontrac-ear-cushions-on-bose-quietcomfort-ult",
+    "published": "2026-11-18"
+  },
+  "makerworld": {
+    "draft_id": 10623341,
+    "status": "verifying (submitted 2026-11-18, no public URL yet)",
+    "title": "Dyson OnTrac cushions on Bose QC Ultra (adapter)",
+    "note": "50-character title limit; category Tools > Gadgets; remix of model 529246"
+  },
+  "thingiverse": {
+    "id": 7437031,
+    "url": "https://www.thingiverse.com/thing:7437031",
+    "published": "2026-11-18",
+    "note": "tag 'dyson ontrac' instead of 'ontrac'; not marked as a remix (the source is not on Thingiverse), credit is in the description"
   }
 }

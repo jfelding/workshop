@@ -55,6 +55,17 @@ This repo is public and as open as it can be: code is MIT, our own design files 
   over). Say so per part; do not let it restrict the parts that are our own.
 - Measuring a model to fit against it is fine and needs no licence. Say where the number came from.
 
+## Publishing a project
+
+Hobby projects go on Printables, MakerWorld and Thingiverse. Keep it loose: these are experiments, not products.
+
+- Short and sweet. Why I made it, how to print it, how to put it together, what I would change. Details live
+  in the README; link it.
+- Write it the way a person would. No sales pitch, no list of rules or warnings, no AI-sounding filler.
+- The text lives in the project's `listing.md`, the live pages in `publish-state.json`. Sites differ a little
+  (title limits, categories, tags); adapt and move on.
+- Real photos first, then the part pictures.
+
 ## Changing this repo
 
 - See `CONTRIBUTING.md`.
