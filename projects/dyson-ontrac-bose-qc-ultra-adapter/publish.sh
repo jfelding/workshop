@@ -19,7 +19,7 @@ else
   gh release create "$TAG" $FILES --title "Dyson OnTrac cushions on Bose QuietComfort Ultra, v$VERSION" \
     --notes "Print two of each part. Instructions: https://github.com/jfelding/workshop/tree/main/projects/$NAME
 
-Licence: CC BY-NC-SA 4.0. The Bose half is a remix of Dr. Watt's earpad frame (https://makerworld.com/en/models/529246-bose-quietcomfort-ultra-earpad-frame)."
+Licence: Dyson half CC BY 4.0. Bose half CC BY-NC-SA 4.0, because it is a remix of Dr. Watt's earpad frame (https://makerworld.com/en/models/529246-bose-quietcomfort-ultra-earpad-frame)."
 fi
 URL=$(gh release view "$TAG" --json url --jq .url)
 uv run python - "$TAG" "$URL" <<'PY'

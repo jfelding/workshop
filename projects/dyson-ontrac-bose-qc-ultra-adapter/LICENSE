@@ -1,19 +1,18 @@
 Dyson OnTrac -> Bose QuietComfort Ultra cushion adapter
 Copyright (c) 2026 Jacob Ungar Felding
 
-The design files of this project (the models it builds, the pictures in exports/, the photos in
-images/ and the documentation) are licensed under the Creative Commons
-Attribution-NonCommercial-ShareAlike 4.0 International licence (CC BY-NC-SA 4.0).
+Three licences apply, by file:
 
-    https://creativecommons.org/licenses/by-nc-sa/4.0/
-    https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+1. The Dyson half (dyson_half.stl, dyson_half.step), the pictures in exports/, the photos in
+   images/ and the documentation: Creative Commons Attribution 4.0 International (CC BY 4.0).
+   https://creativecommons.org/licenses/by/4.0/legalcode
+   You may share and adapt them for any purpose, including commercially, provided you give credit.
 
-You may share and adapt them for non-commercial purposes, provided you give credit, link to the
-licence, say what you changed, and distribute your version under the same licence.
+2. The Bose half (bose_half.stl): Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+   International (CC BY-NC-SA 4.0). https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+   It is adapted from "Bose QuietComfort Ultra earpad frame" by Dr. Watt,
+   https://makerworld.com/en/models/529246-bose-quietcomfort-ultra-earpad-frame, licensed
+   CC BY-NC-SA. Change made: two blind pin pockets cut into the flat back. The original files in
+   vendor/bose-earpad-frame/ remain under their author's licence.
 
-The Bose half (bose_half.stl) is adapted from "Bose QuietComfort Ultra earpad frame" by Dr. Watt,
-https://makerworld.com/en/models/529246-bose-quietcomfort-ultra-earpad-frame, licensed CC BY-NC-SA.
-Change made: two blind pin pockets cut into the flat back. The original files in
-vendor/bose-earpad-frame/ remain under their author's licence.
-
-The Python scripts in cad/ are licensed under the MIT licence in the repository root.
+3. The Python scripts in cad/ and the shell scripts: the MIT licence in the repository root.

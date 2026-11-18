@@ -42,6 +42,19 @@ Units are metric and prices are in DKK. Be direct and decisive. Do not hedge eve
 - Look at photos of the real hardware before reasoning about physical fit. Ask for a photo when it would settle
   a question faster. Use JPEG only (`tools/images.sh`).
 
+## Other people's models
+
+This repo is public and as open as it can be: code is MIT, our own design files are CC BY 4.0.
+
+- Publish someone else's model, or a part made from it, only when its licence allows redistribution. Read the
+  licence on the model's page; "free to download" is not a licence. If it does not allow it, keep the file out
+  of git and out of every upload, and have the README tell the reader where to download it.
+- When it is allowed, credit it: author, title, link, licence and what was changed, in the project README and
+  in a `vendor/<model>/README.md` beside the original file with its SHA-256.
+- A part derived from such a model keeps that model's licence (a share-alike or non-commercial term carries
+  over). Say so per part; do not let it restrict the parts that are our own.
+- Measuring a model to fit against it is fine and needs no licence. Say where the number came from.
+
 ## Changing this repo
 
 - See `CONTRIBUTING.md`.

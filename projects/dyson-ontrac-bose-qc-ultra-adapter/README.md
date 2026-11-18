@@ -108,8 +108,11 @@ edit: the script cuts the two pin pockets into the vendored frame.
 - The Bose half is a remix of **[Bose QuietComfort Ultra earpad frame](https://makerworld.com/en/models/529246-bose-quietcomfort-ultra-earpad-frame)**
   by **Dr. Watt** on MakerWorld, licensed CC BY-NC-SA. Change made: two pin pockets in the flat back. The
   original file is in [`vendor/bose-earpad-frame/`](vendor/bose-earpad-frame/).
-- This project's design files (models, pictures, photos, this text) are licensed
+- Because of that, **the Bose half** (`bose_half.stl`) is
   **[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**: share and remix with credit,
-  not for sale, under the same licence. See [`LICENSE`](LICENSE). The Python scripts are MIT, like the
-  rest of the repo.
+  not for sale, under the same licence. That is the original's licence, not a choice made here.
+- **Everything else is as open as it can be.** The Dyson half, the pictures, the photos and this text are
+  **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)**: do anything with them, including selling
+  prints, as long as you give credit. The Python scripts are MIT, like the rest of the repo. See
+  [`LICENSE`](LICENSE).
 - Not affiliated with or endorsed by Dyson or Bose. Their names are used only to say what the part fits.

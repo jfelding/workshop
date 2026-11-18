@@ -22,4 +22,5 @@ SOFTWARE.
 
 This licence covers the code in this repository. The design files of each
 project under projects/ (models, pictures, photos and their documentation)
-are licensed as stated in that project's README and LICENSE file.
+are licensed as stated in that project's README and LICENSE file
+(CC BY 4.0 by default; a part derived from someone else's model keeps that model's licence).

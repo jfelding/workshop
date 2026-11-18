@@ -62,5 +62,6 @@ Extras: `cad` (build123d), `printer` (pyserial). Changes are listed in [`CHANGEL
 
 - **Code** (`src/`, `tests/`, `tools/`, `equipment/`, `templates/` and the scripts in each project): MIT, see
   [`LICENSE`](LICENSE).
-- **Project design files** (models, pictures, photos, documentation of a project): the licence named in that
-  project's README. A project that builds on someone else's model inherits that model's terms.
+- **Project design files** (models, pictures, photos, documentation of a project): CC BY 4.0 unless the
+  project's README says otherwise. A part that builds on someone else's model keeps that model's licence
+  and credits its author.
