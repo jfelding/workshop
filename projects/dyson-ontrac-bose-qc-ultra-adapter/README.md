@@ -10,6 +10,10 @@ take a clip-in frame. The adapter is two flat prints glued back to back: one hal
 earcup, the other has four hooks that the Dyson cushion twists onto. Nothing on the headphones or the
 cushions is modified, and the original Bose cushions go back on at any time.
 
+Why: the Bose earpads were worn out, and a local store was selling leftover Dyson OnTrac earpads for
+15 ¢ (0.15 EUR). It is two glued parts rather than one because it has hooks on both sides; this way each
+half prints flat with no supports.
+
 | | | |
 |---|---|---|
 | <img src="images/worn-pair.jpg" width="260"> | <img src="images/on-earcup.jpg" width="260"> | <img src="images/adapter-in-cushion.jpg" width="260"> |
@@ -33,7 +37,7 @@ Also needed: about 20 mm of 1.75 mm filament (four alignment pins), and cyanoacr
 
 | | |
 |---|---|
-| Material | PLA. PETG lifted off the bed twice at this size, and the PLA hooks have held up |
+| Material | PLA (Bambu Nebula PLA was used). PETG lifted off the bed twice at this size, and the PLA hooks have held up |
 | Nozzle, layers | 0.4 mm nozzle, 0.2 mm layers |
 | Orientation | Both parts flat side down, as the files come. No supports, no brim |
 | Time | About 25 minutes per part on an Elegoo Neptune 3 Pro (PLA at 210 °C, bed 60 °C) |
@@ -89,6 +93,12 @@ ones worth knowing, if your printer or cushions differ:
 | the hooks will not drop into the slots | `LIP_OUTER_RADIUS` down, or `STEM_INNER_RADIUS` up | 38.9; 34.4 / 36.0 |
 | the cushion ends up rotated on the earcup | `CUSHION_CLOCKING_DEG` | 76 |
 | the pins are loose or will not go in | `PIN_PRESS_POCKET`, `PIN_SLIP_HOLE` | 1.85, 1.95 |
+
+## Known shortcomings
+
+- The Dyson half is a little too narrow at the sides: it does not fully cover the middle part of the
+  cushion's lock ring, at the left and right of each earpad. It works; a reprint would be wider there.
+- The "UP!" on the Bose half comes from Dr. Watt's frame. The adapter fits either way round.
 
 ## Build
 
