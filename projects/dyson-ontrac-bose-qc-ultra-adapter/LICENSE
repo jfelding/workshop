@@ -1,0 +1,19 @@
+Dyson OnTrac -> Bose QuietComfort Ultra cushion adapter
+Copyright (c) 2026 Jacob Ungar Felding
+
+The design files of this project (the models it builds, the pictures in exports/, the photos in
+images/ and the documentation) are licensed under the Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International licence (CC BY-NC-SA 4.0).
+
+    https://creativecommons.org/licenses/by-nc-sa/4.0/
+    https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+You may share and adapt them for non-commercial purposes, provided you give credit, link to the
+licence, say what you changed, and distribute your version under the same licence.
+
+The Bose half (bose_half.stl) is adapted from "Bose QuietComfort Ultra earpad frame" by Dr. Watt,
+https://makerworld.com/en/models/529246-bose-quietcomfort-ultra-earpad-frame, licensed CC BY-NC-SA.
+Change made: two blind pin pockets cut into the flat back. The original files in
+vendor/bose-earpad-frame/ remain under their author's licence.
+
+The Python scripts in cad/ are licensed under the MIT licence in the repository root.

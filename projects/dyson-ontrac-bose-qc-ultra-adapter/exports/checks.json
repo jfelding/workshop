@@ -1,0 +1,43 @@
+{
+  "dyson_half": {
+    "triangles": 65882,
+    "volume_mm3": 4885.608,
+    "size_mm": [
+      77.99,
+      96.5,
+      4.7
+    ],
+    "first_layer_area_mm2": 2868.172,
+    "islands_starting_in_mid_air": [],
+    "area_outside_45deg_of_layer_below_mm2": 10.804351
+  },
+  "bose_half": {
+    "triangles": 3698,
+    "volume_mm3": 4649.71,
+    "size_mm": [
+      77.99,
+      96.49,
+      5.0
+    ],
+    "first_layer_area_mm2": 2211.738,
+    "islands_starting_in_mid_air": [],
+    "area_outside_45deg_of_layer_below_mm2": 10.240066
+  },
+  "glued": {
+    "overlap_volume_mm3": -0.0,
+    "outline_mismatch_mm": 0.012,
+    "pins_xy_mm": [
+      [
+        7.53,
+        42.69
+      ],
+      [
+        -7.53,
+        -42.69
+      ]
+    ],
+    "pin_path_blocked_mm3": 0.0,
+    "stack_height_mm": 9.7,
+    "seat_to_bose_plate_mm": 4.0
+  }
+}

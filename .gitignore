@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+scratch/
+# Generated CAD output: rebuild, don't commit. Keep small preview images that READMEs show.
+**/exports/*
+!**/exports/*.png
+!**/exports/checks*.json
+# Print job directories keep their profiles and logs; G-code and Orca projects are regenerated.
+*.gcode
+*.3mf
+# ...except third-party source models a project is built from.
+!projects/*/vendor/**
+stream.pid
+progress.sqlite3

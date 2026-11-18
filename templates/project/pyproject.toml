@@ -1,0 +1,15 @@
+[project]
+name = "__NAME__"
+version = "0.1.0"
+description = "__NAME__"
+requires-python = ">=3.11"
+dependencies = ["workshop[cad]"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+# Inside the workshop repo's projects/ (new-project.sh keeps this line):
+workshop = { workspace = true }
+# In a repo of its own, replace the line above with a pinned release:
+# workshop = { git = "https://github.com/jfelding/workshop", tag = "v0.1.0" }

@@ -1,0 +1,8 @@
+exports/*
+!exports/*.png
+!exports/checks*.json
+__pycache__/
+.venv/
+scratch/
+*.gcode
+*.3mf

@@ -1,0 +1,24 @@
+name: ci
+# Kept small on purpose: unit tests, file sizes and the pictures check. Projects are rebuilt locally with
+# their check.sh, not here. Docs and pictures alone do not trigger a run.
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md', '**.png', '**.jpg', '**.webp', 'equipment/**', 'materials/**', 'methods/**', 'log/**']
+  pull_request:
+    paths-ignore: ['**.md', '**.png', '**.jpg', '**.webp', 'equipment/**', 'materials/**', 'methods/**', 'log/**']
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: { enable-cache: true }
+      - run: uv sync --locked --extra cad --extra printer
+      - run: uv run pytest -q
+      - run: uv run ws-check-file-sizes
+      - run: uv run ws-check-pictures --committed projects/*/
