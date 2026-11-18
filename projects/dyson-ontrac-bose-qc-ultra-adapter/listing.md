@@ -48,7 +48,7 @@ Pictures, the first is the cover:
 Kept short on purpose; the details are in the README.
 
 My Bose QC Ultra (1st gen) headphones needed new earpads, and a local store was selling leftover Dyson
-OnTrac earpads for 15 ¢ (0.15 EUR). So I made an adapter and glued it onto the Bose earpad frame that
+OnTrac earpads for 15 ¢. So I made an adapter and glued it onto the Bose earpad frame that
 this is a remix of. Thanks to Dr. Watt for that part.
 
 It is two parts glued together rather than one, because it has hooks on both sides. Nothing on the
