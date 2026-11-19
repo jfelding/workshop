@@ -1,0 +1,52 @@
+{
+  "size_mm": {
+    "outer_diameter": 15.2,
+    "bore_diameter": 12.0,
+    "height": 18.0,
+    "collar_hole": 6.2,
+    "nut_well_across_flats": 9.3
+  },
+  "probes_mm": {
+    "wall, round bore": 1.6,
+    "wall, thinnest around the nut well": 2.23,
+    "floor under the nut": 1.2,
+    "floor ring width under the nut flats": 1.55
+  },
+  "clearances_mm": {
+    "nut in its well, across flats": 0.3,
+    "lever swing to bore, per side": 0.8,
+    "lever tip below rim": 3.0,
+    "thread past the nut": 0.3
+  },
+  "overhang_mm2": {
+    "steeper_than_45_mm2": 0.0,
+    "flat_ceilings_mm2": 0.0
+  },
+  "mesh": {
+    "triangles": 2480,
+    "watertight": true,
+    "nonmanifold_edges": 0,
+    "degenerate_faces": 0,
+    "connected_components": 1,
+    "signed_volume_mm3": 1440.322,
+    "component_bottoms_mm": [
+      0.0
+    ]
+  },
+  "layers": {
+    "stl": "guard.stl",
+    "layer_height_mm": 0.2,
+    "first_layer_height_mm": 0.2,
+    "reference_line_width_mm": 0.42,
+    "layers_sampled": 90,
+    "first_layer_material_area_mm2": 151.205,
+    "first_layer_connected_regions": 1,
+    "new_islands_without_previous_layer_overlap": [],
+    "max_downward_surface_angle_from_vertical_deg": 0.0,
+    "worst_layer_boundary_offset_mm": 1e-06,
+    "worst_offset_layer": 2,
+    "approx_line_overlap_at_worst_offset_percent": 100.0,
+    "max_area_outside_45deg_layer_envelope_mm2": 0,
+    "limits": "Footprint geometry only; does not simulate beads, cooling, infill or adhesion."
+  }
+}
