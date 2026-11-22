@@ -11,6 +11,19 @@
     "islands_starting_in_mid_air": [],
     "area_outside_45deg_of_layer_below_mm2": 10.804351
   },
+  "dyson_half_detent": {
+    "triangles": 65994,
+    "volume_mm3": 4886.675,
+    "size_mm": [
+      77.99,
+      96.5,
+      4.7
+    ],
+    "first_layer_area_mm2": 2868.172,
+    "islands_starting_in_mid_air": [],
+    "area_outside_45deg_of_layer_below_mm2": 10.804351,
+    "bump_volume_added_mm3": 1.067
+  },
   "bose_half": {
     "triangles": 3698,
     "volume_mm3": 4649.71,
@@ -39,5 +52,330 @@
     "pin_path_blocked_mm3": 0.0,
     "stack_height_mm": 9.7,
     "seat_to_bose_plate_mm": 4.0
+  },
+  "detent_sweep": {
+    "bar_home_span_deg_plate_frame": [
+      -79.5,
+      -64.0
+    ],
+    "bar_radii_mm": [
+      38.1,
+      39.3
+    ],
+    "bump_crest_deg_plate_frame": -57.0,
+    "bump_feet_deg": [
+      -58.59,
+      -54.63
+    ],
+    "bump_ramp_lengths_mm": {
+      "release": 0.57,
+      "approach": 1.1
+    },
+    "bump_volume_each_mm3": 0.534,
+    "bump_edge_margin_to_plate_outline_mm": 5.52,
+    "bump_hook_clearance_deg": 8.1,
+    "bar_clearance_over_relief_mm": 0.2,
+    "peak_interference_mm": 0.2,
+    "interference_at_home_mm": 0.0,
+    "interference_at_drop_on_mm": 0.2,
+    "twist_for_bar_to_clear_bump_deg": 24.9,
+    "worst_slack_minus_interference_mm": 0.065,
+    "other_collisions_mm3": 0.0,
+    "sweep": [
+      {
+        "offset_deg": 24.0,
+        "bump_interference_mm": 0.033,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.567
+      },
+      {
+        "offset_deg": 23.5,
+        "bump_interference_mm": 0.185,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.415
+      },
+      {
+        "offset_deg": 23.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 22.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 22.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 21.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 21.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 20.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 20.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 19.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 19.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 18.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 18.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 17.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 17.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 16.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 16.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 15.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 15.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 14.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.6,
+        "margin_mm": 0.4
+      },
+      {
+        "offset_deg": 14.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.585,
+        "margin_mm": 0.385
+      },
+      {
+        "offset_deg": 13.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.564,
+        "margin_mm": 0.364
+      },
+      {
+        "offset_deg": 13.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.542,
+        "margin_mm": 0.342
+      },
+      {
+        "offset_deg": 12.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.521,
+        "margin_mm": 0.321
+      },
+      {
+        "offset_deg": 12.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.499,
+        "margin_mm": 0.299
+      },
+      {
+        "offset_deg": 11.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.478,
+        "margin_mm": 0.278
+      },
+      {
+        "offset_deg": 11.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.457,
+        "margin_mm": 0.257
+      },
+      {
+        "offset_deg": 10.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.435,
+        "margin_mm": 0.235
+      },
+      {
+        "offset_deg": 10.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.414,
+        "margin_mm": 0.214
+      },
+      {
+        "offset_deg": 9.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.393,
+        "margin_mm": 0.193
+      },
+      {
+        "offset_deg": 9.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.371,
+        "margin_mm": 0.171
+      },
+      {
+        "offset_deg": 8.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.35,
+        "margin_mm": 0.15
+      },
+      {
+        "offset_deg": 8.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.329,
+        "margin_mm": 0.129
+      },
+      {
+        "offset_deg": 7.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.307,
+        "margin_mm": 0.107
+      },
+      {
+        "offset_deg": 7.0,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.286,
+        "margin_mm": 0.086
+      },
+      {
+        "offset_deg": 6.5,
+        "bump_interference_mm": 0.2,
+        "wedge_slack_mm": 0.265,
+        "margin_mm": 0.065
+      },
+      {
+        "offset_deg": 6.0,
+        "bump_interference_mm": 0.054,
+        "wedge_slack_mm": 0.243,
+        "margin_mm": 0.189
+      },
+      {
+        "offset_deg": 5.5,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.222,
+        "margin_mm": 0.222
+      },
+      {
+        "offset_deg": 5.0,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.201,
+        "margin_mm": 0.201
+      },
+      {
+        "offset_deg": 4.5,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.179,
+        "margin_mm": 0.179
+      },
+      {
+        "offset_deg": 4.0,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.158,
+        "margin_mm": 0.158
+      },
+      {
+        "offset_deg": 3.5,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.137,
+        "margin_mm": 0.137
+      },
+      {
+        "offset_deg": 3.0,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.115,
+        "margin_mm": 0.115
+      },
+      {
+        "offset_deg": 2.5,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.094,
+        "margin_mm": 0.094
+      },
+      {
+        "offset_deg": 2.0,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.072,
+        "margin_mm": 0.072
+      },
+      {
+        "offset_deg": 1.5,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.051,
+        "margin_mm": 0.051
+      },
+      {
+        "offset_deg": 1.0,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.03,
+        "margin_mm": 0.03
+      },
+      {
+        "offset_deg": 0.5,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.008,
+        "margin_mm": 0.008
+      },
+      {
+        "offset_deg": 0.0,
+        "bump_interference_mm": 0.0,
+        "wedge_slack_mm": 0.0,
+        "margin_mm": 0.0
+      }
+    ]
   }
 }

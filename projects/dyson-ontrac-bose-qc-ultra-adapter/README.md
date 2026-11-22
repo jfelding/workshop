@@ -25,7 +25,21 @@ Print two of each. Left and right are identical. STL and STEP files are attached
 | <img src="exports/dyson_half.png" width="260"> | Dyson half | `dyson_half.stl` / `.step` | 2 | 78.0 × 96.5 × 4.7 mm, 5.9 g |
 | <img src="exports/bose_half.png" width="260"> | Bose half | `bose_half.stl` | 2 | 78.0 × 96.5 × 5.0 mm, 5.7 g. Dr. Watt's frame with two pin pockets added |
 
+| <img src="exports/dyson_half_detent.png" width="260"> | Dyson half, click-detent test variant (**not printed, not proven**) | `dyson_half_detent.stl` / `.step` | 0 | Same as the Dyson half plus two 0.4 mm bumps. See below |
+
 Also needed: about 20 mm of 1.75 mm filament for four alignment pins, and superglue.
+
+## Detent test variant (untested)
+
+The Dyson half holds by wedge friction only; the original earcup clicks. `dyson_half_detent` adds a low ramped
+bump on the stepped-down plate under each of the two long ledge bars, so a bar rides up it and drops off about
+6 degrees before the stop. It is built from ledge-bar positions read off a photo, not measured
+([`inventory/to-measure.md`](inventory/to-measure.md)), and has not been printed. Expect to reprint.
+
+![Ledge bars at drop-on and home, and the bumps](exports/dyson_half_detent_mechanism.png)
+
+The bars are about as long as the twist and the wedge lets the cushion lift only about 0.2 mm near home, so the
+click is a few degrees short of home, not at it. Checks: [`exports/checks.json`](exports/checks.json), `detent_sweep`.
 
 ## Printing
 
@@ -58,6 +72,10 @@ Every dimension is in [`cad/measurements.py`](cad/measurements.py):
 | the cushion twists home but is loose | `LIP_GAP_TRAILING` down, 0.1 at a time | 0.8 |
 | the hooks will not drop into the slots | `LIP_OUTER_RADIUS` down, or `STEM_INNER_RADIUS` up | 38.9; 34.4 / 36.0 |
 | the cushion ends up rotated on the earcup | `CUSHION_CLOCKING_DEG` | 76 |
+| detent: cushion will not twist home past the bump (test variant) | `BUMP_HEIGHT` 0.4 to 0.2, or `CREST_BEFORE_HOME_DEG` up | 0.4; 7 |
+| detent: no click felt | `BUMP_HEIGHT` 0.4 to 0.6 | 0.4 |
+| detent: too easy to twist back off | `BUMP_RELEASE_DEG` up (steeper holds more) | 35 |
+| detent: the bump misses the bar | `BUMP_INNER_RADIUS`, `BUMP_OUTER_RADIUS`; `LEDGE_BARS_PHOTO` angles once measured | 38.2, 39.0 |
 | the pins are loose or will not go in | `PIN_PRESS_POCKET`, `PIN_SLIP_HOLE` | 1.85, 1.95 |
 
 ## Build

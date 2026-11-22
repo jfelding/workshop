@@ -16,13 +16,14 @@ from workshop.cad.printability import layers, mesh_check
 from workshop.measure import dims
 
 import measurements as m
+import detent_check
 from dyson_half import pin_positions
 
 dim = dims(m)
 OUT = Path(__file__).parents[1] / "exports"
 report = {}
 
-for name in ("dyson_half", "bose_half"):
+for name in ("dyson_half", "dyson_half_detent", "bose_half"):
     stl = OUT / f"{name}.stl"
     mesh = mesh_check(stl)                      # watertight, one part, sitting on the bed
     summary, _ = layers(stl)                    # no layer starts in mid-air
@@ -62,6 +63,11 @@ report["glued"] = {
     "stack_height_mm": round(float(dyson.bounds[1][2] - bose.bounds[0][2]), 2),
     "seat_to_bose_plate_mm": dim("PLATE_THICKNESS") + dim("BOSE_FRAME_THICKNESS"),
 }
+# The detent test variant: the proven part is unchanged and the bump motion sweep (see detent_check.py).
+assert abs(report["dyson_half"]["volume_mm3"] - 4885.608) < 0.01, report["dyson_half"]["volume_mm3"]
+report["dyson_half_detent"]["bump_volume_added_mm3"] = round(
+    report["dyson_half_detent"]["volume_mm3"] - report["dyson_half"]["volume_mm3"], 3)
+report["detent_sweep"] = detent_check.run()
 (OUT / "checks.json").write_text(json.dumps(report, indent=2) + "\n")
 print(json.dumps(report, indent=2))
 
