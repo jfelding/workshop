@@ -20,3 +20,9 @@ as a full-width cylinder; it pivots in the collar, so it is now a cone.
 Jacob: tip 15 mm from the face with the lever centred; at both ends of the throw the tip stays inside the
 nut's outline. Swing span entered as an upper bound of 10.4 (the nut across corners). Built: Ø15.2 × 18 mm,
 bore Ø12.0, lever 0.8 mm per side from the bore and 3.0 below the rim, 0 mm² overhang, watertight.
+
+## 2026-11-22
+Sliced the guard for the Neptune 3 Pro with `pla-fast-0.4` (stock speeds), job dir `scratch/guard-20261122`.
+Orientation as modelled: floor on the bed, open end up, no supports. 90 layers to Z 18, 1.74 g, Orca estimate
+15 m 22 s. Part centred at X/Y 115. Copied to the SD card as `doorguard.gcode`. Not printed yet. The installed
+OrcaSlicer is 2.2.0 and has no `--logfile` flag, so the README's slice command needs that flag dropped.
