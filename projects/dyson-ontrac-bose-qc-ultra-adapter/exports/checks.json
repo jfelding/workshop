@@ -50,6 +50,21 @@
     "islands_starting_in_mid_air": [],
     "area_outside_45deg_of_layer_below_mm2": 10.240066
   },
+  "bose_half_wide": {
+    "triangles": 5744,
+    "volume_mm3": 4970.348,
+    "size_mm": [
+      82.97,
+      96.49,
+      5.0
+    ],
+    "first_layer_area_mm2": 2356.224,
+    "islands_starting_in_mid_air": [],
+    "area_outside_45deg_of_layer_below_mm2": 10.240066,
+    "volume_added_vs_proven_bose_half_mm3": 320.639,
+    "proven_material_removed_mm3": 0.0,
+    "added_inside_oval_less_0.5mm_mm3": 0.0
+  },
   "glued": {
     "overlap_volume_mm3": -0.0,
     "outline_mismatch_mm": 0.012,
@@ -66,6 +81,31 @@
     "pin_path_blocked_mm3": 0.0,
     "stack_height_mm": 9.7,
     "seat_to_bose_plate_mm": 4.0
+  },
+  "glued_wide": {
+    "overlap_volume_mm3": 0.0,
+    "outline_mismatch_mm": 0.0,
+    "pins_xy_mm": [
+      [
+        7.53,
+        42.69
+      ],
+      [
+        -7.53,
+        -42.69
+      ]
+    ],
+    "pin_path_blocked_mm3": 0.0,
+    "stack_height_mm": 9.7,
+    "seat_to_bose_plate_mm": 4.0,
+    "bulge_extent_x_dyson_mm": [
+      41.49,
+      41.49
+    ],
+    "bulge_extent_x_bose_mm": [
+      41.49,
+      41.49
+    ]
   },
   "detent_sweep": {
     "bar_home_span_deg_plate_frame": [

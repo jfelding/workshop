@@ -24,6 +24,7 @@ Print two of each. Left and right are identical. STL and STEP files are attached
 |---|---|---|---|---|
 | <img src="exports/dyson_half.png" width="260"> | Dyson half | `dyson_half.stl` / `.step` | 2 | 78.0 × 96.5 × 4.7 mm, 5.9 g |
 | <img src="exports/bose_half.png" width="260"> | Bose half | `bose_half.stl` | 2 | 78.0 × 96.5 × 5.0 mm, 5.7 g. Dr. Watt's frame with two pin pockets added |
+| <img src="exports/bose_half_wide.png" width="260"> | Bose half, wide rim test variant (**not printed, not proven**) | `bose_half_wide.stl` | 0 | 83.0 × 96.5 × 5.0 mm. The Bose half plus a 2 mm rim at the sides, matching `dyson_half_wide`. Glue it to the wide Dyson halves only |
 
 | <img src="exports/dyson_half_wide.png" width="260"> | Dyson half, wide outline test variant (**not printed, not proven**) | `dyson_half_wide.stl` / `.step` | 0 | 83.0 × 96.5 × 4.7 mm. Same hooks and seat; bulges 2.5 mm past the oval at the sides to cover the cushion's hard ring |
 | <img src="exports/dyson_half_detent.png" width="260"> | Wide Dyson half with click detent, test variant (**not printed, not proven**) | `dyson_half_detent.stl` / `.step` | 0 | The wide half plus two 0.4 mm bumps. See below |
@@ -36,7 +37,13 @@ Also needed: about 20 mm of 1.75 mm filament for four alignment pins, and superg
 larger than the cushion's hard ring (radius 41.1 mm, read from a photo), blended with a 40 mm fillet. It
 overhangs the Bose half by at most 2.5 mm, over about 72° of arc at each side, so the cushion's ring is covered
 all round. The Bose half's earcup at that height was judged from the photos only: nothing visible that the bulge
-would hit, unverified. `dyson_half_detent` is built on the wide plate. Neither is printed.
+would hit, unverified; the owner has since checked the earcup by eye (2026-11-22) and there is room at the sides.
+`dyson_half_detent` is built on the wide plate. None of these is printed.
+
+Pairs: `dyson_half_wide` (or `dyson_half_detent`) glues to `bose_half_wide`, so the edge is flush all round
+([picture](exports/preview_wide.png)); the published narrow `dyson_half` and `bose_half` still go together.
+`bose_half_wide` adds a flat 2 mm rim outside the frame's oval (0.3 mm chamfers, the frame is untouched inside),
+built from the same outline function and tunables as the wide Dyson half. Its fit on the earcup is unverified.
 
 ### Detent
 
@@ -101,7 +108,7 @@ meshes (results in [`exports/checks.json`](exports/checks.json)). The Dyson half
 
 - The Bose half is a remix of
   [Bose QuietComfort Ultra earpad frame](https://makerworld.com/en/models/529246-bose-quietcomfort-ultra-earpad-frame)
-  by Dr. Watt, CC BY-NC-SA. I added two pin pockets. So `bose_half.stl` is
+  by Dr. Watt, CC BY-NC-SA. I added two pin pockets (and, in the untested `bose_half_wide.stl`, a wider rim at the sides). So `bose_half.stl` and `bose_half_wide.stl` are
   [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). The original is in
   [`vendor/bose-earpad-frame/`](vendor/bose-earpad-frame/).
 - The Dyson half, pictures, photos and text are [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

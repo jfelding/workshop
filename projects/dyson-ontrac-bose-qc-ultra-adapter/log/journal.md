@@ -1,5 +1,24 @@
 # Journal
 
+## 2026-11-22 Wide Bose half (not printed)
+
+New part `bose_half_wide` (`cad/bose_half_wide.py`): `bose_half` (frame mesh plus the mirrored pin pockets) with a flat
+rim added only outside the frame's oval, between the oval and the outline of `dyson_half_wide` (same `outline()`, so
+`COVER_RADIUS` and `OUTLINE_BLEND_RADIUS` are shared). Read from the frame mesh: glue face z = 0, flat plate to z = 2.0,
+outer wall vertical and sharp, no edge treatment, so the rim has 0.3 mm chamfers on both outer edges and reaches 0.4 mm
+into the plate for a clean union. The owner checked the earcup by eye: room at the sides. Fit otherwise unverified.
+- Glued wide pair: overlap 0.0 mm³, outline mismatch 0.0 mm, pins clear, stack 9.7 mm, bulge 41.49 mm on both sides of both
+  halves. Volume added vs `bose_half`: 320.6 mm³; proven material removed 0.0; nothing added inside the oval less 0.5 mm.
+- First layer 2356 mm², overhang area 10.24 mm² (unchanged), no islands in mid air, 83.0 x 96.5 x 5.0 mm.
+- Proven parts unchanged: `dyson_half` 4885.608 mm³, `bose_half` 4649.710 mm³, STLs byte-identical.
+- Pictures: `exports/bose_half_wide.png`, `exports/preview_wide.png` (`preview.png` still the published pair).
+
+## 2026-11-22 Detent test part sliced to SD
+
+`dyson_half_detent` (wide plate plus bumps, one copy) sliced with `pla-fast-0.4` in OrcaSlicer: 23 layers,
+6.16 g, 25m 48s estimated. On the SD card as `dyson_detent.gcode`; job record in
+`scratch/dyson-half-detent-20261122-1638/`. Not printed yet. Trial-fit on the Bose earcup before gluing.
+
 ## 2026-11-22 Looked for reference geometry of the original lock
 
 Searched for a model or photo of the Dyson side, to improve on the wedge-only lock. Nothing is built or

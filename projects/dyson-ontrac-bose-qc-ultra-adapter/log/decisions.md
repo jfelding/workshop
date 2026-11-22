@@ -15,3 +15,9 @@ oval united with a circle, 40 mm blend fillet (no corners). Cover radius = photo
 edge is rounded 0.6, so the flat face then ends at about the ring edge, and the reading is +/-0.4; pressing 0.4 mm
 into the foam beyond the ring costs nothing. Bumps under the short bars not added: the wide plate gives them room
 (2.2 mm to the edge) but the bar-as-long-as-the-twist problem is the same, so it stays a later test.
+
+## 2026-11-22 Wide Bose half as a separate part, rim from the Dyson outline function
+Chosen: `bose_half_wide` adds a rim only outside the frame's oval and imports `dyson_half_wide.outline()`, so the two
+halves cannot drift apart; the proven `bose_half` and the vendor mesh are untouched. Rim thickness equals the frame
+plate (2.0), chamfered 0.3 like the Dyson half because the frame's own wall is a sharp vertical one and the rim is
+free-standing at the sides. Wide pairs with wide only. Licence: remix of the frame, so CC BY-NC-SA like `bose_half`.
