@@ -72,3 +72,14 @@ offer) was not needed and would fight the side-on print.
 STLs as exported (holder on its side, ring upside down). Holder: 150 layers to Z 30, 32.1 g, Orca estimate 2 h 04 min.
 Ring: 80 layers to Z 16, 5.4 g, 24 min. G-code in `scratch/amber_*-20261122/`, copied to the SD card as
 `amber_holder.gcode` and `amber_ring.gcode`. Print the ring first (it is quick and tests the fit on the pump collar).
+
+## 2026-11-22 (first holder print)
+Jacob printed the holder in PLA and sent photos of the spine's top end. The dovetail channel's sloped roof flank
+(the 50 degree overhang, printed on its side) came out ragged with sagged blobs; the opposite flank and the
+floor are clean, the layers and the rest of the body look good. Jacob does not want to reprint: the channel
+can be cleaned with a hobby knife or small file, and the ring's key is made slimmer to allow for it.
+Ring change: `KEY_EXTRA_SLACK = 0.5` per side on top of the fits slide play (0.4 -> 0.9 per side). Everything
+else, including the holder STL, is unchanged. Resliced as `scratch/amber_ring-v2-20261122` (23 min, 5.1 g) and put on
+the SD card as `amber_ring.gcode`; the first slice is kept as `amber_ring_v1.gcode`. Next time the holder is
+printed: the channel's roof flank will need a shallower angle (flare 1.2 gives 50 degrees from flat) or a
+sacrificial support; then drop `KEY_EXTRA_SLACK`.

@@ -56,7 +56,7 @@ z_top = ring_z1 + dim("SPINE_ABOVE_RING")
 z_bot = -root - g
 
 p = process()
-slack = max(p.min_gap, p.printed_slide) / 2           # per side, key in channel (workshop.fits)
+slack = max(p.min_gap, p.printed_slide) / 2 + dim("KEY_EXTRA_SLACK")   # per side, key in channel (workshop.fits, plus the extra for the ragged roof flank of the first print)
 mouth, depth, flare = dim("KEY_MOUTH"), dim("KEY_DEPTH"), dim("KEY_FLARE")
 
 

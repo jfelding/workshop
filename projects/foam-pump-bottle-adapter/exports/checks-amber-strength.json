@@ -29,24 +29,24 @@
   "safety_factor_vs_weak_25MPa": 1.8,
   "note": "thin ring, load and key reaction opposite: M = 0.318 F R"
  },
- "2 link ring-key, sideways knock, 7.2 x 8.0": {
+ "2 link ring-key, sideways knock, 6.2 x 8.0": {
   "moment_Nmm": 110.0,
-  "section_modulus_mm3": 69.1,
-  "stress_MPa": 1.59,
+  "section_modulus_mm3": 51.3,
+  "stress_MPa": 2.15,
   "layers": "along",
   "allowable_MPa": 45.0,
-  "safety_factor": 28.3,
-  "safety_factor_vs_weak_25MPa": 15.7,
+  "safety_factor": 21.0,
+  "safety_factor_vs_weak_25MPa": 11.6,
   "note": "cantilever from ring to channel"
  },
  "2 key, forward knock, bends along its length": {
   "moment_Nmm": 160.0,
-  "section_modulus_mm3": 46.4,
-  "stress_MPa": 3.45,
+  "section_modulus_mm3": 26.5,
+  "stress_MPa": 6.05,
   "layers": "across",
   "allowable_MPa": 25.0,
-  "safety_factor": 7.2,
-  "safety_factor_vs_weak_25MPa": 7.2,
+  "safety_factor": 4.1,
+  "safety_factor_vs_weak_25MPa": 4.1,
   "note": "key printed standing: its length is across the layers; reaction at mid-length"
  },
  "2 channel lip, forward knock pulls the key": {
