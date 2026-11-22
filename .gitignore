@@ -4,11 +4,14 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 scratch/
-# Generated CAD output: rebuild, don't commit. Keep small preview images that READMEs show.
+# Generated CAD output is ignored, except what a reader needs without running the code:
+# pictures, check results, and the printable STL/STEP files.
 **/exports/*
 !**/exports/*.png
 !**/exports/checks*.json
-# Print job directories keep their profiles and logs; G-code and Orca projects are regenerated.
+!**/exports/*.stl
+!**/exports/*.step
+# G-code and Orca projects are specific to one printer and profile: never commit them.
 *.gcode
 *.3mf
 # ...except third-party source models a project is built from.

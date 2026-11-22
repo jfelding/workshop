@@ -38,6 +38,9 @@ Units are metric and prices are in DKK. Be direct and decisive. Do not hedge eve
   or run `ws-preview`. Commit the pictures. Each project README opens with a picture of the whole thing
   (`exports/preview.png`) and has a parts table showing every part's picture. Re-export and commit when a part
   changes. `ws-check-pictures` (in every `check.sh`; CI runs the `--committed` form) fails without them.
+- **Commit the printable files.** Commit each part's `exports/<part>.stl` and `.step` with its picture, so someone
+  can print it without running the code. Commit them when a part is ready to print, not on every tweak (each
+  re-export rewrites the whole binary). Never commit G-code or 3MF: they belong to one printer and one profile.
 - Look at the pictures you made before you report a part as done.
 - Look at photos of the real hardware before reasoning about physical fit. Ask for a photo when it would settle
   a question faster. Use JPEG only (`tools/images.sh`).
