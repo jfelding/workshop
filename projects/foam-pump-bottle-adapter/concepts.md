@@ -128,6 +128,10 @@ foot under the base that carries the weight, and a closed loop round the neck un
   the spine and the two arms are visible.
 - Needs, all unmeasured: glass body width, height from base to the underside of the pump collar, neck
   diameter, base shape, wall screw spacing.
+- Modelled 2026-11-22 from estimates (`cad/amber_holder.py`), with one change: the loop is a loose ring
+  round the base of the pump collar, with a dovetail key that drops into a channel in the spine. The bottle
+  goes in with its pump on, from above; it comes out by lifting 25 mm. A fixed loop would need the bottle
+  tilted in, which only works if the unmeasured neck is right within a few mm (`log/decisions.md`).
 
 ## Not printing anything
 

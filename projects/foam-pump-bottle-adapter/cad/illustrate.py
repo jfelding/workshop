@@ -4,7 +4,7 @@ Only the collar is a designed part. Bracket, bottle and pump are drawn for conte
 interfaces come from measurements.py, everything in SCENERY below is made up for the picture
 (bottle body, pump head, how far the bracket stands off the wall) and must not be used for design.
 
-    uv run python cad/illustrate.py [--draft]     # writes exports/preview.png and exports/view-*.png
+    uv run python cad/illustrate.py [--draft]     # writes exports/view-*.png
 """
 import subprocess
 from pathlib import Path
@@ -60,7 +60,7 @@ def scene(dz_pump=0, dz_bottle=0, dy_collar=0, cut=False):
 
 
 VIEWS = {
-    "preview": ("In place", scene(), View((-0.75, -1, 0.55)), 620),
+    "view-in-place": ("In place", scene(), View((-0.75, -1, 0.55)), 620),
     "view-below": ("From below", scene(), View((-0.8, -1, -0.5)), 620),
     "view-exploded": ("How it goes together", scene(dz_pump=55, dz_bottle=-40, dy_collar=-48), View((-0.9, -1, 0.5)), 620),
     "view-section": ("Cut in half", scene(cut=True), View((-1, -0.25, 0.12)), 380),

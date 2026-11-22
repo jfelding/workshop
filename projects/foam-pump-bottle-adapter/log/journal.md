@@ -37,3 +37,38 @@ Jacob cannot print the gauge now. New concept 6, hanging collar, needs no pump t
 Collar reshaped for looks: the outside is one plain cylinder (57 mm), lips fade out towards the back, chamfered base. `cad/illustrate.py` renders it in place from six angles; bottle body and pump head in those pictures are scenery, not measurements.
 
 Jacob: the open fork is wrong for the glass body (agreed, withdrawn), and the holder should be minimally visible. Sketched concept 7: spine behind the bottle, foot under the base, closed neck loop under the pump collar.
+
+## 2026-11-22
+Jacob wants the holder for the amber glass bottle with the black foam pump. A web search gave only seller
+figures (body 64-65 mm, 110 mm tall, 165 mm with pump, neck 43 mm, inner or outer unknown, sellers disagree
+43 vs 45). None is a measurement, so no CAD yet: listed the calipers work in `inventory/to-measure.md` and
+recorded the choice of concept 7 in `log/decisions.md`.
+
+## 2026-11-22 Amber holder modelled from estimates
+Jacob asked for a printable holder now, from estimates, to print, test and adjust. Estimates went into a
+separate `EST_*` block in `cad/measurements.py`, each with its source and range; measured values untouched.
+A fixed loop round the neck turned out to depend on exactly the unknowns (the bottle can only be tilted in if
+the neck length and diameter are right within a few mm), so the loop became a loose ring round the base of the
+pump collar with a dovetail key in a channel at the top of the spine. It is sized from the measured 52.0 collar
+and never touches the neck. The holder is one 30 mm wide profile printed on its side, so all bending runs along
+the layers. `cad/amber_checks.py` checks both parts against a stand-in bottle and pump: no overlap installed,
+on the way in and out, or with the spout turned and pushed; and for bodies 62 to 68 mm and heights 107 to 113 mm.
+Holder 54.5 cm³, ring 3.4 cm³ (both changed later the same day, below), no supports, no bridges, nothing steeper than 45°. Not printed.
+
+## 2026-11-22 Amber holder strength
+Jacob's loads: full bottle 6 N, a 30 N push on the pump head, a 20 N knock; PLA 45 MPa along the layers, 25 MPa
+across, SF 3 or more. `cad/amber_strength.py` (in `check.sh`) does the beam hand-calcs on sections probed from the
+solid. The 3 × 4 mm ring failed (30.7 MPa in hoop bending, SF 1.5) and is now 4 × 5 mm (14.1 MPa, SF 3.2). The
+brace under the foot turned out unnecessary (root 12.2 MPa with Kt 1.5, SF 3.7) and was removed: holder now
+109 × 87 × 30 mm, 46.3 cm³; ring 63 mm across, 4.9 cm³. All fit checks still pass.
+
+## 2026-11-22 Amber holder glued, not screwed
+Jacob will glue it up with montagelim, so the screw holes are gone; the flat back is the glue pad. Glue joint
+check in `cad/amber_strength.py`: 30 × 109 mm, peak tension 0.066 MPa plus 0.011 MPa shear, SF 6.5 against a
+deliberately low 0.5 MPa. With the holes gone the holder has no overhangs at all. A wider back plate (Jacob's
+offer) was not needed and would fight the side-on print.
+
+2026-11-22 (slicing). Sliced both parts with `pla-fast-0.4` (stock speeds, textured PEI 60 C, 210 C), no supports,
+STLs as exported (holder on its side, ring upside down). Holder: 150 layers to Z 30, 32.1 g, Orca estimate 2 h 04 min.
+Ring: 80 layers to Z 16, 5.4 g, 24 min. G-code in `scratch/amber_*-20261122/`, copied to the SD card as
+`amber_holder.gcode` and `amber_ring.gcode`. Print the ring first (it is quick and tests the fit on the pump collar).
