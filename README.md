@@ -14,7 +14,7 @@ Finished projects live in [`projects/`](projects/), each with its source, pictur
 
 | I want to… | Read |
 |---|---|
-| print one of the projects | its README under [`projects/`](projects/); STL and STEP files are on the [releases page](https://github.com/jfelding/workshop/releases) |
+| print one of the projects | its README under [`projects/`](projects/); STL and STEP files are in its `exports/` folder, and on the [releases page](https://github.com/jfelding/workshop/releases) once published |
 | print a part on the Neptune 3 Pro | [`equipment/neptune-3-pro/`](equipment/neptune-3-pro/) |
 | size a hole, a nut pocket or a press fit | [`materials/fits.md`](materials/fits.md), `workshop.fits` |
 | design a part in code | [`methods/cad-in-code.md`](methods/cad-in-code.md) |

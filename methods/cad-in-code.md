@@ -127,7 +127,7 @@ command exits non-zero on any failure, so CI and agents can rely on it.
 | `<part>.py` | One printable part, in print orientation. Calls `workshop.cad.export.export()` |
 | `layout.py` | Derived positions shared by several parts. Only arithmetic on measurements |
 | `checks.py` / `fit_check.py` | Overlap, probes, motion. Exits non-zero on failure. Writes `exports/checks.json` |
-| `exports/` | Generated, git-ignored except the pictures (`*.png`) and `checks*.json`. Regenerate it; never edit it |
+| `exports/` | Generated; never edit it, regenerate it. Pictures (`*.png`), `checks*.json`, `*.stl` and `*.step` are committed; G-code and 3MF are not |
 
 Run with `uv run python cad/<part>.py` from the project directory.
 
