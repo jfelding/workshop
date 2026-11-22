@@ -1,6 +1,8 @@
 exports/*
 !exports/*.png
 !exports/checks*.json
+!exports/*.stl
+!exports/*.step
 __pycache__/
 .venv/
 scratch/

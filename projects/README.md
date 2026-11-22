@@ -27,9 +27,10 @@ history. Leave a row behind.
 
 - Each project is a uv workspace member: `pyproject.toml` with `package = false`, depending on
   `workshop[...]` from the workspace.
-- Generated files (`exports/`, G-code, 3MF) are git-ignored, except the pictures (`exports/*.png`) and
-  `exports/checks*.json`: commit those, so a reader sees the parts and their checks without building anything.
-  The STL and STEP files of a published project go on its GitHub release, not in git.
+- Generated files in `exports/` are git-ignored, except the pictures (`exports/*.png`), `exports/checks*.json`
+  and the printable `exports/*.stl` and `exports/*.step`: commit those, so a reader sees the parts and can
+  print them without running any code. G-code and 3MF are never committed (they belong to one printer and
+  profile). A published project also attaches its STL and STEP files to its GitHub release.
 - **Pictures.** The README opens with `exports/preview.png` (the whole thing) and has a parts table with each
   part's picture (`exports/<part>.png`, written by `workshop.cad.export`). Commit them. CI runs
   `ws-check-pictures --committed` on every project (no build needed) and fails if a part has no picture or the README does not
