@@ -108,3 +108,12 @@ byte-identical (4885.608 mm³; everything above the seat top is identical in the
 - Judged from `on-earcup.jpg`, `worn-pair.jpg`, `adapter-in-cushion.jpg`: nothing on the Bose earcup at that height that the
   bulge would hit (the cup shell is about the cushion's width). Unverified.
 - First layer 3033 mm² (2868 narrow), overhang 10.80 mm² (unchanged), no islands in mid air.
+
+## 2026-11-22: first detent slice had no bumps
+
+Checked the G-code of the first `dyson_half_detent` slice: nothing was extruded at radius 38.2 to 39.0 on
+layers z 1.4 and 1.6. The profile uses the classic wall generator with thin-wall detection off, so a
+0.8 mm wide feature (under two 0.42 mm lines) is dropped. Widened the bumps to the full bar span, 38.1 to
+39.3 (1.2 mm). Re-sliced into `scratch/dyson-half-detent-20261122-b`: both bumps now print as an outer-wall
+loop on both layers; 23 layers, 6.16 g, 25m48s. The first file (`dyson_detent.gcode`) prints a plain wide
+plate and should be replaced. Lesson: after slicing a small feature, check the G-code for extrusion there.

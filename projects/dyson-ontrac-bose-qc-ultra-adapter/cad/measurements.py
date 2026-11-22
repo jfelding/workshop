@@ -97,8 +97,8 @@ BUMP_HEIGHT = 0.4               # 2 layers of 0.2. The bar clears the relief by 
 BUMP_APPROACH_DEG = 20.0        # slope of the side the bar climbs first (towards drop-on): gentle
 BUMP_RELEASE_DEG = 35.0         # slope on the home side: steeper, holds; a firm counter-twist still climbs it
 BUMP_CREST_LENGTH = 1.0         # flat top along the arc, mm
-BUMP_INNER_RADIUS = 38.2        # radial span of the bump: inside the bar's span (38.1 to 39.3 at the
-BUMP_OUTER_RADIUS = 39.0        # worst bar) and clear of the seat edge (37.4) and the plate edge
+BUMP_INNER_RADIUS = 38.1        # radial span of the bump: inside the bar's span (38.1 to 39.3 at the
+BUMP_OUTER_RADIUS = 39.3        # worst bar) and clear of the seat edge (37.4) and the plate edge
 CREST_BEFORE_HOME_DEG = 7.0     # how far from home the bar's trailing end is when it crosses the crest.
                                 # Not smaller: the wedge lets the cushion lift only 0.2 mm at about 6 degrees from
                                 # home and less closer (see detent_check.py), and the bump needs 0.2
