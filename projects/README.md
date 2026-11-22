@@ -22,6 +22,7 @@ history. Leave a row behind.
 | Picture | Project | Owner | Where | Status |
 |---|---|---|---|---|
 | <img src="dyson-ontrac-bose-qc-ultra-adapter/exports/preview.png" width="220"> | [Dyson OnTrac cushions on Bose QuietComfort Ultra](dyson-ontrac-bose-qc-ultra-adapter/) | Jacob | here | printed, in daily use |
+| <img src="door-phone-mute-switch-guard/exports/preview.png" width="220"> | [Door phone mute switch guard](door-phone-mute-switch-guard/) | Jacob | here | designed, not yet printed |
 
 ## Rules for a project here
 
