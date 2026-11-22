@@ -83,3 +83,10 @@ else, including the holder STL, is unchanged. Resliced as `scratch/amber_ring-v2
 the SD card as `amber_ring.gcode`; the first slice is kept as `amber_ring_v1.gcode`. Next time the holder is
 printed: the channel's roof flank will need a shallower angle (flare 1.2 gives 50 degrees from flat) or a
 sacrificial support; then drop `KEY_EXTRA_SLACK`.
+
+2026-11-22 (ring v3). Jacob: the ragged channel flank is the right side seen from above when the holder hangs
+(front view, looking at the wall) = design +x = the roof flank when printed on its side, as inferred. The key is
+now slimmer on that flank only: `KEY_EXTRA_SLACK` 0.8 mm normal to the flank on +x, the -x flank back at the
+fits slide play 0.4 (v2 had 0.5 extra on both flanks). Key back depth is back to full. `check.sh` passes, no
+overlaps. Resliced as `scratch/amber_ring-v3-20261122` (25 min, 5.3 g): SD card `amber_ring.gcode` is v3,
+`amber_ring_v2.gcode` the symmetric one, `amber_ring_v1.gcode` the original.

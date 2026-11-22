@@ -25,7 +25,7 @@
  },
  "forward_travel_until_ring_stops_bottle_mm": 1.75,
  "forward_travel_until_lip_stops_base_mm": 4.75,
- "ring_forward_travel_in_channel_mm": 1.25,
+ "ring_forward_travel_in_channel_mm": 0.75,
  "upward_travel_until_shoulder_lifts_ring_mm": 6.25,
  "lift_to_remove_mm": 25.2,
  "insertion_path_contacts": [],
@@ -106,20 +106,20 @@
  "amber_ring": {
   "size_mm": [
    63.0,
-   72.1,
+   72.6,
    16.0
   ],
-  "volume_cm3": 4.6,
+  "volume_cm3": 4.8,
   "overhang_steeper_than_45_mm2": 0.0,
   "flat_ceilings_mm2": 0.0,
   "worst_overhang_deg_from_vertical": 0.0,
   "mesh": {
-   "triangles": 1172,
+   "triangles": 1180,
    "watertight": true,
    "nonmanifold_edges": 0,
    "degenerate_faces": 0,
    "connected_components": 1,
-   "signed_volume_mm3": 4592.761,
+   "signed_volume_mm3": 4827.333,
    "component_bottoms_mm": [
     0.0
    ]

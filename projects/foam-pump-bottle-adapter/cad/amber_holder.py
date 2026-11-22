@@ -56,7 +56,8 @@ z_top = ring_z1 + dim("SPINE_ABOVE_RING")
 z_bot = -root - g
 
 p = process()
-slack = max(p.min_gap, p.printed_slide) / 2 + dim("KEY_EXTRA_SLACK")   # per side, key in channel (workshop.fits, plus the extra for the ragged roof flank of the first print)
+slack = max(p.min_gap, p.printed_slide) / 2           # per side, key in channel (workshop.fits)
+flank_extra = dim("KEY_EXTRA_SLACK")                  # extra, +x flank only: the first print's ragged roof flank
 mouth, depth, flare = dim("KEY_MOUTH"), dim("KEY_DEPTH"), dim("KEY_FLARE")
 
 
@@ -79,7 +80,20 @@ holder -= channel
 
 # --- ring with its key --------------------------------------------------------------------
 ring = cylinder(ring_ro, ring_z1 - ring_z0, "z", (0, 0, (ring_z0 + ring_z1) / 2))
-key = extrude(Pos(0, 0, key_z0) * channel_outline(-slack), ring_z1 - key_z0)
+# the key: the channel outline shrunk by the fit, then trimmed a further flank_extra off the +x flank only
+# (the flank from (mouth/2, y_spine) to (hb, y_spine + depth)); the trim starts where that flank starts so the stub is untouched
+_hm, _hb = mouth / 2, mouth / 2 + flare * depth
+_dx, _dy = _hb - _hm, depth
+_len = (_dx ** 2 + _dy ** 2) ** 0.5
+_ux, _uy = _dx / _len, _dy / _len                      # along the flank
+_nx, _ny = _uy, -_ux                                   # outward normal (+x, -y)
+_ax, _ay = _hm - (slack + flank_extra) * _nx, y_spine - (slack + flank_extra) * _ny
+_far = 40.0
+_trim = Polygon((_ax, _ay), (_ax + _far * _ux, _ay + _far * _uy),
+                (_ax + _far * _ux + _far * _nx, _ay + _far * _uy + _far * _ny),
+                (_ax + _far * _nx, _ay), align=None)
+key_outline = channel_outline(-slack) - _trim
+key = extrude(Pos(0, 0, key_z0) * key_outline, ring_z1 - key_z0)
 hk = mouth / 2 - slack
 link = box(-hk, hk, ring_ri + 1.0, y_spine, ring_z1 - dim("RING_THICKNESS") - dim("LINK_DROP"), ring_z1)
 ring = ring + key + link
