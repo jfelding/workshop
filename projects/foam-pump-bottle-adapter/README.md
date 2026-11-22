@@ -38,6 +38,10 @@ at after the first print: [`inventory/to-measure.md`](inventory/to-measure.md).
   cure fully (see the tube, usually a day) before the bottle goes in. The holder is sized for 6 N of bottle plus
   a 30 N push and a 20 N knock with a safety factor of at least 3 (`cad/amber_strength.py`); the glue line
   then sees under 0.1 MPa.
+- **Caution on material:** printed in PLA, this holds a full bottle all day. PLA creeps (slowly sags under steady
+  load), and softens from about 55-60 C, so over months or years it can fail, sooner in a warm spot such as sun
+  or above a radiator. PETG is the safer choice for a long life; PLA is fine for a test or a short one. The
+  strength numbers assume PLA and are hand calculations, not a test.
 - Ring over the pump head (or over the neck with the pump off), key to the back. Lower the bottle so the key
   drops into the channel at the top of the spine; the glass lands on the foot behind the lip.
 
