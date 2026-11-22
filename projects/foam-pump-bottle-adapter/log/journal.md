@@ -90,3 +90,9 @@ now slimmer on that flank only: `KEY_EXTRA_SLACK` 0.8 mm normal to the flank on 
 fits slide play 0.4 (v2 had 0.5 extra on both flanks). Key back depth is back to full. `check.sh` passes, no
 overlaps. Resliced as `scratch/amber_ring-v3-20261122` (25 min, 5.3 g): SD card `amber_ring.gcode` is v3,
 `amber_ring_v2.gcode` the symmetric one, `amber_ring_v1.gcode` the original.
+
+2026-11-22 (ring, 100% infill). Jacob printed the first ring geometry (symmetric 0.4 mm key; the one-sided v3 key
+is not used) with 100% infill: the job copy of `pla-fast-0.4` with `sparse_infill_density` 100%, job
+`scratch/amber_ring-solid-20261122`, 5.85 g, 23 min 32 s (20% was 5.35 g, 23 min 39 s). Stock speeds, nothing else changed.
+On the SD card as `amber_ring.gcode`. The STL is the one from commit 2418c5a; the branch's current `amber_ring.stl`
+still carries the v3 one-sided key (`KEY_EXTRA_SLACK` 0.8).
