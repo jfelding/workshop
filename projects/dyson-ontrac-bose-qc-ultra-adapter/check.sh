@@ -3,6 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 uv run python cad/dyson_half.py
+uv run python cad/dyson_half_wide.py
 uv run python cad/dyson_half_detent.py
 uv run python cad/bose_half.py
 uv run python cad/check.py

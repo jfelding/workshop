@@ -1,9 +1,9 @@
-"""TEST VARIANT of the Dyson half with a click detent: two low ramped bumps on the relief step.
+"""TEST VARIANT of the WIDE Dyson half with a click detent: two low ramped bumps on the relief step.
 
     uv run python cad/dyson_half_detent.py     # writes exports/dyson_half_detent.{stl,step,png}
 
 UNTESTED, and built from photo-read ledge-bar positions (see measurements.py). It is
-dyson_half.make() unchanged plus one bump on the relief surface in the path of each LONG ledge bar
+dyson_half_wide.make() (the wider outline over the proven hooks and seat) plus one bump on the relief surface in the path of each LONG ledge bar
 (a 180-degree symmetric pair, so one part still serves both ears). The proven part is not touched.
 
 Each cushion's ledge bar rides over the relief, 0.2 mm above it when the cushion is fully seated.
@@ -22,6 +22,7 @@ from workshop.cad.export import export
 from workshop.measure import dims
 
 import dyson_half
+import dyson_half_wide
 import measurements as m
 
 dim = dims(m)
@@ -83,7 +84,7 @@ def bump(angle_deg):
 
 
 def make():
-    part = dyson_half.make()
+    part = dyson_half_wide.make()
     c = bump_crest_deg()
     for a in (c, c + 180):
         part += bump(a)

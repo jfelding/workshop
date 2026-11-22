@@ -102,3 +102,18 @@ BUMP_OUTER_RADIUS = 39.0        # worst bar) and clear of the seat edge (37.4) a
 CREST_BEFORE_HOME_DEG = 7.0     # how far from home the bar's trailing end is when it crosses the crest.
                                 # Not smaller: the wedge lets the cushion lift only 0.2 mm at about 6 degrees from
                                 # home and less closer (see detent_check.py), and the bump needs 0.2
+
+# --- from a photo, NOT yet proven by fit (2026-11-22): the cushion's hard back ring ---------
+# Outer edge of the hard black ring, where it meets the pink foam, read from the same photo and scale
+# (28.22 px/mm) at 72 angles. The ring is a circle: fitted centre within 3 px (0.1 mm) of the slot circle's,
+# radius 41.13 mm, scatter 0.12 mm (41.0 to 41.4 at 0, 30, ..., 330 degrees). Uncertainty +/-0.4 mm
+# (scale 1 percent). Calipers: across the ring at the widest, outside jaws, then halve.
+RING_OUTER_RADIUS = 41.1
+
+# --- tuned / untested: wide outline (dyson_half_wide) ----------------------------------
+# The plate outline is the Bose oval united with a circle, blended: it bulges out around the short axis
+# so the plate covers the hard ring (the oval is only 39.0 mm from the centre there).
+COVER_MARGIN = 0.4              # beyond the ring: the top edge is rounded 0.6, so the flat face ends about
+                                # 0.2 mm inside the ring edge; and the ring reading is +/-0.4 mm
+COVER_RADIUS = RING_OUTER_RADIUS + COVER_MARGIN
+OUTLINE_BLEND_RADIUS = 40.0     # fillet where the circle meets the oval, mm: large, so no corner shows

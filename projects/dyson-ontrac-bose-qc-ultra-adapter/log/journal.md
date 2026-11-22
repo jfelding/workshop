@@ -74,3 +74,18 @@ are read from `PXL_20261117_153821423~2.jpg`, listed in `inventory/to-measure.md
   a bump at home itself cannot be passed. Sweep in `exports/checks.json` (`detent_sweep`): interference 0.2 mm
   from drop-on to 6.5° before home, zero from 5.5° on, margin to the wedge slack 0.065 mm (assumes a 0.8 mm
   ledge slab). Untested.
+
+## 2026-11-22 Wide plate test variant (not printed)
+
+New part `dyson_half_wide` (`cad/dyson_half_wide.py`): the proven hooks, seat and pin holes under a new outline, the
+Bose oval united with a circle of `COVER_RADIUS` (hard ring 41.1 + 0.4) and a 40 mm blend fillet, so the plate
+covers the cushion's hard ring at the sides. `dyson_half_detent` is now built on it. `dyson_half.stl` is
+byte-identical (4885.608 mm³; everything above the seat top is identical in the wide part, 284.929 mm³ both).
+- Ring read from the cushion photo at 72 angles (28.22 px/mm): circular, centre within 0.1 mm of the slot circle, radius 41.13,
+  scatter 0.12 (41.0-41.4); uncertainty +/-0.4. Photo-derived, in `inventory/to-measure.md`.
+- Overhang beyond the oval: max 2.5 mm at the short axis, about 72° of arc on each side. 83.0 x 96.5 x 4.7 mm.
+- The narrow oval ends 0.1 mm inside the short bars' outer face (-0.09/-0.14 mm), which is the "does not cover the ring"
+  complaint in numbers; the wide plate leaves 2.2 mm. The bars clear the plate everywhere in the sweep (0 mm³).
+- Judged from `on-earcup.jpg`, `worn-pair.jpg`, `adapter-in-cushion.jpg`: nothing on the Bose earcup at that height that the
+  bulge would hit (the cup shell is about the cushion's width). Unverified.
+- First layer 3033 mm² (2868 narrow), overhang 10.80 mm² (unchanged), no islands in mid air.

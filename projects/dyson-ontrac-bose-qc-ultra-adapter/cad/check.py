@@ -23,7 +23,7 @@ dim = dims(m)
 OUT = Path(__file__).parents[1] / "exports"
 report = {}
 
-for name in ("dyson_half", "dyson_half_detent", "bose_half"):
+for name in ("dyson_half", "dyson_half_wide", "dyson_half_detent", "bose_half"):
     stl = OUT / f"{name}.stl"
     mesh = mesh_check(stl)                      # watertight, one part, sitting on the bed
     summary, _ = layers(stl)                    # no layer starts in mid-air
@@ -65,8 +65,16 @@ report["glued"] = {
 }
 # The detent test variant: the proven part is unchanged and the bump motion sweep (see detent_check.py).
 assert abs(report["dyson_half"]["volume_mm3"] - 4885.608) < 0.01, report["dyson_half"]["volume_mm3"]
+# The wide plate: same hooks (everything above the seat top is identical), the bumps added on top of it.
+above = trimesh.creation.box((120, 120, 10)); above.apply_translation((0, 0, 2.0 + 5))   # z >= 2.0 (seat top)
+tops = {n: trimesh.boolean.intersection([trimesh.load(OUT / f"{n}.stl"), above], engine="manifold").volume
+        for n in ("dyson_half", "dyson_half_wide")}
+assert abs(tops["dyson_half"] - tops["dyson_half_wide"]) < 0.01, tops
+report["dyson_half_wide"]["volume_above_seat_matches_proven_mm3"] = round(float(tops["dyson_half"]), 3)
+report["dyson_half_wide"]["extra_volume_vs_proven_mm3"] = round(
+    report["dyson_half_wide"]["volume_mm3"] - report["dyson_half"]["volume_mm3"], 3)
 report["dyson_half_detent"]["bump_volume_added_mm3"] = round(
-    report["dyson_half_detent"]["volume_mm3"] - report["dyson_half"]["volume_mm3"], 3)
+    report["dyson_half_detent"]["volume_mm3"] - report["dyson_half_wide"]["volume_mm3"], 3)
 report["detent_sweep"] = detent_check.run()
 (OUT / "checks.json").write_text(json.dumps(report, indent=2) + "\n")
 print(json.dumps(report, indent=2))

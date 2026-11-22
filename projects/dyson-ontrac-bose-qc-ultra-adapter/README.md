@@ -25,11 +25,20 @@ Print two of each. Left and right are identical. STL and STEP files are attached
 | <img src="exports/dyson_half.png" width="260"> | Dyson half | `dyson_half.stl` / `.step` | 2 | 78.0 × 96.5 × 4.7 mm, 5.9 g |
 | <img src="exports/bose_half.png" width="260"> | Bose half | `bose_half.stl` | 2 | 78.0 × 96.5 × 5.0 mm, 5.7 g. Dr. Watt's frame with two pin pockets added |
 
-| <img src="exports/dyson_half_detent.png" width="260"> | Dyson half, click-detent test variant (**not printed, not proven**) | `dyson_half_detent.stl` / `.step` | 0 | Same as the Dyson half plus two 0.4 mm bumps. See below |
+| <img src="exports/dyson_half_wide.png" width="260"> | Dyson half, wide outline test variant (**not printed, not proven**) | `dyson_half_wide.stl` / `.step` | 0 | 83.0 × 96.5 × 4.7 mm. Same hooks and seat; bulges 2.5 mm past the oval at the sides to cover the cushion's hard ring |
+| <img src="exports/dyson_half_detent.png" width="260"> | Wide Dyson half with click detent, test variant (**not printed, not proven**) | `dyson_half_detent.stl` / `.step` | 0 | The wide half plus two 0.4 mm bumps. See below |
 
 Also needed: about 20 mm of 1.75 mm filament for four alignment pins, and superglue.
 
-## Detent test variant (untested)
+## Wide and detent test variants (untested)
+
+`dyson_half_wide` has the same hooks and seat but its outline is the Bose oval united with a circle 0.4 mm
+larger than the cushion's hard ring (radius 41.1 mm, read from a photo), blended with a 40 mm fillet. It
+overhangs the Bose half by at most 2.5 mm, over about 72° of arc at each side, so the cushion's ring is covered
+all round. The Bose half's earcup at that height was judged from the photos only: nothing visible that the bulge
+would hit, unverified. `dyson_half_detent` is built on the wide plate. Neither is printed.
+
+### Detent
 
 The Dyson half holds by wedge friction only; the original earcup clicks. `dyson_half_detent` adds a low ramped
 bump on the stepped-down plate under each of the two long ledge bars, so a bar rides up it and drops off about
@@ -58,7 +67,8 @@ Neptune 3 Pro with the [`pla-fast-0.4`](../../equipment/neptune-3-pro/profiles/p
 ## Known shortcomings
 
 - The Dyson half is a little too narrow at the sides: it does not fully cover the cushion's lock ring
-  at the left and right of each earpad. A reprint would be wider there.
+  at the left and right of each earpad. A reprint would be wider there; a wider test part
+  (`dyson_half_wide`) exists but is untested, the published part is still the narrow one.
 - The "UP!" on the Bose half comes from Dr. Watt's frame. The adapter fits either way round.
 
 ## Changing the fit
@@ -76,6 +86,9 @@ Every dimension is in [`cad/measurements.py`](cad/measurements.py):
 | detent: no click felt | `BUMP_HEIGHT` 0.4 to 0.6 | 0.4 |
 | detent: too easy to twist back off | `BUMP_RELEASE_DEG` up (steeper holds more) | 35 |
 | detent: the bump misses the bar | `BUMP_INNER_RADIUS`, `BUMP_OUTER_RADIUS`; `LEDGE_BARS_PHOTO` angles once measured | 38.2, 39.0 |
+| wide plate: the ring still shows at the sides, or the plate presses into the foam | `COVER_MARGIN` (up or down) | 0.4 |
+| wide plate: outline looks lumpy or fails to build | `OUTLINE_BLEND_RADIUS` | 40 |
+| wide plate: the ring radius turns out different | `RING_OUTER_RADIUS` (measure it) | 41.1 |
 | the pins are loose or will not go in | `PIN_PRESS_POCKET`, `PIN_SLIP_HOLE` | 1.85, 1.95 |
 
 ## Build

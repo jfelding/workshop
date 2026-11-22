@@ -12,11 +12,12 @@ from pathlib import Path
 
 import numpy as np
 import trimesh
-from shapely.geometry import Polygon
+from shapely.geometry import LineString, Polygon
 
 from workshop.measure import dims
 
 import dyson_half
+import dyson_half_wide
 import dyson_half_detent as dd
 import measurements as m
 
@@ -62,9 +63,47 @@ def wedge_slack(offset):
     return gap - dim("LEDGE_THICKNESS_ASSUMED")
 
 
+def outline_polygon():
+    """The wide plate's nominal outline (before the edge chamfer and fillet) as a shapely polygon."""
+    wire = dyson_half_wide.outline().faces()[0].outer_wire()
+    return Polygon([(p.X, p.Y) for p in wire.positions([i / 4000 for i in range(4000)])])
+
+
+def radius_at(poly, deg):
+    """Distance from the centre to the polygon's outer boundary along `deg`."""
+    ray = LineString([(0, 0), (200 * math.cos(math.radians(deg)), 200 * math.sin(math.radians(deg)))])
+    hit = ray.intersection(poly.exterior)
+    pts = [hit] if hit.geom_type == "Point" else list(hit.geoms)
+    return max(math.hypot(p.x, p.y) for p in pts)
+
+
+def wide_plate_report():
+    """Coverage and overhang of the wide outline against the Bose oval, and the hooks against the proven part."""
+    poly = outline_polygon()
+    a, b = ELLIPSE
+    degs = np.arange(0, 360, 0.5)
+    over = np.array([radius_at(poly, d) - 1 / math.sqrt((math.cos(math.radians(d)) / a) ** 2 +
+                     (math.sin(math.radians(d)) / b) ** 2) for d in degs])
+    arc = float(np.sum(over > 0.05) * 0.5)             # degrees (both sides together) where it overhangs
+    ring = dim("RING_OUTER_RADIUS")
+    covered = [d for d in degs if radius_at(poly, d) >= ring - 0.05]
+    # bars: how far inside the plate edge is each bar's outer face over the whole twist (offset 0 .. twist)?
+    bars = []
+    for kind, lo, hi, r0, r1 in dd.bars_cad():
+        edge = min(radius_at(poly, d) for d in np.arange(lo - 1, hi + dim("TWIST_TRAVEL_DEG") + 1, 0.5))
+        oval = min(1 / math.sqrt((math.cos(math.radians(d)) / a) ** 2 + (math.sin(math.radians(d)) / b) ** 2)
+                   for d in np.arange(lo - 1, hi + dim("TWIST_TRAVEL_DEG") + 1, 0.5))
+        bars.append({"kind": kind, "edge_minus_bar_outer_mm": round(edge - r1, 2),
+                     "oval_edge_minus_bar_outer_mm": round(oval - r1, 2)})
+    return {"max_overhang_beyond_oval_mm": round(float(over.max()), 2), "overhang_arc_deg_total": arc,
+            "overhang_arc_deg_each_side": arc / 2, "cover_radius_mm": dim("COVER_RADIUS"),
+            "ring_radius_mm": ring, "angles_where_ring_fully_covered_deg": len(covered) * 0.5,
+            "bars_vs_plate_edge": bars}
+
+
 def run():
     stl = OUT / "dyson_half_detent.stl"
-    det, base = trimesh.load(stl), trimesh.load(OUT / "dyson_half.stl")
+    det, base = trimesh.load(stl), trimesh.load(OUT / "dyson_half_wide.stl")   # the plate the bumps stand on
     twist = dim("TWIST_TRAVEL_DEG")
     bars = dd.bars_cad()
     clearance = Z_BAR0 - dd.Z_RELIEF
@@ -151,6 +190,7 @@ def run():
         "twist_for_bar_to_clear_bump_deg": round(twist_to_clear, 1),
         "worst_slack_minus_interference_mm": round(float(worst), 3),
         "other_collisions_mm3": round(other, 4),
+        "wide_plate": wide_plate_report(),
         "sweep": rows,
     }
 
