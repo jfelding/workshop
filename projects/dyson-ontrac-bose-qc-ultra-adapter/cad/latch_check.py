@@ -1,6 +1,6 @@
-"""Checks on the latch variant: the arms are free, the teeth meet the cushion as intended, the pocket is right.
+"""Checks on the latch: the arms are free, the teeth meet the cushion as intended, the pocket is right.
 
-    uv run python cad/latch_check.py        # after dyson_half_latch.py and bose_half_latch.py; check.py calls run()
+    uv run python cad/latch_check.py        # after dyson_half.py and bose_half.py; check.py calls run()
 
 The cushion is modelled as the solid part of its hard face next to each short slot: a slab from the seat plane
 up, ending at the slot's open-end wall, turned through the twist. "offset" is the degrees still to go to the
@@ -16,9 +16,9 @@ from shapely.geometry import Polygon
 
 from workshop.measure import dims
 
-import bose_half_latch as bl
-import dyson_half
-import dyson_half_latch as dl
+import bose_half as bl
+import dyson_half as dl
+import hooks
 import measurements as m
 
 dim = dims(m)
@@ -65,8 +65,8 @@ def spring():
 
 
 def run(glued_bose=None):
-    latch, wide = trimesh.load(OUT / "dyson_half_latch.stl"), trimesh.load(OUT / "dyson_half_wide.stl")
-    bose, bose_wide = trimesh.load(OUT / "bose_half_latch.stl"), trimesh.load(OUT / "bose_half_wide.stl")
+    latch, bose = trimesh.load(OUT / "dyson_half.stl"), trimesh.load(OUT / "bose_half.stl")
+    wide, bose_wide = bl.to_mesh(dl.plate()), bl.before_pockets()     # the same parts without the latch
     pawls, twist, t_plate = dl.pawls(), dim("TWIST_TRAVEL_DEG"), dl.T_PLATE
     names = "AB"
     res = {"pawls_deg_plate_frame": {}, "spring": spring()}
@@ -92,17 +92,17 @@ def run(glued_bose=None):
             "slit_end": round(p["slit_end"], 2), "tooth_volume_mm3": round(float(arm.volume - body.volume
                 - common(sector(dl.R_IN, dl.R_OUT, p["foot"] - 0.02, p["tip"], -0.5, dl.Z_ARM), latch).volume), 3)}
     # radial room for the tooth in the slot, and clear of hooks and pins
-    spans = [(s, s + sp) for s, sp, _ in dyson_half.hook_spans()]
+    spans = [(s, s + sp) for s, sp, _ in hooks.hook_spans()]
     hook_gap = min(abs((e - a + 180) % 360 - 180) for p in pawls for a in (p["lowered_from"], p["slit_end"])
                    for s in spans for e in s)
-    pins = [math.degrees(math.atan2(y, x)) for x, y in dyson_half.pin_positions()]
+    pins = [math.degrees(math.atan2(y, x)) for x, y in hooks.pin_positions()]
     res["tooth_to_slot_inner_edge_mm"] = round(dl.R_TIP - dl.SLOT_INNER_RADIUS, 2)
     res["tooth_width_mm"] = round(dl.R_OUT - dl.R_TIP, 2)
     res["tooth_to_slot_outer_edge_mm"] = round(dim("SLOT_OPPOSING_SPAN") / 2 - dl.R_OUT, 2)
     res["nearest_hook_end_deg"] = round(float(hook_gap), 1)
     assert res["tooth_to_slot_inner_edge_mm"] >= 0.5 and hook_gap > 8
     res["seat_ring_left_inside_slit_mm"] = round(dl.R_IN - dl.SLIT - dim("BORE_DIAMETER") / 2, 2)
-    # nothing above the seat changed except the teeth; the hooks are the proven ones
+    # nothing above the seat changed except the teeth; the hooks are those of the plate
     above = trimesh.creation.box((120, 120, 10)); above.apply_translation((0, 0, t_plate + 5 + 1e-4))
     extra = common(latch, above).volume - common(wide, above).volume
     res["volume_above_seat_added_mm3"] = round(float(extra), 3)
@@ -131,7 +131,7 @@ def run(glued_bose=None):
     res["hard_stop_offset_deg"] = round(-math.degrees(dim("LOCK_END_GAP") / ((dim("STEM_INNER_RADIUS")["short"]
                                         + dim("STEM_OUTER_RADIUS")) / 2)), 2)
 
-    # 3. the Bose pocket: roof closed, wall to the opening, clips not undercut, proven frame otherwise untouched
+    # 3. the Bose pocket: roof closed, wall to the opening, clips not undercut, frame otherwise untouched
     depth, mg = dim("BOSE_LATCH_POCKET_DEPTH"), dim("BOSE_LATCH_POCKET_MARGIN")
     removed = trimesh.boolean.difference([bose_wide, bose], engine="manifold")
     assert trimesh.boolean.difference([bose, bose_wide], engine="manifold").volume < 1e-3     # nothing added

@@ -1,9 +1,9 @@
 """How the latch works: plan view of the pawls, and a side view of each tooth against its slot wall.
 
-    uv run python cad/latch_picture.py      # writes exports/dyson_half_latch_mechanism.png
+    uv run python cad/latch_picture.py      # writes exports/latch_mechanism.png
 
 Left: seen from the cushion side, looking down on the hooks (the plate's CAD frame). Right: the arc through
-each tooth rolled out flat, the cushion's face drawn at drop-on and at home. Untested geometry.
+each tooth rolled out flat, the cushion's face drawn at drop-on and at home.
 """
 import math
 from pathlib import Path
@@ -12,12 +12,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Polygon, Rectangle, Wedge
+from shapely.geometry import Polygon as Shape
 
 from workshop.measure import dims
 
-import detent_check
-import dyson_half
-import dyson_half_latch as dl
+import dyson_half as dl
+import hooks
 import measurements as m
 
 dim = dims(m)
@@ -29,12 +29,18 @@ def band(ax, r0, r1, a0, a1, **kw):
     ax.add_patch(Wedge((0, 0), r1, a0, a1, width=r1 - r0, **kw))
 
 
+def outline_polygon():
+    """The plate's nominal outline (before the edge chamfer and fillet) as a shapely polygon."""
+    wire = dl.outline().faces()[0].outer_wire()
+    return Shape([(p.X, p.Y) for p in wire.positions([i / 4000 for i in range(4000)])])
+
+
 def plan(ax):
     twist = dim("TWIST_TRAVEL_DEG")
-    ax.add_patch(Polygon(list(detent_check.outline_polygon().exterior.coords), fc="#e9e9e9", ec="#444", lw=1.5))
+    ax.add_patch(Polygon(list(outline_polygon().exterior.coords), fc="#e9e9e9", ec="#444", lw=1.5))
     ax.add_patch(Circle((0, 0), dim("BORE_DIAMETER") / 2, fc="white", ec="#444", lw=1))
     ax.add_patch(Circle((0, 0), dim("STEM_OUTER_RADIUS"), fc="none", ec="#888", lw=1, ls=":"))
-    for s, sp, kind in dyson_half.hook_spans():
+    for s, sp, kind in hooks.hook_spans():
         band(ax, dim("STEM_INNER_RADIUS")[kind], dim("LIP_OUTER_RADIUS")[kind], s, s + sp, fc=GREY, ec="#34495e", lw=1)
     r_slot = (dl.SLOT_INNER_RADIUS, dim("SLOT_OPPOSING_SPAN") / 2)
     for name, p in zip("AB", dl.pawls()):
@@ -102,9 +108,9 @@ def main():
     plan(fig.add_subplot(grid[:, 0]))
     for i, (name, p) in enumerate(zip("AB", dl.pawls())):
         side(fig.add_subplot(grid[i, 1]), name, p)
-    fig.suptitle("dyson_half_latch: spring pawls that click into the cushion's short slots (second version, untested)", fontsize=13)
-    fig.savefig(OUT / "dyson_half_latch_mechanism.png", bbox_inches="tight")
-    print("wrote", OUT / "dyson_half_latch_mechanism.png")
+    fig.suptitle("dyson_half: spring pawls that click into the cushion's short slots", fontsize=13)
+    fig.savefig(OUT / "latch_mechanism.png", bbox_inches="tight")
+    print("wrote", OUT / "latch_mechanism.png")
 
 
 if __name__ == "__main__":

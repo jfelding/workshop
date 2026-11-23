@@ -1,6 +1,6 @@
 [project]
 name = "dyson-ontrac-bose-qc-ultra-adapter"
-version = "1.0.0"
+version = "2.0.0"
 description = "Printed adapter: Dyson OnTrac ear cushions on Bose QuietComfort Ultra headphones"
 requires-python = ">=3.11"
 dependencies = ["workshop[cad]", "trimesh>=4.4", "manifold3d>=2.5"]

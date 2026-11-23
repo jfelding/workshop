@@ -1,20 +1,11 @@
 # To measure
 
-Calipers, in mm. Measured values are in `cad/measurements.py`. Everything below is currently a **best guess read
-from a photo** (2026-11-22, approved by the owner for the detent test variant only, `dyson_half_detent`). Replace
-each by a measured value and the variant rebuilds.
+Calipers, in mm. Measured values are in `cad/measurements.py`. v2 prints and works without these; each would
+tighten a number that is now a photo reading or a calculation.
 
 | Name in measurements.py | What | How | Matters for |
 |---|---|---|---|
-| `LEDGE_BARS_PHOTO` start/end angles (7.5-22.8, 98.5-112.3, 187.5-203.2, 277.5-293.6 in photo frame) | where each ledge bar starts (lock end) and ends | with calipers, the bar's length along the slot's outer edge (chord, end to end), and its distance from the slot's closed end; bars look about 10 mm (long) and 9.5 mm (short) | where the bump sits under the bar |
-| `LEDGE_BARS_PHOTO` inner radius (38.1, 37.8, 37.7, 37.9) | bar inner face | depth gauge or jaws: distance from the slot's outer edge to the bar's inner face (about 1.2-1.6 mm) | bump radial position (kept inside 38.2-39.0) |
-| `LEDGE_BARS_PHOTO` outer radius (39.3) | bar outer face | taken as the slot's outer edge, `SLOT_OPPOSING_SPAN` / 2; check the bar is flush with it | same |
-| `PHOTO_FRAME_OFFSET_DEG` (47.5) | turn of the photo against `SLOT_ANGLES` | only exists because of the photo; disappears once bar angles are measured in the `SLOT_ANGLES` frame | all four bars |
-| `TWIST_TRAVEL_DEG` (16) | drop-on to home | mark the cushion and the plate, drop on where the hooks first go flat, twist to the stop, read the angle (or the arc at the cushion edge) | where the bar is relative to the bump at drop-on |
-| `LEDGE_THICKNESS_ASSUMED` (0.8) | thickness of the slab the hook lip clamps | jaws across the ledge under the bar, or a feeler gauge | how much the cushion can lift at the crest: the 0.065 mm margin moves 1:1 with this |
-| `LEDGE_PROTRUSION` (0.6, measured) | bar height above the cushion face | re-measure if bumps seem to do nothing | clearance over the relief, now 0.2 mm |
-| `RING_OUTER_RADIUS` (41.1) | outer edge of the cushion's hard black back ring, where it meets the foam | outside jaws across the ring at its widest and at 90 degrees to that, halve (it read circular, 41.0-41.4 at twelve angles; uncertainty about 0.4) | `COVER_RADIUS` of `dyson_half_wide`: plate edge, 0.4 mm beyond |
-| `LATCH_FOOT_BEHIND_WALL_DEG` (-2.8, -2.8) | where the cushion really stops, against the calculated home (first latch print says 1 to 2 degrees before it; not measured) | with the wide plate in the cushion and twisted home: look through a short slot from the cushion side and measure the gap between the slot's closed end and the hook's stem (calculated 2.4 mm of arc at home) | where the latch teeth go; lets both teeth sit at one angle, which removes the play |
-| `SLOT_INNER_RADIUS` at the short slots' closed ends, and the slot's width there | inner and outer edge of a short slot within 3 mm of its closed end | inside jaws across the slot | the tooth is 2.1 mm wide with 1.3 mm (inner) and 1.9 mm (outer) to spare, from the slot dimensions already measured |
-| cushion face between a short slot's closed end and the next 26° of arc | flat, no rib, bar or label | look, or lay a straightedge | the arm lies under it and the tooth slides along it during the twist |
-| `PLA_MODULUS_ASSUMED_MPA` (2500) | stiffness of the printed arm | not worth measuring: press a printed tooth down with a kitchen scale, 2.1 N (about 215 g) is the calculated value | reported forces only, no geometry |
+| `LATCH_FOOT_BEHIND_WALL_DEG` (-2.8, -2.8) | where the cushion really stops, against the calculated home (the first latch print says 1 to 2 degrees before it) | with the adapter in a cushion and twisted home: look through a short slot from the cushion side and measure the gap between the slot's closed end and the hook's stem (calculated 2.4 mm of arc at home) | the 1 to 2° of play before the teeth catch; with the true stop the teeth can sit right at it |
+| `TWIST_TRAVEL_DEG` (16) | drop-on to home | mark the cushion and the plate, drop on where the hooks first go flat, twist to the stop, read the angle (or the arc at the cushion edge) | the latch sweep and picture only |
+| `RING_OUTER_RADIUS` (41.1, from a photo) | outer edge of the cushion's hard black back ring, where it meets the foam | outside jaws across the ring at its widest and at 90 degrees to that, halve | plate edge (`COVER_RADIUS`, 0.4 mm beyond). The print covers it, so only if the ring shows |
+| `PLA_MODULUS_ASSUMED_MPA` (2500) | stiffness of the printed arm | press a printed tooth down with a kitchen scale; 3.3 N (about 335 g) is the calculated value | reported forces only, no geometry |

@@ -40,3 +40,14 @@ light twist still latches; the price is 1 to 2° of play until the stop is measu
 Chosen: more hold from a shorter arm (1.5 times) and a 65° face (1.4 times at friction 0.3), not from a taller tooth
 (the pocket is only 1.6 deep) or a face near 70° (at friction 0.45 a 66° face no longer releases).
 Accepted: peak strain 1.41 % instead of 1.07 %, because it is there only while the cushion is being fitted.
+
+## 2026-11-23 v2.0.0: the latch pair replaces v1, and the test variants go
+Chosen: the second latch print works (owner: "the best one yet"), so `dyson_half_latch` + `bose_half_latch` become
+`dyson_half` + `bose_half`, version 2.0.0. v1 (narrow, friction only) is withdrawn: the owner says nobody should
+print it. The geometry is unchanged: the rebuilt parts differ from the printed meshes by 0.000 mm³ either way.
+Chosen: one module per printed part plus `hooks.py` for the shared twist-lock geometry, instead of a chain of
+variant modules each importing the last. The wide and detent variants, `detent_check.py` and the photo-read ledge
+bars are deleted; git history keeps them.
+Chosen: publish by updating each printing-site page in place (same link, likes and remix credit), replacing the
+files and putting the v2 note at the top of the description, rather than a new listing beside a stale one. GitHub
+gets a v2.0.0 release; the v1.0.0 release is marked superseded.

@@ -510,7 +510,7 @@ wheels = [
 
 [[package]]
 name = "dyson-ontrac-bose-qc-ultra-adapter"
-version = "1.0.0"
+version = "2.0.0"
 source = { virtual = "projects/dyson-ontrac-bose-qc-ultra-adapter" }
 dependencies = [
     { name = "manifold3d" },

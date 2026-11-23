@@ -162,3 +162,19 @@ Releasing by twisting is fine.
 - Sliced into `scratch/dyson-half-latch-20261123-c` (23 layers, 6.00 g, 26m44s) and
   `scratch/bose-half-latch-20261123-c` (25 layers, 5.70 g, 27m25s). G-code: both teeth on every layer z 2.0 to 3.2,
   slits empty, pockets empty to z 1.6 and roofed at 1.8. The earlier latch job folders are superseded.
+
+## 2026-11-23 Latch second version printed: works. Clean-up to v2.0.0
+
+The owner printed the second latch pair (`scratch/*-latch-20261123-c`) and reports it the best yet; the narrow v1
+is withdrawn. Branch `dyson-detent-test` cleaned up for release:
+- `dyson_half.py` is now the wide plate with the latch (was `dyson_half_latch.py` on `dyson_half_wide.py`);
+  the shared hook, pin and placement code moved to `hooks.py` (was the v1 `dyson_half.py`). `bose_half.py` is
+  frame + pin pockets + rim + latch pockets in one module (was three).
+- Deleted: `dyson_half_wide.py`, `dyson_half_detent.py`, `bose_half_wide.py`, `bose_half_latch.py`,
+  `detent_check.py`, `detent_picture.py`, their exports, the detent and ledge-bar constants, and the detent rows
+  of `inventory/to-measure.md`. `latch_picture.py` writes `exports/latch_mechanism.png`.
+- Proof the geometry did not move: new `dyson_half.stl` and `bose_half.stl` against the printed latch meshes,
+  boolean difference 0.0000 mm³ both ways, volumes 4968.828 and 4698.777 mm³; spring numbers, sweep summary and
+  Bose material removed identical in `checks.json`. `check.py` asserts the hooks' volume above the seat is still
+  284.929 mm³ (the v1 hooks).
+- README, listing and pyproject moved to v2.0.0.

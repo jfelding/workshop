@@ -21,7 +21,7 @@ history. Leave a row behind.
 
 | Picture | Project | Owner | Where | Status |
 |---|---|---|---|---|
-| <img src="dyson-ontrac-bose-qc-ultra-adapter/exports/preview.png" width="220"> | [Dyson OnTrac cushions on Bose QuietComfort Ultra](dyson-ontrac-bose-qc-ultra-adapter/) | Jacob | here | printed, in daily use |
+| <img src="dyson-ontrac-bose-qc-ultra-adapter/exports/preview.png" width="220"> | [Dyson OnTrac cushions on Bose QuietComfort Ultra](dyson-ontrac-bose-qc-ultra-adapter/) | Jacob | here | v2 printed, in daily use |
 
 ## Rules for a project here
 
