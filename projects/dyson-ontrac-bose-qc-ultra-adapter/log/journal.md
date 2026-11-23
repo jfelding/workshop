@@ -178,3 +178,12 @@ is withdrawn. Branch `dyson-detent-test` cleaned up for release:
   Bose material removed identical in `checks.json`. `check.py` asserts the hooks' volume above the seat is still
   284.929 mm³ (the v1 hooks).
 - README, listing and pyproject moved to v2.0.0.
+
+## 2026-11-23 v2.0.0 published
+
+- GitHub: v1.0.0 release deleted (tag kept), v2.0.0 released with `publish.sh`.
+- Printables, MakerWorld and Thingiverse updated in place: old files removed, new `dyson_half.stl`,
+  `bose_half.stl`, `dyson_half.step`; the four real photos only (no PNG renders on the printing sites, the
+  owner's call); description edited minimally from the v1 text, the "If I printed it again" section dropped.
+- MakerWorld: the edit goes through their review; users with print profiles were notified to reprint both
+  halves. Chose "do not sync" to MakerWorld China.

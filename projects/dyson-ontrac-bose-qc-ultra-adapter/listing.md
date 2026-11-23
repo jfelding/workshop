@@ -24,16 +24,12 @@ Model files, from `exports/` after `./check.sh`:
 2. `bose_half.stl` (print 2)
 3. `dyson_half.step`
 
-Pictures, the first is the cover:
+Pictures, the first is the cover. Only the real photos; the PNG renders stay in the README:
 
 1. `images/worn-pair.jpg`
 2. `images/on-earcup.jpg`
 3. `images/adapter-in-cushion.jpg`
 4. `images/adapter-glued.jpg`
-5. `exports/preview.png`
-6. `exports/dyson_half.png`
-7. `exports/bose_half.png`
-8. `exports/latch_mechanism.png`
 
 ## Print settings fields
 
