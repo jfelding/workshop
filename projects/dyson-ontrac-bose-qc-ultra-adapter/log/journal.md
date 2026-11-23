@@ -117,3 +117,27 @@ layers z 1.4 and 1.6. The profile uses the classic wall generator with thin-wall
 39.3 (1.2 mm). Re-sliced into `scratch/dyson-half-detent-20261122-b`: both bumps now print as an outer-wall
 loop on both layers; 23 layers, 6.16 g, 25m48s. The first file (`dyson_detent.gcode`) prints a plain wide
 plate and should be replaced. Lesson: after slicing a small feature, check the G-code for extrusion there.
+
+## 2026-11-23 Spring latch (not printed)
+
+The owner printed the wide plate with the detent bumps: fits well, no lock at all. New parts `dyson_half_latch`
+(`cad/dyson_half_latch.py`) and `bose_half_latch` (`cad/bose_half_latch.py`); `dyson_half` is unchanged (4885.608 mm³).
+- One pawl per short slot: arm r 34.8 to 37.4, 17.4 mm long, 1.8 thick, cut free by a 0.8 mm U-slit; tooth 1.2 mm
+  above the seat, lock face 62°, back face 75°, 2.1 mm wide (narrowed to r 35.3 at the tip, see below).
+- Calculated (PLA 2500 MPa assumed): 1.79 N/mm, 2.14 N to press a tooth flat, peak strain 1.07 %, tip drop 1.33 mm
+  against a 1.6 mm pocket. Untwist force at the tooth 5.6 N at friction 0.3 (4.5 at 0.2, 10.4 at 0.5), 0.40 N·m.
+- Sweep, cushion face against the part, drop-on to the hard stop: both teeth flat from drop-on; A fully up from 0.87°
+  before home, B from 0.73° after; both up at the hard stop (2.39° past). At nominal home B is still pressed 0.9 mm.
+- The Bose frame's clips are not symmetric: one reaches r 34.65 under a pawl tip. First pocket cut 0.6 mm³ out of
+  it. Fixed by narrowing the tooth to r >= 35.3 and stepping the pocket's inner wall to 34.75 there: 0 mm³.
+- Sign slip caught by the sweep: the cushion's solid face is on the low-angle side of the slot's closed end, so a
+  tooth placed "behind the wall" rises later, not earlier.
+- Printability: 4957.9 mm³, first layer 2963 mm², overhang 10.80 mm² (as the wide plate), no islands. Bose half
+  4640.3 mm³, pockets remove 330.0 mm³, roofs are bridges (186 mm²).
+- The pins let the halves go together either way round, but the staggered teeth put the two arms 181.6° apart.
+  Each pocket is therefore the envelope of both arms; the arm sweep is checked against the Bose half both ways (0 mm³).
+- Sliced with stock `pla-fast-0.4` into `scratch/dyson-half-latch-20261123` (23 layers, 5.98 g, 26m48s) and
+  `scratch/bose-half-latch-20261123-b` (25 layers, 5.63 g, 27m05s; the folder without `-b` has the earlier, one-way pockets, do not print it). G-code checked: both teeth extruded on every
+  layer z 2.0 to 3.2 (5.6 mm of line on the top one), nothing extruded in the slits, arm top at z 1.8; the Bose
+  pockets are empty from z 0.2 to 1.6 (2 x 99 mm²) and roofed at 1.8. The slicer turns the part 90° on the bed,
+  and the Bose half prints mirrored (glue face down): a G-code check by angle has to allow for both.

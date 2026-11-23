@@ -7,6 +7,9 @@ uv run python cad/dyson_half_wide.py
 uv run python cad/dyson_half_detent.py
 uv run python cad/bose_half.py
 uv run python cad/bose_half_wide.py
+uv run python cad/dyson_half_latch.py
+uv run python cad/bose_half_latch.py
 uv run python cad/check.py
 uv run python cad/detent_picture.py
+uv run python cad/latch_picture.py
 uv run ws-check-pictures .   # every part has a picture and the README shows it

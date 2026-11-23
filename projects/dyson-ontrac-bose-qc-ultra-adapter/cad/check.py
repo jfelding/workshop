@@ -17,13 +17,15 @@ from workshop.measure import dims
 
 import measurements as m
 import detent_check
+import latch_check
 from dyson_half import pin_positions
 
 dim = dims(m)
 OUT = Path(__file__).parents[1] / "exports"
 report = {}
 
-for name in ("dyson_half", "dyson_half_wide", "dyson_half_detent", "bose_half", "bose_half_wide"):
+for name in ("dyson_half", "dyson_half_wide", "dyson_half_detent", "dyson_half_latch", "bose_half", "bose_half_wide",
+             "bose_half_latch"):
     stl = OUT / f"{name}.stl"
     mesh = mesh_check(stl)                      # watertight, one part, sitting on the bed
     summary, _ = layers(stl)                    # no layer starts in mid-air
@@ -98,6 +100,9 @@ report["dyson_half_wide"]["extra_volume_vs_proven_mm3"] = round(
 report["dyson_half_detent"]["bump_volume_added_mm3"] = round(
     report["dyson_half_detent"]["volume_mm3"] - report["dyson_half_wide"]["volume_mm3"], 3)
 report["detent_sweep"] = detent_check.run()
+# The latch test pair: glued like the others, and the pawl checks (see latch_check.py).
+report["glued_latch"], dyson_l, bose_l = glue("dyson_half_latch", "bose_half_latch")
+report["latch"] = latch_check.run(bose_l)
 (OUT / "checks.json").write_text(json.dumps(report, indent=2) + "\n")
 print(json.dumps(report, indent=2))
 
@@ -110,3 +115,8 @@ with tempfile.TemporaryDirectory() as tmp:      # the wide test pair, kept apart
     whole = Path(tmp) / "adapter_glued_wide.stl"
     trimesh.util.concatenate([dyson_w, bose_w]).export(whole)
     preview(whole, OUT / "preview_wide.png")
+
+with tempfile.TemporaryDirectory() as tmp:      # the latch test pair
+    whole = Path(tmp) / "adapter_glued_latch.stl"
+    trimesh.util.concatenate([dyson_l, bose_l]).export(whole)
+    preview(whole, OUT / "preview_latch.png")

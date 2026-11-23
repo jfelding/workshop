@@ -117,3 +117,43 @@ COVER_MARGIN = 0.4              # beyond the ring: the top edge is rounded 0.6, 
                                 # 0.2 mm inside the ring edge; and the ring reading is +/-0.4 mm
 COVER_RADIUS = RING_OUTER_RADIUS + COVER_MARGIN
 OUTLINE_BLEND_RADIUS = 40.0     # fillet where the circle meets the oval, mm: large, so no corner shows
+
+# --- tuned / untested: spring latch (dyson_half_latch + bose_half_latch, 2026-11-23) -----------------
+# The printed detent bumps gave no click (0.2 mm of interference between rigid parts, no spring). The
+# latch is a pawl instead: a flexure arm (a strip cut free from the plate on three sides, so it bends
+# like a leaf spring) with a tooth on its free end. One pawl per SHORT slot. The cushion's solid face
+# holds the tooth down from drop-on; at home the slot's open-end wall has moved past the tooth, which
+# springs up into the slot behind that wall. Twisting back, the wall meets the tooth's sloped face and
+# has to push the pawl down again. Angles are in the plate (CAD) frame, like the hooks.
+LATCH_ARM_INNER_RADIUS = 34.8   # arm and tooth, radially. The short slot spans 34.0 to 39.3 (calipers:
+LATCH_ARM_OUTER_RADIUS = 37.4   # SLOT_OPPOSING_SPAN, SLOT_WIDE_WIDTH); the proven hook stem is 34.4-37.4.
+                                # Outer = seat edge, so the arm stays inside the seat, clear of the bars
+LATCH_TOOTH_INNER_RADIUS = 35.3 # the arm's tip and the tooth are narrower on the inside: the Bose frame has a
+                                # clip there (out to radius 34.65, from the vendor mesh), and the pocket under
+                                # the arm must not undercut it
+LATCH_NARROW_BEFORE_FOOT = 0.5  # the narrow tip starts this far (mm) before the tooth's lock face
+LATCH_SLIT_WIDTH = 0.8          # gap cut round the arm, two nozzle widths so it does not fuse shut
+LATCH_ARM_TOP_BELOW_SEAT = 0.2  # arm top is lower than the seat, so only the tooth touches the cushion;
+                                # arm thickness = PLATE_THICKNESS - this = 1.8
+LATCH_TOOTH_HEIGHT = 1.2        # tooth above the seat (the slot is 3.3 deep). Also the arm's deflection
+LATCH_LOCK_FACE_DEG = 62.0      # slope of the face the slot wall pushes on, from flat. Steeper holds
+                                # harder. Keep under 70: a vertical face could only be released by breaking it
+LATCH_BACK_FACE_DEG = 75.0      # the other face, never loaded. Steep, to keep the arm's tip short: the
+                                # Bose frame has a clip just past it, which the pocket must not undercut
+LATCH_TOOTH_CREST = 0.8         # flat top along the arc, mm (two wall lines)
+LATCH_FOOT_BEHIND_WALL_DEG = (-0.7, 0.9)  # where each tooth's lock face starts, behind (+) or ahead of (-)
+                                # the slot wall's nominal home position. Two different values on purpose: the true
+                                # home angle is not measured (it is where the wedge goes tight, up to 2.4 degrees
+                                # before the hooks hit the slot ends), so pawl A is fully up 0.8 degrees BEFORE
+                                # nominal home and pawl B 0.8 degrees AFTER it
+LATCH_ARM_LENGTH_DEG = 26.5     # lock-face foot to the arm's root, along the arc (about 16.7 mm)
+LATCH_LOWER_PAST_ROOT = 1.5     # the lowered top runs this far (mm) past the root, so the 0.2 step is
+                                # not at the most stressed spot
+BOSE_LATCH_POCKET_DEPTH = 1.6   # relief pocket in the Bose half under each arm (plate 2.0, so 0.4 stays)
+BOSE_LATCH_POCKET_MARGIN = 0.4  # pocket is this much larger radially than arm plus slits (glue stays off)
+BOSE_LATCH_POCKET_END_MARGIN = 0.4   # and this much longer at each end
+BOSE_LATCH_POCKET_TIP_CLEARANCE = 0.55   # under the narrow tip the pocket's inner wall is this far inside the
+                                # arm (radius 34.75, just outside the clip), and its step is this far past the arm's
+                                # own step, so a glue-up that is 0.3 mm off still leaves the arm free
+PLA_MODULUS_ASSUMED_MPA = 2500  # textbook stiffness of printed PLA (2300-3500), NOT measured here. Only
+                                # used to report the spring force; no dimension depends on it
