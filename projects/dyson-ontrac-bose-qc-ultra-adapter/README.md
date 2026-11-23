@@ -10,10 +10,10 @@ It is two parts glued together rather than one, because it has hooks on both sid
 earcup, and four twist-lock hooks for the Dyson cushion. The cushion twists on and clicks into place.
 Nothing on the headphones or the cushions is modified.
 
-| | | |
-|---|---|---|
-| <img src="images/worn-pair.jpg" width="260"> | <img src="images/on-earcup.jpg" width="260"> | <img src="images/adapter-in-cushion.jpg" width="260"> |
-| Both cushions fitted | The adapter is the thin dark seam between cushion and earcup | Dyson half locked into a cushion, glue side up, pins in place |
+| | | | |
+|---|---|---|---|
+| <img src="images/worn-pair.jpg" width="200"> | <img src="images/on-earcup.jpg" width="200"> | <img src="images/adapter-in-cushion.jpg" width="200"> | <img src="images/adapter-glued.jpg" width="200"> |
+| Both cushions fitted | The adapter is the thin seam between cushion and earcup | Adapter locked into a cushion, Bose side up | A glued adapter, Dyson side up: the slits round the spring arms are open |
 
 ## Parts
 

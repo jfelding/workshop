@@ -29,10 +29,11 @@ Pictures, the first is the cover:
 1. `images/worn-pair.jpg`
 2. `images/on-earcup.jpg`
 3. `images/adapter-in-cushion.jpg`
-4. `exports/preview.png`
-5. `exports/dyson_half.png`
-6. `exports/bose_half.png`
-7. `exports/latch_mechanism.png`
+4. `images/adapter-glued.jpg`
+5. `exports/preview.png`
+6. `exports/dyson_half.png`
+7. `exports/bose_half.png`
+8. `exports/latch_mechanism.png`
 
 ## Print settings fields
 
@@ -48,17 +49,15 @@ Pictures, the first is the cover:
 
 ## Description
 
-Kept short on purpose; the details are in the README.
-
-**Version 2 (23 Nov 2026):** wider, and it clicks. If you printed the first version, print this one instead.
+Kept short on purpose; the details are in the README. Edited minimally from the first listing; the version
+history is in the README, not here.
 
 My Bose QC Ultra (1st gen) headphones needed new earpads, and a local store was selling leftover Dyson
 OnTrac earpads for 15 ¢. So I made an adapter and glued it onto the Bose earpad frame that
 this is a remix of. Thanks to Dr. Watt for that part.
 
 It is two parts glued together rather than one, because it has hooks on both sides. Nothing on the
-headphones or the cushions is modified. The cushion twists on and two small spring arms click into its
-slots at the end, so it stays put. Twist it back firmly to take it off.
+headphones or the cushions is modified. The cushion twists on and clicks into place.
 
 ### Printing
 
@@ -69,13 +68,8 @@ Print two of each part, flat side down, no supports. I used Bambu Nebula PLA on 
 
 1. Push two 4 mm pieces of 1.75 mm filament into the pockets on the flat side of a Bose half.
 2. Superglue a Dyson half onto it, flat side to flat side, with the pins through its holes. Keep the glue
-   thin and away from the slits round the spring arms, or they will not move. Snip the pins flush.
+   thin and away from the slits round the two spring arms, or they will not move. Snip the pins flush.
 3. Twist the Dyson cushion clockwise onto the hooks until it clicks, then clip the adapter into the earcup.
-
-### What changed
-
-The first version was narrower than the cushion's hard ring, so the ring showed at the sides, and it
-held by friction only. A rigid bump to make it click did nothing; spring arms did, on the second try.
 
 ### Source and licence
 
@@ -83,6 +77,6 @@ CAD source, dimensions and more detail:
 https://github.com/jfelding/workshop/tree/main/projects/dyson-ontrac-bose-qc-ultra-adapter
 
 CC BY-NC-SA 4.0, because the Bose half is a remix of "Bose QuietComfort Ultra earpad frame" by Dr. Watt
-(https://makerworld.com/en/models/529246-bose-quietcomfort-ultra-earpad-frame); I added pin pockets, a wider
-rim and two pockets for the spring arms. The Dyson half on its own is CC BY 4.0 on GitHub. Not affiliated
-with Dyson or Bose.
+(https://makerworld.com/en/models/529246-bose-quietcomfort-ultra-earpad-frame); I added pin pockets, a rim
+and pockets for the spring arms. The Dyson half on its own is CC BY 4.0 on GitHub. Not affiliated with
+Dyson or Bose.
