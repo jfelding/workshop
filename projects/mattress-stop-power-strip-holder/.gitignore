@@ -1,0 +1,6 @@
+# Generated output: keep the pictures, the printable STL/STEP files and check results (see projects/README.md).
+exports/*
+!exports/*.png
+!exports/*.stl
+!exports/*.step
+!exports/checks*.json
