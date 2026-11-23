@@ -27,7 +27,7 @@ Print two of each. Left and right are identical. STL and STEP files are attached
 | <img src="exports/bose_half_wide.png" width="260"> | Bose half, wide rim test variant (**not printed, not proven**) | `bose_half_wide.stl` | 0 | 83.0 × 96.5 × 5.0 mm. The Bose half plus a 2 mm rim at the sides, matching `dyson_half_wide`. Glue it to the wide Dyson halves only |
 | <img src="exports/dyson_half_wide.png" width="260"> | Dyson half, wide outline test variant (**not printed, not proven**) | `dyson_half_wide.stl` / `.step` | 0 | 83.0 × 96.5 × 4.7 mm. Printed 2026-11-23, fits well. Same hooks and seat; bulges 2.5 mm past the oval at the sides to cover the cushion's hard ring |
 | <img src="exports/dyson_half_detent.png" width="260"> | Wide Dyson half with click detent, test variant (**not printed, not proven**) | `dyson_half_detent.stl` / `.step` | 0 | The wide half plus two 0.4 mm bumps. See below |
-| <img src="exports/dyson_half_latch.png" width="260"> | Wide Dyson half with spring latch, test variant (**not printed, not proven**) | `dyson_half_latch.stl` / `.step` | 0 | 83.0 × 96.5 × 4.7 mm, 6.0 g. The wide half plus two spring pawls that click into the cushion's short slots. See [Latch](#latch) |
+| <img src="exports/dyson_half_latch.png" width="260"> | Wide Dyson half with spring latch, test variant (**second version not printed, not proven**) | `dyson_half_latch.stl` / `.step` | 0 | 83.0 × 96.5 × 4.7 mm, 6.0 g. The wide half plus two spring pawls that click into the cushion's short slots. See [Latch](#latch) |
 | <img src="exports/bose_half_latch.png" width="260"> | Bose half for the latch, test variant (**not printed, not proven**) | `bose_half_latch.stl` | 0 | 83.0 × 96.5 × 5.0 mm, 5.7 g. `bose_half_wide` plus two 1.6 mm pockets that give the pawls room to move. Glue it to `dyson_half_latch` only |
 
 Also needed: about 20 mm of 1.75 mm filament for four alignment pins, and superglue.
@@ -63,30 +63,34 @@ click is a few degrees short of home, not at it. Checks: [`exports/checks.json`]
 The wide plate was printed on 2026-11-23: it fits well, and the 0.4 mm bumps of `dyson_half_detent` give no
 lock. A rigid bump cannot do it, because the wedge leaves the cushion no room to lift over anything near home.
 So the latch moves instead of the cushion. `dyson_half_latch` has two pawls (a pawl is a sprung tooth that lets
-something pass one way and blocks it the other way). Each is a 17 mm strip of the plate cut free on three sides
+something pass one way and blocks it the other way). Each is a 15 mm strip of the plate cut free on three sides
 by a 0.8 mm slit, with a 1.2 mm tooth on its free end:
 
 ![Plan view and side view of the two pawls](exports/dyson_half_latch_mechanism.png)
 
 - At drop-on the cushion's flat face lands on the teeth and presses both arms down, flush with the seat
-  (2.1 N each, calculated).
+  (3.3 N each, calculated).
 - Near the end of the twist the closed end of each **short** slot passes its tooth, and the tooth springs up
   into the slot. That is the click.
-- To take the cushion off, twist it back firmly. The tooth's steep face (62° from flat) pushes the arm down
-  again. Calculated at 0.4 N·m, about the effort of a stiff jar lid. Nothing has to be pressed or pried.
+- To take the cushion off, twist it back firmly. The tooth's steep face (65° from flat) pushes the arm down
+  again. Calculated at 0.67 N·m for both teeth together, a firm jar lid. Nothing has to be pressed or pried.
 
-Where the cushion really stops is not measured, so the two teeth are staggered: one is fully up 0.9° before the
-calculated home position and the other 0.7° after it. One of them latches anywhere between 2.2° before home and
-the hooks' hard stop 2.4° past it. The cost is that the cushion can turn back by up to the distance between
-those two points before a tooth catches it. Once it is known where the cushion stops, both teeth go there.
+A first version was printed on 2026-11-23 with softer arms, a 62° face and the teeth at two different places,
+because where the cushion stops was not known. Only the earlier tooth came up, only when the cushion was twisted
+hard, and it held weakly. So the cushion stops 1 to 2° before the calculated home position. Both teeth now come
+up together 3.0° before it, the arms are 1.5 times stiffer and the face is steeper: about 3.3 times the holding
+torque of the one tooth that worked. This version is not printed. The cushion can turn back about 1 to 2°
+(1 mm at the rim) before the teeth catch it; `LATCH_FOOT_BEHIND_WALL_DEG` trims that.
 
 The arm needs room to go down, so `bose_half_latch` has a 1.6 mm deep pocket under each arm
-([glued pair](exports/preview_latch.png)). The pockets print as short bridges, no supports.
+([glued pair](exports/preview_latch.png)). The pockets print as short bridges, no supports. Without the Bose
+half the arms come out of the plate's back while the cushion goes on; that is the same movement.
 
 Checked against the solid ([`exports/checks.json`](exports/checks.json), `latch`): slits open, teeth flat from
-drop-on, up at home, pressed-down arm 0.27 mm clear of the pocket floor, nothing cut out of the Bose clips,
-peak strain in the arm 1.1 % (PLA takes about 2 % before it creeps or cracks). The forces assume a PLA stiffness
-of 2500 MPa and friction of 0.3; neither is measured. Unknowns are in
+drop-on, up from 2.75° before home to the hard stop, pressed-down arm 0.25 mm clear of the pocket floor, nothing
+cut out of the Bose clips, peak strain in the arm 1.4 % and only while a tooth is pressed flat (PLA takes about
+2 % before it creeps or cracks, so do not store the cushion half-twisted). The forces assume a PLA stiffness of
+2500 MPa and friction of 0.3; neither is measured. Unknowns are in
 [`inventory/to-measure.md`](inventory/to-measure.md).
 
 ## Printing
@@ -127,11 +131,11 @@ Every dimension is in [`cad/measurements.py`](cad/measurements.py):
 | detent: no click felt | `BUMP_HEIGHT` 0.4 to 0.6 | 0.4 |
 | detent: too easy to twist back off | `BUMP_RELEASE_DEG` up (steeper holds more) | 35 |
 | detent: the bump misses the bar | `BUMP_INNER_RADIUS`, `BUMP_OUTER_RADIUS`; `LEDGE_BARS_PHOTO` angles once measured | 38.2, 39.0 |
-| latch: no click at the end of the twist | `LATCH_FOOT_BEHIND_WALL_DEG`, both values down by 1 (tooth further into the slot) | −0.7, 0.9 |
-| latch: clicks, but the cushion turns back and forth | `LATCH_FOOT_BEHIND_WALL_DEG`: set both to the value of the tooth that holds it | −0.7, 0.9 |
-| latch: too easy to twist off | `LATCH_LOCK_FACE_DEG` up, 70 at most (steeper may never release) | 62 |
-| latch: too hard to twist off | `LATCH_LOCK_FACE_DEG` down, 5 at a time | 62 |
-| latch: an arm stays down or snaps | `LATCH_ARM_LENGTH_DEG` up (longer is softer) | 26.5 |
+| latch: no click at the end of the twist | `LATCH_FOOT_BEHIND_WALL_DEG`, both values down by 1 (tooth further into the slot) | −2.8, −2.8 |
+| latch: clicks, but the cushion turns back and forth too much | `LATCH_FOOT_BEHIND_WALL_DEG`, both values up by 0.5 at a time | −2.8, −2.8 |
+| latch: too easy to twist off | `LATCH_LOCK_FACE_DEG` up, 2 at a time, 70 at most (steeper may never release) | 65 |
+| latch: too hard to twist off | `LATCH_LOCK_FACE_DEG` down, 3 at a time | 65 |
+| latch: an arm stays down or snaps | `LATCH_ARM_LENGTH_DEG` up (longer is softer) | 23 |
 | latch: tooth rubs the slot's sides | `LATCH_TOOTH_INNER_RADIUS`, `LATCH_ARM_OUTER_RADIUS` | 35.3, 37.4 |
 | wide plate: the ring still shows at the sides, or the plate presses into the foam | `COVER_MARGIN` (up or down) | 0.4 |
 | wide plate: outline looks lumpy or fails to build | `OUTLINE_BLEND_RADIUS` | 40 |

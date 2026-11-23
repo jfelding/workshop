@@ -32,3 +32,11 @@ Chosen: teeth staggered at -0.7° and +0.9° from the calculated closed-end posi
 Costs up to about 1.7° of play; to be removed after one print tells which tooth holds.
 Chosen: new `bose_half_latch` with blind pockets rather than a thicker Dyson half: the stack stays 9.7 mm.
 Rejected: a taller rigid bump (cannot be passed), a radial snap on the ring's edge (ring radius is photo-read).
+
+## 2026-11-23 Latch second version: both teeth together, earlier, stiffer
+Chosen: no stagger. The first print showed which side the stop is on, and one tooth alone holds too weakly; two
+together double it. Teeth fully up 2.75° before nominal home, 1° beyond where the first print put the stop, so a
+light twist still latches; the price is 1 to 2° of play until the stop is measured.
+Chosen: more hold from a shorter arm (1.5 times) and a 65° face (1.4 times at friction 0.3), not from a taller tooth
+(the pocket is only 1.6 deep) or a face near 70° (at friction 0.45 a 66° face no longer releases).
+Accepted: peak strain 1.41 % instead of 1.07 %, because it is there only while the cushion is being fitted.

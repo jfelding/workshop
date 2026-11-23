@@ -131,22 +131,22 @@ LATCH_ARM_OUTER_RADIUS = 37.4   # SLOT_OPPOSING_SPAN, SLOT_WIDE_WIDTH); the prov
 LATCH_TOOTH_INNER_RADIUS = 35.3 # the arm's tip and the tooth are narrower on the inside: the Bose frame has a
                                 # clip there (out to radius 34.65, from the vendor mesh), and the pocket under
                                 # the arm must not undercut it
-LATCH_NARROW_BEFORE_FOOT = 0.5  # the narrow tip starts this far (mm) before the tooth's lock face
+LATCH_NARROW_BEFORE_FOOT = 2.2  # the narrow tip starts this far (mm) before the tooth's lock face
 LATCH_SLIT_WIDTH = 0.8          # gap cut round the arm, two nozzle widths so it does not fuse shut
 LATCH_ARM_TOP_BELOW_SEAT = 0.2  # arm top is lower than the seat, so only the tooth touches the cushion;
                                 # arm thickness = PLATE_THICKNESS - this = 1.8
 LATCH_TOOTH_HEIGHT = 1.2        # tooth above the seat (the slot is 3.3 deep). Also the arm's deflection
-LATCH_LOCK_FACE_DEG = 62.0      # slope of the face the slot wall pushes on, from flat. Steeper holds
+LATCH_LOCK_FACE_DEG = 65.0      # slope of the face the slot wall pushes on, from flat. Steeper holds
                                 # harder. Keep under 70: a vertical face could only be released by breaking it
 LATCH_BACK_FACE_DEG = 75.0      # the other face, never loaded. Steep, to keep the arm's tip short: the
                                 # Bose frame has a clip just past it, which the pocket must not undercut
 LATCH_TOOTH_CREST = 0.8         # flat top along the arc, mm (two wall lines)
-LATCH_FOOT_BEHIND_WALL_DEG = (-0.7, 0.9)  # where each tooth's lock face starts, behind (+) or ahead of (-)
-                                # the slot wall's nominal home position. Two different values on purpose: the true
-                                # home angle is not measured (it is where the wedge goes tight, up to 2.4 degrees
-                                # before the hooks hit the slot ends), so pawl A is fully up 0.8 degrees BEFORE
-                                # nominal home and pawl B 0.8 degrees AFTER it
-LATCH_ARM_LENGTH_DEG = 26.5     # lock-face foot to the arm's root, along the arc (about 16.7 mm)
+LATCH_FOOT_BEHIND_WALL_DEG = (-2.8, -2.8)  # where each tooth's lock face starts, behind (+) or ahead of (-)
+                                # the slot wall's nominal home position. First print (2026-11-23, values -0.7 and
+                                # 0.9): only the earlier tooth came up, and only when twisted hard, so the cushion
+                                # stops 1 to 2 degrees BEFORE nominal home. Both teeth are now fully up 3.0 degrees
+                                # before nominal home. More negative = up earlier = more play
+LATCH_ARM_LENGTH_DEG = 23.0     # lock-face foot to the arm's root, along the arc (about 14.5 mm)
 LATCH_LOWER_PAST_ROOT = 1.5     # the lowered top runs this far (mm) past the root, so the 0.2 step is
                                 # not at the most stressed spot
 BOSE_LATCH_POCKET_DEPTH = 1.6   # relief pocket in the Bose half under each arm (plate 2.0, so 0.4 stays)

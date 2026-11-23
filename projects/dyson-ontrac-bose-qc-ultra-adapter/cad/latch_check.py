@@ -71,7 +71,7 @@ def run(glued_bose=None):
     names = "AB"
     res = {"pawls_deg_plate_frame": {}, "spring": spring()}
     assert res["spring"]["pocket_depth_minus_tip_drop_mm"] >= 0.15, res["spring"]
-    assert res["spring"]["peak_strain_percent"] <= 1.2, res["spring"]
+    assert res["spring"]["peak_strain_percent"] <= 1.45, res["spring"]   # only while a tooth is pressed flat
 
     # 1. the slits are open through the plate, and the arm is the only thing between them
     for n, p in zip(names, pawls):

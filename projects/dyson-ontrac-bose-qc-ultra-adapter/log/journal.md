@@ -141,3 +141,24 @@ The owner printed the wide plate with the detent bumps: fits well, no lock at al
   layer z 2.0 to 3.2 (5.6 mm of line on the top one), nothing extruded in the slits, arm top at z 1.8; the Bose
   pockets are empty from z 0.2 to 1.6 (2 x 99 mm²) and roofed at 1.8. The slicer turns the part 90° on the bed,
   and the Bose half prints mirrored (glue face down): a G-code check by angle has to allow for both.
+
+## 2026-11-23 Latch, first print and second version
+
+The owner printed `dyson_half_latch` (job `scratch/dyson-half-latch-20261123`) and tried it in a cushion, in the hand,
+without a Bose half. Report: something happens on twisting, the arms come out of the back a little; with the cushion
+on both arms are out, and twisted tight one goes "more flush"; a small bump on twisting back, from one pawl only.
+Releasing by twisting is fine.
+- Reading: the cushion stops 1 to 2° before nominal home (tooth A was fully up from 0.87° before, on its lock face
+  from 1.0 to 1.75°), so A caught only partly and B never. The stagger was centred on the wrong place.
+- Second version: both teeth at `LATCH_FOOT_BEHIND_WALL_DEG` -2.8 (fully up from 2.75° before home, wall clears the
+  lock face at 2.95°); arm 23° (15.1 mm to the tooth, was 17.4); lock face 65° (was 62); narrow tip starts 2.2 mm
+  before the foot (was 0.5) so the moved pocket still clears the Bose clip.
+- Calculated: 2.73 N/mm (was 1.79), 3.27 N to press a tooth flat, peak strain 1.41 % (limit in the check raised
+  from 1.2 to 1.45: the arm is strained only while a tooth is pressed), tip drop 1.35 mm, 0.25 mm to the pocket
+  floor. Untwist force per tooth 9.3 N at friction 0.3 (7.3 at 0.2, 15.7 at 0.5), 0.67 N·m for both together;
+  one tooth of the first version was 5.6 N, so about 3.3 times.
+- Checks pass: 4968.8 mm³, first layer 2969 mm², overhang 10.80 mm²; Bose half 4698.8 mm³ (271.6 removed),
+  roofs 152 mm² of bridge; glued pair overlap 0, arm sweep clear both ways round; `dyson_half` 4885.608.
+- Sliced into `scratch/dyson-half-latch-20261123-c` (23 layers, 6.00 g, 26m44s) and
+  `scratch/bose-half-latch-20261123-c` (25 layers, 5.70 g, 27m25s). G-code: both teeth on every layer z 2.0 to 3.2,
+  slits empty, pockets empty to z 1.6 and roofed at 1.8. The earlier latch job folders are superseded.

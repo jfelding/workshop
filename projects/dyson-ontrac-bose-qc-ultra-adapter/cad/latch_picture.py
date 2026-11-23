@@ -85,7 +85,7 @@ def side(ax, name, p):
                 arrowprops=dict(arrowstyle="-", color="#0b3d63"))
     ax.annotate("", xy=(wall + 0.1, t + 1.5), xytext=(wall + 3.2, t + 1.5), arrowprops=dict(arrowstyle="->", color=BLUE, lw=1.6))
     ax.text(-8.6, -0.8, "pocket in the Bose half", fontsize=8, color="#445", va="center")
-    ax.text(-8.6, 0.9, "spring arm (root 16.7 mm to the left)", fontsize=8, color="#7f1d1d", va="center")
+    ax.text(-8.6, 0.9, f"spring arm (root {dl.dim('LATCH_ARM_LENGTH_DEG') / dl.DEG_PER_MM:.1f} mm to the left)", fontsize=8, color="#7f1d1d", va="center")
     ax.text(x1 - 0.2, 0.9, "seat", fontsize=8, color="#444", va="center", ha="right")
     gap = wall - dim("LATCH_ARM_TOP_BELOW_SEAT") / math.tan(math.radians(dim("LATCH_LOCK_FACE_DEG")))    # wall to the lock face, at the seat plane
     if gap <= 0:
@@ -102,7 +102,7 @@ def main():
     plan(fig.add_subplot(grid[:, 0]))
     for i, (name, p) in enumerate(zip("AB", dl.pawls())):
         side(fig.add_subplot(grid[i, 1]), name, p)
-    fig.suptitle("dyson_half_latch: spring pawls that click into the cushion's short slots (untested)", fontsize=13)
+    fig.suptitle("dyson_half_latch: spring pawls that click into the cushion's short slots (second version, untested)", fontsize=13)
     fig.savefig(OUT / "dyson_half_latch_mechanism.png", bbox_inches="tight")
     print("wrote", OUT / "dyson_half_latch_mechanism.png")
 
