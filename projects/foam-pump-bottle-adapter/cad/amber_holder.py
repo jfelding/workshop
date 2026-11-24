@@ -1,17 +1,16 @@
-"""Wall holder for the amber glass bottle with pump C (concept 7, hidden holder). ESTIMATED, untested.
+"""Wall holder for the amber glass bottle with pump C (concept 7, hidden holder). Second version, from measurements.
 
 Two printed parts:
 
 - holder: one 30 mm wide profile. A spine glued to the wall behind the bottle (flat back, no holes), a foot bar under
   the glass that carries its weight, a low lip at the front of the foot, and a vertical dovetail
   channel at the top of the spine, open upwards.
-- ring: a plain ring that goes over the pump collar and rests round its base, with a dovetail key
-  at the back. The key drops into the channel. With the ring round the collar, the bottle cannot
-  leave forward; it has to be lifted about 3 cm first, which is how it comes out.
+- ring: a plain ring on the bare glass neck, just under the pump collar, with a dovetail key at the
+  back. It goes on over the thread with the pump off; the screwed-on collar then keeps it on. The key
+  drops into the channel, so the bottle cannot leave forward; it has to be lifted first.
 
-The ring is loose on the bottle and sized from the one measured pump dimension (collar 52.0), so it
-never touches the unknown glass neck. Every bottle dimension is an estimate (measurements.py,
-ESTIMATED block); amber_checks.py checks the parts against a stand-in bottle over the plausible range.
+The bottle's body, neck, thread and collar height are measured (measurements.py, 2026-11-24); the
+shoulder's start and the pump head are still estimates, used only by the stand-in in amber_checks.py.
 
 Both parts print on their side or upside down so that every load runs along the layers (see
 log/decisions.md). Coordinates here are as installed: z = 0 is the foot top, where the glass
@@ -25,8 +24,8 @@ from build123d import Axis, Polygon, Pos, extrude, offset
 
 from workshop.cad.checks import fits_bed, overhangs
 from workshop.cad.export import export
-from workshop.cad.geometry import box, cylinder, prism_yz
-from workshop.fits import process
+from workshop.cad.geometry import cylinder, prism_yz
+from workshop.fits import hole_for, process
 from workshop.measure import dims
 
 import measurements as m
@@ -38,7 +37,7 @@ BED = (220, 220, 270)   # Neptune 3 Pro, equipment/neptune-3-pro/README.md
 # --- derived layout ----------------------------------------------------------------------
 W = dim("HOLDER_WIDTH")
 gap = dim("HOLDER_BODY_GAP")
-r_body_max = (dim("EST_AMBER_BODY_OD") + 3) / 2        # the largest body the holder is built to take
+r_body_max = dim("AMBER_BODY_OD") / 2                   # measured body radius
 y_spine = r_body_max + gap                             # spine front face
 y_wall = y_spine + dim("HOLDER_SPINE_THICKNESS")
 y_lip_in = -(r_body_max + gap)
@@ -47,17 +46,17 @@ lip, lead = dim("HOLDER_LIP_HEIGHT"), dim("HOLDER_LIP_LEAD")
 root, tip, g = dim("HOLDER_FOOT_ROOT"), dim("HOLDER_FOOT_TIP"), dim("HOLDER_GUSSET")
 c = dim("HOLDER_CORNER_FILLET")
 
-ring_ri = dim("PUMP_C_COLLAR_OD") / 2 + dim("RING_COLLAR_PLAY")
+# ring on the bare neck under the collar: its bore must pass over the glass thread (44.0) to get there
+ring_ri = hole_for(dim("AMBER_NECK_THREAD_OD"), "running") / 2
 ring_ro = ring_ri + dim("RING_WALL")
-ring_z0 = dim("RING_REST_Z")
-ring_z1 = ring_z0 + dim("RING_THICKNESS")
+ring_z1 = dim("AMBER_COLLAR_UNDERSIDE_Z") - dim("RING_UNDER_COLLAR")
+ring_z0 = ring_z1 - dim("RING_THICKNESS")
 key_z0 = ring_z1 - dim("KEY_LENGTH")                   # key bottom = channel floor
 z_top = ring_z1 + dim("SPINE_ABOVE_RING")
 z_bot = -root - g
 
 p = process()
 slack = max(p.min_gap, p.printed_slide) / 2           # per side, key in channel (workshop.fits)
-flank_extra = dim("KEY_EXTRA_SLACK")                  # extra, +x flank only: the first print's ragged roof flank
 mouth, depth, flare = dim("KEY_MOUTH"), dim("KEY_DEPTH"), dim("KEY_FLARE")
 
 
@@ -78,26 +77,41 @@ holder = prism_yz(profile, -W / 2, W / 2)
 channel = extrude(Pos(0, 0, key_z0) * channel_outline(), z_top - key_z0 + 1)
 holder -= channel
 
-# --- ring with its key --------------------------------------------------------------------
-ring = cylinder(ring_ro, ring_z1 - ring_z0, "z", (0, 0, (ring_z0 + ring_z1) / 2))
-# the key: the channel outline shrunk by the fit, then trimmed a further flank_extra off the +x flank only
-# (the flank from (mouth/2, y_spine) to (hb, y_spine + depth)); the trim starts where that flank starts so the stub is untouched
-_hm, _hb = mouth / 2, mouth / 2 + flare * depth
-_dx, _dy = _hb - _hm, depth
-_len = (_dx ** 2 + _dy ** 2) ** 0.5
-_ux, _uy = _dx / _len, _dy / _len                      # along the flank
-_nx, _ny = _uy, -_ux                                   # outward normal (+x, -y)
-_ax, _ay = _hm - (slack + flank_extra) * _nx, y_spine - (slack + flank_extra) * _ny
-_far = 40.0
-_trim = Polygon((_ax, _ay), (_ax + _far * _ux, _ay + _far * _uy),
-                (_ax + _far * _ux + _far * _nx, _ay + _far * _uy + _far * _ny),
-                (_ax + _far * _nx, _ay), align=None)
-key_outline = channel_outline(-slack) - _trim
-key = extrude(Pos(0, 0, key_z0) * key_outline, ring_z1 - key_z0)
+# --- ring with its key and the web behind it ---------------------------------------------
+web_back = y_spine - dim("WEB_SPINE_GAP")             # web's back face, parallel to the spine's front face
+web_hw = dim("WEB_BACK_HALF_WIDTH")
+web_hr = dim("WEB_RING_HALF_WIDTH")                    # where the web's sides meet the ring's outside
+web_yr = (ring_ro ** 2 - web_hr ** 2) ** 0.5
+web_z0 = ring_z1 - dim("RING_THICKNESS") - dim("LINK_DROP")
+
+
+def make_ring(key_grow, key_extra_length):
+    """Ring + web + key. key_grow > 0 makes the key bigger than the channel, for filing to fit."""
+    r = cylinder(ring_ro, ring_z1 - ring_z0, "z", (0, 0, (ring_z0 + ring_z1) / 2))
+    kz0 = key_z0 - key_extra_length
+    key = extrude(Pos(0, 0, kz0) * channel_outline(key_grow), ring_z1 - kz0)
+    # web: a trapezoid in plan from the ring's back to just short of the spine face, ring top down to web_z0.
+    # It fills the empty corner either side of the key, so a knock bends a wide plate instead of an 8 mm neck,
+    # and its back face bears on the spine face when the ring is pushed towards the wall.
+    web_pts = [(-web_hr, web_yr - 2), (web_hr, web_yr - 2), (web_hr, web_yr), (web_hw, web_back),
+               (-web_hw, web_back), (-web_hr, web_yr)]
+    web = extrude(Pos(0, 0, web_z0) * Polygon(*web_pts, align=None), ring_z1 - web_z0)
+    # brace: under the web, joins the key's hanging lower end to the web's underside (the empty corner Jacob
+    # circled, 2026-11-24). A triangle in side view, 45° or flatter, so it prints as a buttress, no overhang.
+    gz0 = kz0
+    gy0 = web_back - (web_z0 - gz0) * dim("BRACE_RUN_PER_DROP")
+    brace_side = [(web_back, gz0), (web_back, web_z0 + 0.5), (gy0, web_z0 + 0.5)]
+    bw = dim("BRACE_HALF_WIDTH")
+    brace = prism_yz(brace_side, -bw, bw)
+    r = r + key + web + brace
+    return r - cylinder(ring_ri, 100, "z", (0, 0, ring_z0))   # bore last
+
+
+# as printed: key oversized and a little long, filed to fit on the real holder (Jacob, 2026-11-24)
+ring = make_ring(dim("KEY_OVERSIZE"), dim("KEY_EXTRA_LENGTH"))
+# as fitted: key filed to the printed sliding fit (workshop.fits) and to length; the fit checks use this
+ring_fitted = make_ring(-slack, 0.0)
 hk = mouth / 2 - slack
-link = box(-hk, hk, ring_ri + 1.0, y_spine, ring_z1 - dim("RING_THICKNESS") - dim("LINK_DROP"), ring_z1)
-ring = ring + key + link
-ring -= cylinder(ring_ri, 100, "z", (0, 0, ring_z0))   # bore last
 
 # --- print orientation --------------------------------------------------------------------
 # holder on its side: the -x face on the bed, so spine and foot both lie in the layers.
@@ -109,7 +123,7 @@ ring_print = ring_print.translate((0, 0, -ring_print.bounding_box().min.Z))
 
 LAYOUT = dict(y_spine=y_spine, y_wall=y_wall, y_lip_in=y_lip_in, y_lip_out=y_lip_out, z_top=z_top,
               z_bot=z_bot, key_z0=key_z0, ring_ri=ring_ri, ring_ro=ring_ro, ring_z0=ring_z0, ring_z1=ring_z1,
-              slack=slack)
+              slack=slack, web_back=web_back, web_z0=web_z0, brace_y0=web_back - (web_z0 - key_z0) * dim("BRACE_RUN_PER_DROP"))
 
 if __name__ == "__main__":
     for name, part in (("amber_holder", holder_print), ("amber_ring", ring_print)):

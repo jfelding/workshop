@@ -1,6 +1,7 @@
 """Checks the amber holder and ring against a STAND-IN bottle and pump, over the plausible range.
 
-The stand-in is built only from the ESTIMATED block in measurements.py plus pump C's measured collar.
+The stand-in is built from the measured bottle (2026-11-24); where its body stops being straight, its heel
+and the pump head are still estimates.
 It is a check shape, not a model of the real bottle. Each check prints a number and fails the build
 when a clearance is broken. Writes exports/checks-amber.json.
 
@@ -22,22 +23,22 @@ dim, L = ah.dim, ah.LAYOUT
 OUT = ah.OUT
 
 
-def stand_in(body_od=None, height=None):
+def stand_in(body_od=None, shoulder_start=None):
     """(glass, pump) solids, installed pose: glass base on z = 0, axis on z. Spout points to -y (front)."""
-    body_od = body_od or dim("EST_AMBER_BODY_OD")
-    h = height or dim("EST_AMBER_HEIGHT_NO_PUMP")
-    dh = h - dim("EST_AMBER_HEIGHT_NO_PUMP")          # a taller bottle is taller in the body
-    rb, rn = body_od / 2, dim("EST_AMBER_NECK_UNDER_COLLAR_OD") / 2
-    rt, hr = dim("EST_AMBER_NECK_THREAD_OD") / 2, dim("EST_AMBER_HEEL_RADIUS")
-    z_sh0, z_sh1 = dim("EST_AMBER_BODY_STRAIGHT") + dh, dim("EST_AMBER_SHOULDER_TOP") + dh
+    body_od = body_od or dim("AMBER_BODY_OD")
+    z_cu = dim("AMBER_COLLAR_UNDERSIDE_Z")
+    h = z_cu + dim("PUMP_C_COLLAR_DEPTH")              # neck top against the collar's inside ceiling
+    rb, rn = body_od / 2, dim("AMBER_NECK_UNDER_COLLAR_OD") / 2
+    rt, hr = dim("AMBER_NECK_THREAD_OD") / 2, dim("EST_AMBER_HEEL_RADIUS")
+    z_sh1 = z_cu - dim("AMBER_NECK_BARE_HEIGHT")       # measured: where the neck starts widening
+    z_sh0 = shoulder_start if shoulder_start is not None else dim("EST_AMBER_BODY_STRAIGHT")   # estimated: where the body stops being straight
     heel = [(rb - hr + hr * math.sin(a), hr - hr * math.cos(a)) for a in np.linspace(0, math.pi / 2, 7)]
-    prof = [(0, 0), *heel, (rb, z_sh0), (rn, z_sh1), (rn, z_sh1 + 3), (rt, z_sh1 + 3), (rt, h), (0, h)]
+    prof = [(0, 0), *heel, (rb, z_sh0), (rn, z_sh1), (rn, z_cu), (rt, z_cu), (rt, h), (0, h)]
     glass = revolve(Plane.XZ * Polygon(*prof, align=None), Axis.Z)
-    z_cu = h - dim("PUMP_C_COLLAR_DEPTH")              # neck top against the collar's inside ceiling
     z_ct = z_cu + dim("EST_PUMP_C_COLLAR_HEIGHT")
-    head_top = dim("EST_PUMP_C_HEAD_TOP") + dh
+    head_top = dim("EST_PUMP_C_HEAD_TOP")
     head_h = 25.0   # stand-in shape only
-    collar = cylinder(dim("PUMP_C_COLLAR_OD") / 2, z_ct - z_cu, "z", (0, 0, (z_cu + z_ct) / 2))
+    collar = cylinder(dim("PUMP_C_COLLAR_BASE_OD") / 2, z_ct - z_cu, "z", (0, 0, (z_cu + z_ct) / 2))
     stem = cylinder(8, head_top - head_h - z_ct, "z", (0, 0, (z_ct + head_top - head_h) / 2))
     head = cylinder(dim("EST_PUMP_C_HEAD_OD") / 2, head_h, "z", (0, 0, head_top - head_h / 2))
     spout = box(-5, 5, -dim("EST_PUMP_C_SPOUT_REACH"), 0, head_top - 14, head_top - 4)
@@ -45,7 +46,7 @@ def stand_in(body_od=None, height=None):
 
 
 def ring_seat(info):
-    """Where the loose ring sits: on the channel floor, or lifted by the shoulder if that is higher."""
+    """Where the ring sits: on the channel floor, or lifted by the shoulder if that is higher."""
     rb_sh = ah.ring_ri   # shoulder radius where it meets the ring bore
     rb, rn, z_sh0, z_sh1 = info["rb"], info["rn"], info["z_sh0"], info["z_sh1"]
     z_touch = z_sh0 + (rb - rb_sh) / (rb - rn) * (z_sh1 - z_sh0)
@@ -63,12 +64,14 @@ def first_contact(moving, fixed, direction, limit=60, step=0.25):
 
 
 R = {}
-holder, ring = ah.holder, ah.ring
+holder, ring = ah.holder, ah.ring_fitted   # the key as filed to fit; the printed one is oversized
 glass, pump_low, pump_head, info = stand_in()
 lift, z_touch = ring_seat(info)
 ring_in = ring.translate((0, 0, lift))
 R["stand_in"] = {k: round(v, 2) for k, v in info.items()}
 R["ring_rest_z"] = ah.ring_z0
+R["printed_key_material_to_file_mm3"] = round(overlap(ah.ring.translate((0, 0, dim("KEY_EXTRA_LENGTH"))), holder), 1)
+R["web_back_to_spine_face_mm"] = round(L["y_spine"] - L["web_back"], 2)
 R["shoulder_meets_ring_bore_z"] = round(z_touch, 2)
 
 # 1. installed pose: nothing overlaps
@@ -81,9 +84,12 @@ assert all(v == 0 for v in R["installed_overlap_mm3"].values()), R["installed_ov
 # clearances in the installed pose (mm)
 bottle = glass + pump_low
 R["clearance_mm"] = {
-    "body to spine": round(L["y_spine"] - dim("EST_AMBER_BODY_OD") / 2, 2),
-    "body to foot lip": round(-L["y_lip_in"] - dim("EST_AMBER_BODY_OD") / 2, 2),
-    "collar to ring bore, radial": round(ah.ring_ri - dim("PUMP_C_COLLAR_OD") / 2, 2),
+    "body to spine": round(L["y_spine"] - dim("AMBER_BODY_OD") / 2, 2),
+    "body to foot lip": round(-L["y_lip_in"] - dim("AMBER_BODY_OD") / 2, 2),
+    "neck to ring bore, radial": round(ah.ring_ri - dim("AMBER_NECK_UNDER_COLLAR_OD") / 2, 2),
+    "thread to ring bore, radial (getting it on)": round(ah.ring_ri - dim("AMBER_NECK_THREAD_OD") / 2, 2),
+    "ring top below collar": round(info["z_cu"] - ah.ring_z1, 2),
+    "ring outside minus collar outside, radial": round(ah.ring_ro - dim("PUMP_C_COLLAR_BASE_OD") / 2, 2),
     "spine top below collar top": round(info["z_ct"] - L["z_top"], 2),
     "ring underside above shoulder contact": round(ah.ring_z0 - z_touch, 2),
 }
@@ -93,8 +99,8 @@ R["forward_travel_until_ring_stops_bottle_mm"] = first_contact(bottle, ring_in, 
 R["forward_travel_until_lip_stops_base_mm"] = first_contact(glass, holder, (0, -1, 0))
 R["ring_forward_travel_in_channel_mm"] = first_contact(ring_in, holder, (0, -1, 0))
 R["upward_travel_until_shoulder_lifts_ring_mm"] = first_contact(glass, ring_in, (0, 0, 1), limit=40)
-assert R["forward_travel_until_ring_stops_bottle_mm"] is not None and R["forward_travel_until_ring_stops_bottle_mm"] < 4
-assert R["forward_travel_until_lip_stops_base_mm"] is not None and R["forward_travel_until_lip_stops_base_mm"] < 5
+assert R["forward_travel_until_ring_stops_bottle_mm"] is not None and R["forward_travel_until_ring_stops_bottle_mm"] < 2
+assert R["forward_travel_until_lip_stops_base_mm"] is not None and R["forward_travel_until_lip_stops_base_mm"] < 3
 
 # 3. insertion / removal path: lift until the key is clear of the spine, then forward
 key_rise = L["z_top"] - L["key_z0"] + 2.0          # key bottom 2 mm above the spine top
@@ -124,16 +130,16 @@ assert all(v == 0 for v in spout_hits.values()), spout_hits
 R["pump_head_bottom_above_spine_top_pushed_mm"] = round(
     dim("EST_PUMP_C_HEAD_TOP") - 25 - dim("EST_PUMP_C_STROKE") - L["z_top"], 1)
 
-# 5. the plausible range: body ±3 mm, height ±3 mm (shoulder moves with the height)
+# 5. the plausible range: body ±0.5 mm (moulded glass), the estimated shoulder start ±5 mm
 rng = {}
-for od in (dim("EST_AMBER_BODY_OD") - 3, dim("EST_AMBER_BODY_OD"), dim("EST_AMBER_BODY_OD") + 3):
-    for hh in (dim("EST_AMBER_HEIGHT_NO_PUMP") - 3, dim("EST_AMBER_HEIGHT_NO_PUMP") + 3):
+for od in (dim("AMBER_BODY_OD") - 0.5, dim("AMBER_BODY_OD"), dim("AMBER_BODY_OD") + 0.5):
+    for hh in (dim("EST_AMBER_BODY_STRAIGHT") - 5, dim("EST_AMBER_BODY_STRAIGHT") + 5):
         g2, pl2, ph2, i2 = stand_in(od, hh)
         lf, zt = ring_seat(i2)
         r2 = ring.translate((0, 0, lf))
         ov = overlap(holder, g2 + pl2 + ph2) + overlap(r2, g2 + pl2)
         holds = zt <= ah.ring_z0 + lf + 0.01 and ah.ring_z0 + lf < i2["z_ct"]
-        rng[f"body {od:g}, height {hh:g}"] = dict(overlap_mm3=round(ov, 3), ring_lifted_mm=round(lf, 2),
+        rng[f"body {od:g}, shoulder starts {hh:g}"] = dict(overlap_mm3=round(ov, 3), ring_lifted_mm=round(lf, 2),
                                                  ring_round_collar_or_neck=holds)
         assert ov == 0 and holds, (od, hh, ov, holds)
 R["plausible_range"] = rng

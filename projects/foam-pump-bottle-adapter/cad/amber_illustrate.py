@@ -1,7 +1,7 @@
 """Pictures of the amber holder with the STAND-IN bottle and pump in place.
 
 The holder and ring are the designed parts. The bottle and pump are the stand-in from amber_checks.py,
-built from ESTIMATED dimensions, and the wall is scenery.
+built from the measured bottle (shoulder and pump head estimated), and the wall is scenery.
 
     uv run python cad/amber_illustrate.py    # writes exports/preview.png and exports/amber-*.png
 """
@@ -23,7 +23,7 @@ wall = box(-70, 70, L["y_wall"], L["y_wall"] + 4, L["z_bot"] - 30, 190)
 
 def scene(lift=0.0, forward=0.0, ring_lift=None, cut=False, with_wall=True):
     rl = lift if ring_lift is None else ring_lift
-    items = [(ah.holder, PRINT), (ah.ring.translate((0, -forward, rl)), PRINT),
+    items = [(ah.holder, PRINT), (ah.ring_fitted.translate((0, -forward, rl)), PRINT),
              (glass.translate((0, -forward, lift)), GLASS), (pump.translate((0, -forward, lift)), PUMP)]
     if with_wall:
         items.append((wall, WALL))
@@ -36,7 +36,7 @@ def scene(lift=0.0, forward=0.0, ring_lift=None, cut=False, with_wall=True):
 lift = ac.R["lift_to_remove_mm"]
 key_rise = L["z_top"] - L["key_z0"] + 2
 VIEWS = {
-    "preview": ("Amber bottle on the printed holder (bottle and pump: estimated stand-in)", scene(), View((-0.75, -1, 0.45)), 560),
+    "preview": ("Amber bottle on the printed holder (bottle and pump: stand-in from measurements)", scene(), View((-0.75, -1, 0.45)), 560),
     "amber-front": ("From the front: what shows", scene(), View((0, -1, 0.08)), 360),
     "amber-side": ("From the side", scene(with_wall=False), View((-1, 0, 0.05)), 420),
     "amber-section": ("Cut in half", scene(cut=True, with_wall=False), View((-1, -0.2, 0.15)), 420),

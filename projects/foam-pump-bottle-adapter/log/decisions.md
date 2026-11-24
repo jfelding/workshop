@@ -12,3 +12,9 @@
 | 2026-11-22 | The holder prints on its side (one 30 mm wide profile), so spine, foot and the corner between them all lie in the layers and the foot's bending never pulls layers apart. The ring prints upside down, flat, with the key standing up. No supports. |
 | 2026-11-22 | Amber holder sized by beam hand-calcs (`cad/amber_strength.py`) for 6 N bottle + 30 N push and a 20 N knock, SF 3 or more against PLA 45 MPa along / 25 MPa across the layers. The ring went from 3 × 4 to 4 × 5 mm (SF 1.5 to 3.2). The 15 mm brace under the foot was dropped: the plain 8 mm root has SF 3.7 counting the inside corner (Kt 1.5), and Jacob wants it slim. |
 | 2026-11-22 | No screw holes: Jacob glues the holder to the wall with construction adhesive (montagelim). The flat 30 × 109 mm back is the glue pad; peak tension 0.077 MPa under the design loads. Jacob offered a wider back plate; not taken, because the numbers do not need it and wings wider than the 30 mm profile would leave the foot hanging in the air in the side-on print (supports). If it ever does need more glue area, make the spine taller below the foot instead. |
+
+## 2026-11-24 Ring on the neck under the collar (amber holder v2)
+Jacob's suggestion. The ring goes over the glass thread with the pump off and sits on the 17 mm of bare neck; the
+screwed-on collar keeps it there and it is the collar's width, so it does not show. It no longer depends on the
+pump's outside shape. Cost: the pump has to come off once to fit it, and the bore has only 0.25 mm radial
+clearance over the glass thread (a running fit from `workshop.fits`, measured on a 6 mm pin, not on a 44 mm bore).

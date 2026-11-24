@@ -63,9 +63,9 @@ r_mean = ah.ring_ri + w / 2
 case(f"2 ring hoop, collar pushing, {w:.1f} x {t:.1f}", 0.318 * K * r_mean, t * w ** 2 / 6, "along",
      "thin ring, load and key reaction opposite: M = 0.318 F R")
 hk = dim("KEY_MOUTH") / 2 - ah.slack
-link_h = dim("RING_THICKNESS") + dim("LINK_DROP")
-case(f"2 link ring-key, sideways knock, {2 * hk:.1f} x {link_h:.1f}", K * (L["y_spine"] - ah.ring_ro),
-     link_h * (2 * hk) ** 2 / 6, "along", "cantilever from ring to channel")
+key_h = ah.ring_z1 - ah.key_z0                    # key's full height at the spine face; the web covers the rest
+case(f"2 key neck at the spine face, sideways knock, {2 * hk:.1f} x {key_h:.1f}", K * L["y_spine"],
+     key_h * (2 * hk) ** 2 / 6, "along", "knock at the bottle axis, arm to the spine face; the web stiffens everything in front")
 key_d = dim("KEY_DEPTH") + 1 - 2 * ah.slack       # key's y depth, mouth to back
 key_w = 2 * hk + dim("KEY_FLARE") * dim("KEY_DEPTH")   # mean width of the dovetail
 case("2 key, forward knock, bends along its length", K * dim("KEY_LENGTH") / 2, key_w * key_d ** 2 / 6, "across",

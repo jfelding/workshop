@@ -39,7 +39,7 @@ Other allowances for this process:
 | Printed part sliding in printed part | 0.5 | in use |
 | Printed part dropped into a printed pocket | 0.3 | in use |
 | Flat sheet (metal) dropped into a printed seat, total per side length (`sheet_seat`) | 0.3 | untested. **0.2 is borderline:** a 70.2 × 20.2 seat took a 70 × 20 × 1 mm sheet on a flat 3.3 mm coupon, but needed filing on the full 20–31 mm holders printed with the 300 % speed override (sheet holders, 10-13). Confounded: height and speed both changed |
-| Printed part sliding in a printed channel, 0.4 per side (0.8 total) | 0.8 | untested (breadboard mount, 10-14) |
+| Printed part sliding in a printed channel, 0.4 per side (0.8 total) | 0.8 | untested (breadboard mount, 10-14). **Too loose for a load-carrying dovetail:** a 16 mm key printed standing, in a 50° dovetail channel printed on its side, at 0.4 per side let the part it carried hang and tilt (foam-pump amber ring, 2026-11-24, by hand, not measured). Next version: key +0.1 per side oversize, filed to fit |
 | Smallest gap between printed walls | 0.8 | measured: 0.3 mm gaps closed up and cheeks splayed into a gear (10-09) |
 | Elephant-foot compensation (slicer) | 0.15 | in use |
 | Floor under a blind tapped hole | more than 2 mm | measured: 2 mm was too thin |

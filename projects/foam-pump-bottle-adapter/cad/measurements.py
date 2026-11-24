@@ -27,6 +27,14 @@ BRACKET_PLATE_THICKNESS_STAINLESS = 1.35
 BRACKET_RING_OUTER_WIDTH = 50.0          # across the ring, both brackets, "about"
 WIDE_NECK_THREAD_PITCH = 3.25            # clear bottle, "or so", not easy to measure; confirm with a printed test ring
 
+# --- measured (calipers and ruler, Jacob, 2026-11-24): amber glass bottle with pump C, in hand ---
+AMBER_BODY_OD = 65.0                     # glass body, widest point
+AMBER_COLLAR_UNDERSIDE_Z = 104.0         # table to the underside of pump C's collar, pump screwed on
+PUMP_C_COLLAR_BASE_OD = 52.5             # pump C's collar at its bottom edge (52.0 earlier, elsewhere on the collar)
+AMBER_NECK_UNDER_COLLAR_OD = 43.5        # bare glass neck just below the collar, pump on
+AMBER_NECK_THREAD_OD = 44.0              # glass neck over the thread, pump off
+AMBER_NECK_BARE_HEIGHT = 17.0            # collar's bottom edge down to where the glass starts widening into the shoulder
+
 # --- not yet measured (see ../inventory/to-measure.md) ------------------------------------
 NARROW_NECK_ROOT_OD = None
 NARROW_NECK_THREAD_PITCH = None
@@ -66,15 +74,10 @@ THREAD_END_MARGIN = 1.5     # plain length at each end of the collar
 # for a caliper reading. Each says where it comes from and how far off it may be. Replace each
 # with a measured name in the block above once measured (inventory/to-measure.md).
 # =========================================================================================
-EST_AMBER_BODY_OD = 65.0            # seller pages say 64-65; ±3 assumed. The holder is checked at 62 and 68
-EST_AMBER_HEIGHT_NO_PUMP = 110.0    # seller pages, base to neck top; ±3 assumed
-EST_AMBER_NECK_THREAD_OD = 43.0     # seller "43" fits the measured pump C thread ID 43.85 (a neck must be under it); 42-44
-EST_AMBER_NECK_UNDER_COLLAR_OD = 40.0   # pure guess, 37-43. The holder does not touch the neck, so it does not matter to the fit
-EST_AMBER_BODY_STRAIGHT = 82.0      # base to where the shoulder starts; guess from the seller photos' proportions, ±8
-EST_AMBER_SHOULDER_TOP = 94.0       # where the shoulder meets the neck; guess, ±6
+EST_AMBER_BODY_STRAIGHT = 78.0      # base to where the body's straight side ends; must be under the measured 87 shoulder top (104 - 17); guess, ±5
 EST_AMBER_HEEL_RADIUS = 4.0         # rounded bottom edge of the glass; typical for moulded glass, 2-6
 EST_PUMP_C_COLLAR_HEIGHT = 17.0     # outside height of pump C's collar: measured inside depth 14.6 plus a top wall; ±2
-EST_PUMP_C_HEAD_TOP = 165.0         # base to top of the pump head, seller total height with pump; ±5
+EST_PUMP_C_HEAD_TOP = 165.0         # base to top of the pump head, seller total height with pump; ±5. Only the stand-in
 EST_PUMP_C_HEAD_OD = 40.0           # pump head width; looks narrower than the 52 collar in seller photos; 36-48
 EST_PUMP_C_SPOUT_REACH = 45.0       # bottle axis to spout tip, horizontal; guess, 35-55
 EST_PUMP_C_STROKE = 12.0            # how far the head goes down when pumped; typical foam pump, 8-15
@@ -82,7 +85,7 @@ EST_PUMP_C_STROKE = 12.0            # how far the head goes down when pumped; ty
 # --- amber wall holder (concept 7): choices, not measurements ------------------------------
 # z = 0 is the top of the foot, where the glass stands; +y points to the wall; the bottle axis is x = y = 0.
 HOLDER_WIDTH = 30.0           # the whole holder is one 30 mm wide profile: narrower than the 65 bottle, so it hides behind it
-HOLDER_BODY_GAP = 3.0         # radial air between the largest plausible body (EST + 3) and the spine / foot lip
+HOLDER_BODY_GAP = 1.5         # radial air between the measured 65 body and the spine / foot lip. Was 3 on top of a +3 allowance; the first print was far too roomy
 HOLDER_SPINE_THICKNESS = 10.0 # wall plate; 5.5 mm behind the key channel. Kept stiff so it spreads the load evenly over the glue line instead of peeling at the top
 HOLDER_FOOT_ROOT = 8.0        # foot bar thickness at the spine: carries the bending moment of the bottle and of pumping
 HOLDER_FOOT_TIP = 5.0         # foot bar thickness at the front lip; thinner where the moment is small, and less to see
@@ -93,13 +96,18 @@ HOLDER_GUSSET = 0.0           # 45° brace under the foot root, this tall and de
 HOLDER_CORNER_FILLET = 2.0    # inside corner foot/spine (a 45° chamfer); the glass heel (EST 4 radius) clears it. Counted as Kt 1.5 in amber_strength.py
 # wall fixing: none in the part. Jacob glues the spine's flat back to the wall with construction adhesive (montagelim), 2026-11-22
 KEY_MOUTH = 8.0               # dovetail channel width at the spine's front face
-KEY_DEPTH = 4.5               # how far the channel goes into the spine
-KEY_FLARE = 1.2               # sideways growth per mm of depth: the channel's roof is 50° from flat when printed on its side
-RING_COLLAR_PLAY = 1.5        # radial, ring bore to pump C's measured 52.0 collar: the ring never touches neck or collar threads
-RING_WALL = 4.0              # radial. 3 gave a safety factor of 1.5 under the 20 N knock (amber_strength.py); 4 x 5 gives 3.2
-RING_THICKNESS = 5.0
-RING_REST_Z = 95.0            # ring underside when its key rests on the channel floor: the collar's estimated underside (110 - 14.6)
-KEY_EXTRA_SLACK = 0.8         # normal to the flank, on the +x flank of the ring's key ONLY (the right side seen from above when the holder hangs on the wall). First print (Jacob's photos, 2026-11-22): the channel's roof flank (+x when printed on its side) came out ragged with sagged blobs. Instead of reprinting the holder, the key is slimmer on that flank. The -x flank stays at the fits slide play. Remove after a holder printed with a better channel
+KEY_DEPTH = 3.5               # how far the channel goes into the spine
+KEY_FLARE = 1.7               # sideways growth per mm of depth: the channel's roof is 60° from flat when printed on its side. 1.2 (50°) printed ragged on the first holder
+RING_WALL = 4.0               # radial. Bore 44.5 + 2 x 4 = 52.5, the collar's width, so the ring hides under it
+RING_THICKNESS = 6.0          # on the 17 mm bare neck, between the collar and the shoulder
+RING_UNDER_COLLAR = 1.0       # air between the ring top and the collar's underside, so screwing the pump on does not pinch it
+KEY_OVERSIZE = 0.1            # per side, key LARGER than the channel as modelled. Jacob, 2026-11-24: the v1 key at 0.4 play per side let the ring hang; he files it to fit
+KEY_EXTRA_LENGTH = 0.5        # key bottom this much longer than the channel is deep, so the ring sits 0.5 high; file the key's bottom to bring it down (v1 sat slightly low)
+WEB_SPINE_GAP = 0.5           # web back face to spine face: close enough to bear on the spine when pushed towards the wall
+WEB_BACK_HALF_WIDTH = 13.0    # web half width at the spine: 26 of the holder's 30, so it stays behind the spine's outline
+BRACE_HALF_WIDTH = 8.0       # brace under the web, from the key's lower end up to the web: 16 wide, twice the key's mouth
+BRACE_RUN_PER_DROP = 1.2      # brace slope, horizontal per vertical: 40° from vertical when the ring prints upside down, no support
+WEB_RING_HALF_WIDTH = 20.0    # where the web's sides meet the ring's outside (radius 26.25): a wide, triangular-ish base
 KEY_LENGTH = 16.0             # key hangs this far below the ring top; also the depth it sits in the channel
 LINK_DROP = 3.0               # the ring-to-key link is this much deeper than the ring, for stiffness; still above the shoulder
 SPINE_ABOVE_RING = 1.0        # spine top above the ring top: the spine stays below the collar's top and out of the spout's way

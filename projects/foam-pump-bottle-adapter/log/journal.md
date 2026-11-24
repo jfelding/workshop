@@ -96,3 +96,29 @@ is not used) with 100% infill: the job copy of `pla-fast-0.4` with `sparse_infil
 `scratch/amber_ring-solid-20261122`, 5.85 g, 23 min 32 s (20% was 5.35 g, 23 min 39 s). Stock speeds, nothing else changed.
 On the SD card as `amber_ring.gcode`. The STL is the one from commit 2418c5a; the branch's current `amber_ring.stl`
 still carries the v3 one-sided key (`KEY_EXTRA_SLACK` 0.8).
+
+## 2026-11-24 Amber holder v2 from measurements
+Jacob: the printed holder and ring were too big in basically every dimension. With the bottle in hand he measured
+body 65.0, table to collar underside 104 (pump on), collar 52.5 at its bottom edge, bare neck under the collar 43.5,
+glass thread 44.0 (pump off), bare neck 17 mm tall. The 104 explains the ring: v1 put the ring's underside at 95,
+so it hung round the ~43 neck with a 55 bore. Jacob proposed putting the ring on the neck under the collar instead.
+v2: ring bore `hole_for(44.0, 'running')` = 44.5, wall 4, 6 tall, top 1 mm under the collar; air round the body
+1.5 (was 3 plus a +3 allowance); channel flare 1.7, depth 3.5, roof 60° from flat; `KEY_EXTRA_SLACK` 0. Holder
+112 × 81 × 30 mm, ring 52.5 across. `check.sh` passes; numbers in `log/status.md`. Not printed, not committed.
+
+2026-11-24 (ring v2, sturdier). Jacob: on the first parts the key was slightly too small for the channel, so the
+ring hung, and it sat slightly low; the space between ring and key was empty. Now: a solid trapezoid web from the
+ring's back (40 mm wide) to 0.5 mm short of the spine face (26 wide), 9 mm tall, around the key; key 0.1 mm per
+side oversize (`KEY_OVERSIZE`) and 0.5 mm long (`KEY_EXTRA_LENGTH`), filed to fit; checks use the key as filed
+(`ring_fitted`). Ring 4.8 -> 7.7 cm³, key neck SF 9.1. Print the ring at 100% infill. Fit note added to
+materials/fits.md (0.4 per side too loose for a load-carrying dovetail).
+
+2026-11-24 (ring brace). Jacob meant the empty corner under the web, between the key's hanging lower end and the
+web's underside (his marked screenshot). Added a triangular brace there, 16 mm wide, 1.2 horizontal per 1 vertical
+(prints as a buttress upside down); web kept. Ring 8.2 cm³. check.sh passes, no overlaps.
+
+2026-11-24 (slicing v2). `pla-fast-0.4`, stock speeds, textured PEI 60 C, 210 C, no supports, STLs as exported.
+Holder: job `scratch/amber2_holder-20261124`, 150 layers to Z 30, 31.7 g, Orca 2 h 04 min. Ring: job
+`scratch/amber2_ring-20261124`, job copy with `sparse_infill_density` 100%, 83 layers to Z 16.6, 9.8 g, 38 min.
+G-code checked (G28 then M420 S1, 60/210, heaters and fan off at the end, moves inside the bed) and copied to the SD
+card as `amber2_holder.gcode` and `amber2_ring.gcode`; the v1 files `amber_*.gcode` are still on the card.

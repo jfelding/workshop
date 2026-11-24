@@ -1,14 +1,16 @@
 {
  "stand_in": {
-  "z_cu": 95.4,
-  "z_ct": 112.4,
-  "z_sh0": 82.0,
-  "z_sh1": 94.0,
+  "z_cu": 104.0,
+  "z_ct": 121.0,
+  "z_sh0": 78.0,
+  "z_sh1": 87.0,
   "rb": 32.5,
-  "rn": 20.0
+  "rn": 21.75
  },
- "ring_rest_z": 95.0,
- "shoulder_meets_ring_bore_z": 86.8,
+ "ring_rest_z": 97.0,
+ "printed_key_material_to_file_mm3": 55.8,
+ "web_back_to_spine_face_mm": 0.5,
+ "shoulder_meets_ring_bore_z": 86.58,
  "installed_overlap_mm3": {
   "holder/glass": 0.0,
   "holder/pump": 0.0,
@@ -17,19 +19,22 @@
   "ring/holder": 0.0
  },
  "clearance_mm": {
-  "body to spine": 4.5,
-  "body to foot lip": 4.5,
-  "collar to ring bore, radial": 1.5,
-  "spine top below collar top": 11.4,
-  "ring underside above shoulder contact": 8.2
+  "body to spine": 1.5,
+  "body to foot lip": 1.5,
+  "neck to ring bore, radial": 0.5,
+  "thread to ring bore, radial (getting it on)": 0.25,
+  "ring top below collar": 1.0,
+  "ring outside minus collar outside, radial": 0.0,
+  "spine top below collar top": 17.0,
+  "ring underside above shoulder contact": 10.42
  },
- "forward_travel_until_ring_stops_bottle_mm": 1.75,
- "forward_travel_until_lip_stops_base_mm": 4.75,
- "ring_forward_travel_in_channel_mm": 0.75,
- "upward_travel_until_shoulder_lifts_ring_mm": 6.25,
- "lift_to_remove_mm": 25.2,
+ "forward_travel_until_ring_stops_bottle_mm": 0.75,
+ "forward_travel_until_lip_stops_base_mm": 1.75,
+ "ring_forward_travel_in_channel_mm": 0.5,
+ "upward_travel_until_shoulder_lifts_ring_mm": 7.5,
+ "lift_to_remove_mm": 26.5,
  "insertion_path_contacts": [],
- "base_above_lip_when_lifted_mm": 19.2,
+ "base_above_lip_when_lifted_mm": 20.5,
  "pump_head_overlap_mm3": {
   "turn 0\u00b0, pushed 0": 0.0,
   "turn 0\u00b0, pushed 12": 0.0,
@@ -38,88 +43,88 @@
   "turn 180\u00b0, pushed 0": 0.0,
   "turn 180\u00b0, pushed 12": 0.0
  },
- "pump_head_bottom_above_spine_top_pushed_mm": 27.0,
+ "pump_head_bottom_above_spine_top_pushed_mm": 24.0,
  "plausible_range": {
-  "body 62, height 107": {
+  "body 64.5, shoulder starts 73": {
    "overlap_mm3": 0.0,
    "ring_lifted_mm": 0.0,
    "ring_round_collar_or_neck": true
   },
-  "body 62, height 113": {
+  "body 64.5, shoulder starts 83": {
    "overlap_mm3": 0.0,
    "ring_lifted_mm": 0.0,
    "ring_round_collar_or_neck": true
   },
-  "body 65, height 107": {
+  "body 65, shoulder starts 73": {
    "overlap_mm3": 0.0,
    "ring_lifted_mm": 0.0,
    "ring_round_collar_or_neck": true
   },
-  "body 65, height 113": {
+  "body 65, shoulder starts 83": {
    "overlap_mm3": 0.0,
    "ring_lifted_mm": 0.0,
    "ring_round_collar_or_neck": true
   },
-  "body 68, height 107": {
+  "body 65.5, shoulder starts 73": {
    "overlap_mm3": 0.0,
    "ring_lifted_mm": 0.0,
    "ring_round_collar_or_neck": true
   },
-  "body 68, height 113": {
+  "body 65.5, shoulder starts 83": {
    "overlap_mm3": 0.0,
    "ring_lifted_mm": 0.0,
    "ring_round_collar_or_neck": true
   }
  },
  "walls_mm": {
-  "spine behind the key channel": 5.5,
+  "spine behind the key channel": 6.5,
   "spine at mid height": 10.0,
-  "foot at the spine (vertical)": 7.88,
-  "foot at the lip (vertical)": 5.09,
-  "channel side wall": 5.55,
+  "foot at the spine (vertical)": 7.87,
+  "foot at the lip (vertical)": 5.1,
+  "channel side wall": 5.0,
   "ring wall": 4.0
  },
  "amber_holder": {
   "size_mm": [
-   109.0,
-   87.0,
+   112.0,
+   81.0,
    30.0
   ],
   "volume_cm3": 47.2,
   "overhang_steeper_than_45_mm2": 0.0,
   "flat_ceilings_mm2": 0.0,
-  "worst_overhang_deg_from_vertical": 39.8,
+  "worst_overhang_deg_from_vertical": 30.5,
   "mesh": {
    "triangles": 56,
    "watertight": true,
    "nonmanifold_edges": 0,
    "degenerate_faces": 0,
    "connected_components": 1,
-   "signed_volume_mm3": 47229.9,
+   "signed_volume_mm3": 47154.975,
    "component_bottoms_mm": [
     0.0
    ]
   },
-  "layers_outside_45_mm2": 1.399994,
+  "layers_outside_45_mm2": 0.988243,
   "islands_in_mid_air": 0
  },
  "amber_ring": {
   "size_mm": [
-   63.0,
-   72.6,
-   16.0
+   52.5,
+   63.9,
+   16.5
   ],
-  "volume_cm3": 4.8,
+  "volume_cm3": 8.2,
   "overhang_steeper_than_45_mm2": 0.0,
   "flat_ceilings_mm2": 0.0,
-  "worst_overhang_deg_from_vertical": 0.0,
+  "worst_overhang_deg_from_vertical": 0.2,
   "mesh": {
-   "triangles": 1180,
+   "triangles": 1652,
    "watertight": true,
    "nonmanifold_edges": 0,
    "degenerate_faces": 0,
    "connected_components": 1,
-   "signed_volume_mm3": 4827.333,
+   "signed_volume_mm3": 8197.818,
    "component_bottoms_mm": [
     0.0
    ]
