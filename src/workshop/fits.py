@@ -71,6 +71,17 @@ PROCESSES = {
                        'flat coupon but needed filing on the full holders; 0.3 not yet printed'),
         min_gap=0.8, elephant_foot=0.15,
     ),
+    ('neptune-3-pro', 'petg', 0.4): Process(
+        machine='neptune-3-pro', material='petg', nozzle=0.4,
+        hole_shrink=0.15,       # Ø5.5 printed ~5.35 (monitor-mount fit slice, 2026-11-27)
+        nut_pocket={
+            # Side-entry slots: the nut slides in sideways under a bridged ceiling, and the bridge sags.
+            'slot_tight': (0.1, 0.4, 'measured', 'monitor-mount coupon, 2026-11-27: M4 nut 7.0 AF × 3.2 slid '
+                           'into a 7.1 × 3.6 slot with effort; the +0.2 to +0.4 AF slots sagged more and refused it'),
+            'slot': (0.3, 1.0, 'untested', 'chosen from slot_tight: +0.6 mm of height for ceiling sag, '
+                     '+0.2 AF of margin; a loose nut costs nothing, the screw pulls it home'),
+        },
+    ),
     ('neptune-3-pro', 'pla', 0.2): Process(
         machine='neptune-3-pro', material='pla', nozzle=0.2,
         hole_shrink=None, elephant_foot=0.10,

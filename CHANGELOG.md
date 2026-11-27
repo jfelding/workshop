@@ -4,6 +4,10 @@ Versions of the `workshop` library (`src/workshop`). Knowledge files and project
 
 ## Unreleased
 
+- `workshop.fits`: first PETG process, `('neptune-3-pro', 'petg', 0.4)`. Hole shrink 0.15 mm (measured), and
+  side-entry nut slots under a bridged ceiling: `slot_tight` (+0.1 AF, +0.4 height, measured) and `slot`
+  (+0.3 AF, +1.0 height, untested). No `clearance` or `press` pocket for PETG yet (`materials/fits.md`).
+
 ## 0.1.0 (2026-11-18)
 
 First public version.

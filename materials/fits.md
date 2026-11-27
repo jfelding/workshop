@@ -55,10 +55,29 @@ Elephant-foot compensation is 0.10, and 0.10 mm layers hit heights exactly (4.50
 45 layers). Round heights **up** to a whole layer. One-wall dividers came out 0.22–0.27 mm.
 Hole shrink has not been measured.
 
+## Neptune 3 Pro, PETG, 0.4 mm nozzle
+
+Profile `petg-pro-fast-0.4-adaptive-purge` (230 °C / 70 °C), smooth PEI with glue stick. From a monitor
+wall mount's coupon plate, 2026-11-27. One print, so treat as a first number.
+
+**Small vertical holes print about 0.15 mm under their modelled diameter.** The fit slice's Ø5.5 holes
+measured about Ø5.35.
+
+| What | Allowance | Evidence |
+|---|---|---|
+| Side-entry nut slot, tight (`slot_tight`) | +0.1 AF, +0.4 height. An M4 nut (7.0 × 3.2) in a 7.1 × 3.6 slot | measured: slid in by hand with effort |
+| Side-entry nut slot (`slot`) | +0.3 AF, +1.0 height | untested; chosen from the tight one |
+
+**Bridged slot ceilings sag.** The coupon's four slots (+0.1 to +0.4 AF, all +0.4 height) open sideways, with a
+7 mm bridged ceiling. The three wider ones sagged more and the nut would not go in, so height, not width,
+limited the fit. Hence `slot` adds 0.6 mm of height: a nut loose in a slot costs nothing, because the screw
+pulls it up against the ceiling and the clamp flattens any sag. Slower bridges (Orca's `bridge_speed` is 40 mm/s
+in the profile) and full fan might sag less; untried. Bottom-opening pockets (`press`, `clearance`) are not
+measured in PETG.
+
 ## Not yet characterised
 
-- **PETG** on any nozzle. A profile exists (`equipment/neptune-3-pro/profiles/petg-pro-fast-0.4`),
-  but no printed fit was recorded.
+- **PETG** press and clearance fits, bottom-opening nut pockets, other nozzles.
 - **Horizontal holes.** These print differently from vertical holes; use `workshop.cad.geometry.teardrop` and
   ream.
 - **Heat-set insert bores.** This is the one case that deserves a coupon, because a drill cannot fix it.

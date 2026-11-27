@@ -49,6 +49,8 @@ To change one, copy it to a new directory and record why in its README.
 |---|---|---|
 | [`pla-fast-0.4`](profiles/pla-fast-0.4/) | 0.4 / 0.2 | **Default.** Orca's stock Neptune speeds, 20 % gyroid, textured PEI 60 °C |
 | [`petg-pro-fast-0.4`](profiles/petg-pro-fast-0.4/) | 0.4 / 0.2 | PETG at the same speeds. No outcome recorded |
+| [`petg-pro-fast-0.4-adaptive-purge`](profiles/petg-pro-fast-0.4-adaptive-purge/) | 0.4 / 0.2 | The same, with the purge line drawn 10 mm in front of the part instead of along the front edge |
+| [`petg-smooth-pei-0.4-adaptive-purge`](profiles/petg-smooth-pei-0.4-adaptive-purge/) | 0.4 / 0.2 | The adaptive-purge PETG profile for smooth PEI with glue stick: bed 85/80 °C, nozzle 240/235 °C, first layer at 95 % flow, retracts on every travel (no infill shortcut) |
 | [`pla-precise-0.4`](profiles/pla-precise-0.4/) | 0.4 / 0.2 | Older slow profile: 4 walls, 40 % gyroid. Take its walls, not its speeds |
 | [`pla-fine-0.3`](profiles/pla-fine-0.3/) | 0.3 / 0.15 | 7 Arachne walls. Start here for a 0.3 nozzle |
 | [`pla-small-0.2`](profiles/pla-small-0.2/) | 0.2 / 0.10 | Small exact parts, solid infill. Start here for a 0.2 nozzle |

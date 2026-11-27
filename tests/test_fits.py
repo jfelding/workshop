@@ -13,8 +13,10 @@ def test_numbers_match_the_parts_that_proved_them():
 
 
 def test_unmeasured_process_refuses():
-    with pytest.raises(Uncharacterised, match="petg"):
-        process(material="petg")
+    with pytest.raises(Uncharacterised, match="abs"):
+        process(material="abs")
+    with pytest.raises(Uncharacterised, match="clearance"):
+        nut_pocket(7.0, 3.2, "clearance", process(material="petg"))
     with pytest.raises(Uncharacterised, match="hole shrink"):
         hole_for(3.0, "slip", process(nozzle=0.2))
     with pytest.raises(Uncharacterised, match="interference"):
@@ -24,3 +26,10 @@ def test_unmeasured_process_refuses():
 def test_sheet_seat_adds_total_clearance():
     from workshop.fits import sheet_seat
     assert sheet_seat(70, 20) == (70.3, 20.3)
+
+
+def test_petg_side_slot_numbers():
+    petg = process(material="petg")
+    assert nut_pocket(7.0, 3.2, "slot_tight", petg) == (7.1, 3.6)
+    assert nut_pocket(7.0, 3.2, "slot", petg) == (7.3, 4.2)
+    assert petg.hole_shrink == 0.15

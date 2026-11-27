@@ -29,3 +29,12 @@ somewhere, not seen here).
 
 - [O] 2026-11-16/17, same. Thin PETG rings (78 × 97 mm, 2 mm thick) lifted off textured PEI twice with
   `petg-pro-fast-0.4`. The same parts in PLA held.
+
+## PETG
+
+- [O] 2026-11-27, monitor wall mount. **Large PETG first layers on smooth PEI need a thin glue haze, a hot bed
+  and a hot-levelled mesh.** Thick glue floated the fill onto the nozzle; raising Z made it worse. The routine is
+  in `materials/petg.md`.
+- [U] 2026-11-27, same. **Random PETG blobs with dry filament and 0.95 flow point at travels, not flow.** Orca's
+  `reduce_infill_retraction` let ~1,500 travels per part cross the infill without retracting or lifting. Now off
+  in the PETG profile; not yet confirmed by a print.
