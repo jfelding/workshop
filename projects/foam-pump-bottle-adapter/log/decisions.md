@@ -18,3 +18,27 @@ Jacob's suggestion. The ring goes over the glass thread with the pump off and si
 screwed-on collar keeps it there and it is the collar's width, so it does not show. It no longer depends on the
 pump's outside shape. Cost: the pump has to come off once to fit it, and the bore has only 0.25 mm radial
 clearance over the glass thread (a running fit from `workshop.fits`, measured on a 6 mm pin, not on a 44 mm bore).
+
+## 2026-11-26 Ring v3 from photo estimates, flat underside
+Jacob would rather print a few times than measure the neck profile, so the ring's bore follows
+`EST_AMBER_NECK_PROFILE` (from his photos) with 1 mm of upward margin for the estimate's error. Nothing of the ring
+hangs below its underside inside the body outline (the v2 brace and web drop hit the domed shoulder), so the shoulder's
+shape below the ring cannot clash, whatever it is.
+
+## 2026-11-26 Ring v4: neck traced from close-ups, shorter and wider ring
+Jacob's two close-ups of the bare bottle show no band under the thread: the neck runs straight to about 3 mm below the
+collar and then the shoulder rounds out (about 51 across 7 below). A 52.5 ring 6 mm tall cannot sit there, so the ring
+is 4.5 tall with a 5 mm wall (54.5 across, 1 proud of the collar). It only stops the bottle moving forward (the bottle
+stands on the foot), so its height matters only for hoop strength, which went up (height × wall² 112 against 96).
+Bore follows the traced profile plus 1 mm upward margin. Printed top down, the bore widens away from the bed: no overhang.
+
+## 2026-11-26 Ring v5: calibrated on the v4 fit, 2 mm taller
+v4's key fitted perfectly, but with the pump on the bottle lifted 2.0 before the shoulder caught the ring (model 1.25)
+and felt loose. Jacob suggested 2 mm more ring. The ring now reaches 2 mm further down the shoulder; the 0.75 difference
+is taken as a calibration of the traced profile (`EST_AMBER_NECK_PROFILE_DROP`) and the upward margin cut from 1.0 to
+0.3, so the modelled lift is 0.5. Wall 5.5 (55.5 across) keeps 1.95 at the thin underside. The hoop check now sums the
+tapered section instead of taking the thinnest wall over the full height.
+
+## 2026-11-26 Shim under v4 before reprinting the ring
+A 6 minute shim tests v5's calibrated shoulder fit on the v4 ring Jacob already has (its key fits perfectly). Print v5
+only if the shim fails or the stack feels wobbly.

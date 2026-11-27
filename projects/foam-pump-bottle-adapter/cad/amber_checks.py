@@ -23,7 +23,7 @@ dim, L = ah.dim, ah.LAYOUT
 OUT = ah.OUT
 
 
-def stand_in(body_od=None, shoulder_start=None):
+def stand_in(body_od=None, shoulder_start=None, neck_up=0.0):
     """(glass, pump) solids, installed pose: glass base on z = 0, axis on z. Spout points to -y (front)."""
     body_od = body_od or dim("AMBER_BODY_OD")
     z_cu = dim("AMBER_COLLAR_UNDERSIDE_Z")
@@ -33,7 +33,14 @@ def stand_in(body_od=None, shoulder_start=None):
     z_sh1 = z_cu - dim("AMBER_NECK_BARE_HEIGHT")       # measured: where the neck starts widening
     z_sh0 = shoulder_start if shoulder_start is not None else dim("EST_AMBER_BODY_STRAIGHT")   # estimated: where the body stops being straight
     heel = [(rb - hr + hr * math.sin(a), hr - hr * math.cos(a)) for a in np.linspace(0, math.pi / 2, 7)]
-    prof = [(0, 0), *heel, (rb, z_sh0), (rn, z_sh1), (rn, z_cu), (rt, z_cu), (rt, h), (0, h)]
+    if ah.neck is None:   # a straight cone from the body to the neck
+        neck = [(rb, z_sh0), (rn, z_sh1), (rn, z_cu)]
+    else:                 # the measured neck, then straight down to the body below its deepest point
+        pts = sorted((z_cu - d + neck_up, od / 2) for d, od in ah.neck)
+        neck = [(rb, min(z_sh0, pts[0][0] - 0.2)), *[(r, z) for z, r in pts if z <= z_cu]]
+        if neck[-1][1] < z_cu:
+            neck.append((neck[-1][0], z_cu))
+    prof = [(0, 0), *heel, *neck, (rt, z_cu), (rt, h), (0, h)]
     glass = revolve(Plane.XZ * Polygon(*prof, align=None), Axis.Z)
     z_ct = z_cu + dim("EST_PUMP_C_COLLAR_HEIGHT")
     head_top = dim("EST_PUMP_C_HEAD_TOP")
@@ -47,6 +54,8 @@ def stand_in(body_od=None, shoulder_start=None):
 
 def ring_seat(info):
     """Where the ring sits: on the channel floor, or lifted by the shoulder if that is higher."""
+    if ah.neck is not None:   # the bore follows the measured neck: it seats on the key, not on the glass
+        return 0.0, ah.ring_z0
     rb_sh = ah.ring_ri   # shoulder radius where it meets the ring bore
     rb, rn, z_sh0, z_sh1 = info["rb"], info["rn"], info["z_sh0"], info["z_sh1"]
     z_touch = z_sh0 + (rb - rb_sh) / (rb - rn) * (z_sh1 - z_sh0)
@@ -91,7 +100,6 @@ R["clearance_mm"] = {
     "ring top below collar": round(info["z_cu"] - ah.ring_z1, 2),
     "ring outside minus collar outside, radial": round(ah.ring_ro - dim("PUMP_C_COLLAR_BASE_OD") / 2, 2),
     "spine top below collar top": round(info["z_ct"] - L["z_top"], 2),
-    "ring underside above shoulder contact": round(ah.ring_z0 - z_touch, 2),
 }
 
 # 2. the bottle cannot leave forward while the ring is in the channel
@@ -142,7 +150,23 @@ for od in (dim("AMBER_BODY_OD") - 0.5, dim("AMBER_BODY_OD"), dim("AMBER_BODY_OD"
         rng[f"body {od:g}, shoulder starts {hh:g}"] = dict(overlap_mm3=round(ov, 3), ring_lifted_mm=round(lf, 2),
                                                  ring_round_collar_or_neck=holds)
         assert ov == 0 and holds, (od, hh, ov, holds)
+# the neck estimate's error, now calibrated by the v4 fit: every point up to the bore's margin (clashes first) and 1 down (rattles)
+for nu in (dim("NECK_PROFILE_MARGIN_UP"), -1.0):
+    g3, pl3, _, _ = stand_in(neck_up=nu)
+    ov3 = overlap(ring, g3 + pl3)
+    up3 = first_contact(g3, ring, (0, 0, 1), limit=20, step=0.1)
+    rng[f"neck profile {nu:+g} mm"] = dict(overlap_mm3=round(ov3, 3), glass_rise_until_it_lifts_ring_mm=up3)
+    assert ov3 == 0, (nu, ov3)
 R["plausible_range"] = rng
+
+# nothing of the ring hangs below its underside inside the body outline (only the key, which is outside the glass)
+below = ring.intersect(cylinder(dim("AMBER_BODY_OD") / 2, ah.ring_z0 - 40, "z", (0, 0, (ah.ring_z0 + 40) / 2)))
+R["ring_volume_below_underside_inside_body_outline_mm3"] = round(below.volume if below else 0.0, 3)
+assert R["ring_volume_below_underside_inside_body_outline_mm3"] == 0, R["ring_volume_below_underside_inside_body_outline_mm3"]
+R["ring_bore_follows_neck"] = ah.neck is not None
+R["ring_wall_at_underside_mm"] = round(ah.ring_ro - ah.bore_r(ah.ring_z0), 2)
+assert R["ring_wall_at_underside_mm"] >= 1.6, R["ring_wall_at_underside_mm"]   # 4 perimeters
+R["bare_neck_the_ring_needs_mm"] = round(dim("RING_UNDER_COLLAR") + dim("RING_THICKNESS"), 2)
 
 # 6. walls, from the solid
 y_s, y_w = L["y_spine"], L["y_wall"]

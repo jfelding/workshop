@@ -13,18 +13,21 @@ Not needed for the collar: the black pump's inner thread (`exports/pump_c_gauge.
 screwed-on pump is wanted later). Parked with the white-pump route: `PUMP_B_*`, `NARROW_NECK_ROOT_OD`,
 `NARROW_NECK_THREAD_PITCH`, `NARROW_NECK_HEIGHT`. Later: the amber glass body's neck.
 
-## Amber glass bottle holder (concept 7), v2 2026-11-24
+## Amber glass bottle holder (concept 7), ring v5, 2026-11-26
 
-The bottle was measured on 2026-11-24 (`cad/measurements.py`). The estimates left (`EST_*`) only shape the stand-in
-used by the checks: where the body's straight side ends, the glass heel, the pump head. None of them moves the
-printed parts. Nothing more to measure before printing.
+Jacob chose not to measure further: ring v5 is built on `EST_AMBER_NECK_PROFILE` (traced from his close-ups of the bare bottle) and corrected by
+test prints. A measured `AMBER_NECK_PROFILE` (neck OD at 0, 2, 4 ... mm below the collar, pump on) or a caliper reading
+of the filed v2 key would still replace the estimates if anyone takes them. `AMBER_NECK_BARE_HEIGHT` (17) is doubted
+and no longer shapes the ring.
 
-After printing v2, check on the real thing, in this order:
+After printing ring v5, check on the real thing, in this order:
 
-1. Pump off: does the ring go over the glass thread (44.0, bore modelled 44.5)? If tight, sand or scrape the bore;
-   do not force it on glass. Pump back on: the ring should turn freely under the collar.
-2. The key is printed 0.1 mm per side oversize and 0.5 mm long. File its flanks until it slides into the channel
-   from the top without force and does not wobble; file its bottom end if the ring sits higher than you want.
-3. Bottle standing on the foot: about 1.5 mm of air between the glass and the spine, and the same at the lip.
-4. Push the top forward: it should barely move (under 1 mm). Lift to take it out: about 20 mm.
-5. Pump it twenty times hard. Any creak or movement at the foot or the glue line?
+1. Pump off: does the ring go over the glass thread (bore 44.5 at the top)? If tight, sand the bore; do not force it.
+2. Pump on, screwed tight: does the ring sit level round the neck, not rocking, with its underside just clear of the
+   shoulder? Lift the bottle: it should rise about 0.5 mm before it catches the ring (v4: 2.0). If the shoulder
+   lifts the ring against the collar, raise `NECK_PROFILE_MARGIN_UP` by the overlap; if it still lifts more than 1, lower it.
+3. The key has 0.15 mm play per side and is 0.5 mm long: it should slide into the channel without filing and not
+   wobble. File its bottom end if the ring sits higher than you want.
+4. Bottle standing on the foot: about 1.5 mm of air between the glass and the spine, and the same at the lip.
+5. Push the top forward: it should barely move (under 1 mm). Lift to take it out: about 20 mm.
+6. Pump it twenty times hard. Any creak or movement at the foot or the glue line?

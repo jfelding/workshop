@@ -57,16 +57,19 @@ case(f"1 lip, base knocked forward, t={lip_t:.1f}", K * dim("HOLDER_LIP_HEIGHT")
      f"{K:.0f} N at the lip top")
 
 # 2. ring and key under the knock (taken by the ring alone)
-w = probe(ring, (-ah.ring_ri + 0.05, 0, ah.ring_z0 + 1), (-80, 0, ah.ring_z0 + 1))
-t = probe(ring, (-ah.ring_ri - w / 2, 0, ah.ring_z0 - 5), (-ah.ring_ri - w / 2, 0, 200))
-r_mean = ah.ring_ri + w / 2
-case(f"2 ring hoop, collar pushing, {w:.1f} x {t:.1f}", 0.318 * K * r_mean, t * w ** 2 / 6, "along",
-     "thin ring, load and key reaction opposite: M = 0.318 F R")
-hk = dim("KEY_MOUTH") / 2 - ah.slack
+# the bore follows the shoulder, so the wall tapers towards the underside: sum the section slice by slice
+t = probe(ring, (-ah.ring_ro + 0.5, 0, ah.ring_z0 - 5), (-ah.ring_ro + 0.5, 0, 200))
+zs = [ah.ring_z0 + t * (i + 0.5) / 40 for i in range(40)]
+ws = [ah.ring_ro - ah.bore_r(z) for z in zs]
+w = sum(ws) / len(ws)
+r_mean = ah.ring_ro - w / 2
+case(f"2 ring hoop, collar pushing, {min(ws):.1f}-{max(ws):.1f} x {t:.1f}", 0.318 * K * r_mean,
+     sum(t / 40 * x ** 2 / 6 for x in ws), "along", "thin ring, load and key reaction opposite: M = 0.318 F R; tapered wall summed")
+hk = ah.hk                                         # key half width at the mouth, as fitted
 key_h = ah.ring_z1 - ah.key_z0                    # key's full height at the spine face; the web covers the rest
 case(f"2 key neck at the spine face, sideways knock, {2 * hk:.1f} x {key_h:.1f}", K * L["y_spine"],
      key_h * (2 * hk) ** 2 / 6, "along", "knock at the bottle axis, arm to the spine face; the web stiffens everything in front")
-key_d = dim("KEY_DEPTH") + 1 - 2 * ah.slack       # key's y depth, mouth to back
+key_d = dim("KEY_DEPTH") + 1 + 2 * ah.key_fit       # key's y depth, mouth to back
 key_w = 2 * hk + dim("KEY_FLARE") * dim("KEY_DEPTH")   # mean width of the dovetail
 case("2 key, forward knock, bends along its length", K * dim("KEY_LENGTH") / 2, key_w * key_d ** 2 / 6, "across",
      "key printed standing: its length is across the layers; reaction at mid-length")

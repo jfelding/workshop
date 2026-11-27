@@ -20,7 +20,7 @@ stands; +y points to the wall; the bottle axis is x = y = 0.
 """
 from pathlib import Path
 
-from build123d import Axis, Polygon, Pos, extrude, offset
+from build123d import Axis, Plane, Polygon, Pos, extrude, offset, revolve
 
 from workshop.cad.checks import fits_bed, overhangs
 from workshop.cad.export import export
@@ -51,6 +51,35 @@ ring_ri = hole_for(dim("AMBER_NECK_THREAD_OD"), "running") / 2
 ring_ro = ring_ri + dim("RING_WALL")
 ring_z1 = dim("AMBER_COLLAR_UNDERSIDE_Z") - dim("RING_UNDER_COLLAR")
 ring_z0 = ring_z1 - dim("RING_THICKNESS")
+# the neck under the collar: measured if anyone measures it, else Jacob's photo estimate (2026-11-26)
+neck = m.AMBER_NECK_PROFILE or tuple((d + dim("EST_AMBER_NECK_PROFILE_DROP"), od) for d, od in m.EST_AMBER_NECK_PROFILE)
+z_cu = dim("AMBER_COLLAR_UNDERSIDE_Z")
+
+
+def bore_r(z):
+    """Ring bore radius at height z: passes the glass thread (ring_ri) and, where the neck widens, follows it
+    with the running fit's clearance, linear between the measured points."""
+    if neck is None:
+        return ring_ri
+    up = dim("NECK_PROFILE_MARGIN_UP")
+    pts = sorted((z_cu - d + up, hole_for(od, "running") / 2) for d, od in neck)   # (z, bore radius), bottom up
+    assert pts[0][0] < ring_z0, "AMBER_NECK_PROFILE must reach below the ring's underside"
+    for (za, ra), (zb, rb) in zip(pts, pts[1:]):
+        if za <= z <= zb:
+            return max(ring_ri, ra + (rb - ra) * (z - za) / (zb - za))
+    return max(ring_ri, pts[-1][1] if z > pts[-1][0] else pts[0][1])
+
+
+def bore_cutter():
+    """The solid removed from the ring: straight, or a revolved profile following the measured neck."""
+    if neck is None:
+        return cylinder(ring_ri, 100, "z", (0, 0, ring_z0))
+    up = dim("NECK_PROFILE_MARGIN_UP")
+    zs = sorted({ring_z0 - 1, ring_z1 + 1, *(z_cu - d + up for d, _ in neck if ring_z0 - 1 < z_cu - d + up < ring_z1 + 1)})
+    prof = [(0, zs[0])] + [(bore_r(z), z) for z in zs] + [(ring_ri, ring_z1 + 50), (0, ring_z1 + 50)]
+    return revolve(Plane.XZ * Polygon(*prof, align=None), Axis.Z)
+
+
 key_z0 = ring_z1 - dim("KEY_LENGTH")                   # key bottom = channel floor
 z_top = ring_z1 + dim("SPINE_ABOVE_RING")
 z_bot = -root - g
@@ -82,7 +111,7 @@ web_back = y_spine - dim("WEB_SPINE_GAP")             # web's back face, paralle
 web_hw = dim("WEB_BACK_HALF_WIDTH")
 web_hr = dim("WEB_RING_HALF_WIDTH")                    # where the web's sides meet the ring's outside
 web_yr = (ring_ro ** 2 - web_hr ** 2) ** 0.5
-web_z0 = ring_z1 - dim("RING_THICKNESS") - dim("LINK_DROP")
+web_z0 = ring_z0                                       # flush with the ring underside: nothing hangs over the shoulder
 
 
 def make_ring(key_grow, key_extra_length):
@@ -90,28 +119,22 @@ def make_ring(key_grow, key_extra_length):
     r = cylinder(ring_ro, ring_z1 - ring_z0, "z", (0, 0, (ring_z0 + ring_z1) / 2))
     kz0 = key_z0 - key_extra_length
     key = extrude(Pos(0, 0, kz0) * channel_outline(key_grow), ring_z1 - kz0)
-    # web: a trapezoid in plan from the ring's back to just short of the spine face, ring top down to web_z0.
+    # web: a trapezoid in plan from the ring's back to just short of the spine face, as tall as the ring.
     # It fills the empty corner either side of the key, so a knock bends a wide plate instead of an 8 mm neck,
     # and its back face bears on the spine face when the ring is pushed towards the wall.
     web_pts = [(-web_hr, web_yr - 2), (web_hr, web_yr - 2), (web_hr, web_yr), (web_hw, web_back),
                (-web_hw, web_back), (-web_hr, web_yr)]
     web = extrude(Pos(0, 0, web_z0) * Polygon(*web_pts, align=None), ring_z1 - web_z0)
-    # brace: under the web, joins the key's hanging lower end to the web's underside (the empty corner Jacob
-    # circled, 2026-11-24). A triangle in side view, 45° or flatter, so it prints as a buttress, no overhang.
-    gz0 = kz0
-    gy0 = web_back - (web_z0 - gz0) * dim("BRACE_RUN_PER_DROP")
-    brace_side = [(web_back, gz0), (web_back, web_z0 + 0.5), (gy0, web_z0 + 0.5)]
-    bw = dim("BRACE_HALF_WIDTH")
-    brace = prism_yz(brace_side, -bw, bw)
-    r = r + key + web + brace
-    return r - cylinder(ring_ri, 100, "z", (0, 0, ring_z0))   # bore last
+    r = r + key + web
+    return r - bore_cutter()   # bore last
 
 
-# as printed: key oversized and a little long, filed to fit on the real holder (Jacob, 2026-11-24)
+# as printed: key at KEY_OVERSIZE (play when negative) and a little long, its bottom filed if the ring sits high
 ring = make_ring(dim("KEY_OVERSIZE"), dim("KEY_EXTRA_LENGTH"))
 # as fitted: key filed to the printed sliding fit (workshop.fits) and to length; the fit checks use this
-ring_fitted = make_ring(-slack, 0.0)
-hk = mouth / 2 - slack
+key_fit = -slack if dim("KEY_OVERSIZE") > 0 else dim("KEY_OVERSIZE")   # an oversize key is filed to the fits slide
+ring_fitted = make_ring(key_fit, 0.0)
+hk = mouth / 2 + key_fit
 
 # --- print orientation --------------------------------------------------------------------
 # holder on its side: the -x face on the bed, so spine and foot both lie in the layers.
@@ -123,11 +146,13 @@ ring_print = ring_print.translate((0, 0, -ring_print.bounding_box().min.Z))
 
 LAYOUT = dict(y_spine=y_spine, y_wall=y_wall, y_lip_in=y_lip_in, y_lip_out=y_lip_out, z_top=z_top,
               z_bot=z_bot, key_z0=key_z0, ring_ri=ring_ri, ring_ro=ring_ro, ring_z0=ring_z0, ring_z1=ring_z1,
-              slack=slack, web_back=web_back, web_z0=web_z0, brace_y0=web_back - (web_z0 - key_z0) * dim("BRACE_RUN_PER_DROP"))
+              slack=slack, key_fit=key_fit, web_back=web_back, web_z0=web_z0)
 
 if __name__ == "__main__":
     for name, part in (("amber_holder", holder_print), ("amber_ring", ring_print)):
         assert fits_bed(part, BED), name
         print(name, "overhangs", overhangs(part))
         export(name, part, OUT)
+    if m.AMBER_NECK_PROFILE is None:
+        print("NOTE: ring bore follows EST_AMBER_NECK_PROFILE, estimated from photos")
     print({k: round(v, 2) for k, v in LAYOUT.items()})

@@ -28,7 +28,8 @@ neck under the collar. What to check after printing: [`inventory/to-measure.md`]
 | Picture | Part | File | How many | Notes |
 |---|---|---|---|---|
 | <img src="exports/amber_holder.png" width="200"> | Amber holder: spine, foot, lip | `exports/amber_holder.stl` | 1 | print lying on its side as exported, PLA, no supports. 112 × 81 × 30 mm |
-| <img src="exports/amber_ring.png" width="200"> | Ring with key | `exports/amber_ring.stl` | 1 | print upside down as exported, key standing up, **100% infill**. Goes on the bare neck under the pump collar (pump off to fit it). 52.5 mm across. The key is printed slightly oversized (0.1 per side, 0.5 long): file it to fit the channel |
+| <img src="exports/amber_ring.png" width="200"> | Ring with key | `exports/amber_ring.stl` | 1 | print upside down as exported, key standing up, **100% infill**. Goes on the bare neck under the pump collar (pump off to fit it). 55.5 mm across, 6.5 tall; its bore follows the glass shoulder. The key has 0.15 mm play per side and is 0.5 mm long: it slides in without filing |
+| <img src="exports/amber_ring_shim.png" width="200"> | Shim under the printed v4 ring | `exports/amber_ring_shim.stl` | 0 or 1 | only if you have the 4.5 mm tall v4 ring: slide it on the neck first (flat face up), then the ring. 2 mm tall, 55.5 across; it fills the gap to the shoulder, so v4 + shim = v5. Print flat face down, 100% infill |
 | <img src="exports/hanging_collar_draft.png" width="200"> | Hanging collar, draft (fallback) | `exports/hanging_collar_draft.stl` | 0 | concept 6: pump C on the clear bottle in the old metal bracket. Pictures below |
 | <img src="exports/pump_c_gauge.png" width="200"> | Stepped gauge for the black pump's collar | `exports/pump_c_gauge.stl` | 0 | optional: six steps, 43.2 to 45.2 mm |
 

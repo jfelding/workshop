@@ -122,3 +122,63 @@ Holder: job `scratch/amber2_holder-20261124`, 150 layers to Z 30, 31.7 g, Orca 2
 `scratch/amber2_ring-20261124`, job copy with `sparse_infill_density` 100%, 83 layers to Z 16.6, 9.8 g, 38 min.
 G-code checked (G28 then M420 S1, 60/210, heaters and fan off at the end, moves inside the bed) and copied to the SD
 card as `amber2_holder.gcode` and `amber2_ring.gcode`; the v1 files `amber_*.gcode` are still on the card.
+
+## 2026-11-26 Ring v2 print: hits the shoulder, key too fat
+Jacob printed `amber2_ring` and tried it (photos `images/amber2-ring-*.jpg`, pump off). (1) The web and brace on the
+wall side hit the glass lower down, so the ring sits tilted, higher at the wall. (2) He had to file a lot off the key
+(0.1 per side oversize) before it went into the channel. Cause of (1): the checks drew the shoulder as a straight
+cone from z 78 to 87 on `AMBER_NECK_BARE_HEIGHT` 17. The photo shows the ring only a few mm above where the glass
+starts to widen and a domed shoulder, so the 17 is doubted. The brace reached z 87 at r 25-33 and the web z 94.
+Fix (v3 ring): brace and the 3 mm web drop removed; the web is now as tall as the ring, so nothing of the ring sits
+below its underside inside the 65 body outline (checked: 0 mm³), and the shoulder's curve no longer matters as long
+as the bare neck is at least 7. New checks: flat-shelf worst-case shoulder, and ring volume under its underside
+inside the body. Ring 8.2 -> 6.4 cm³. Key unchanged until Jacob calipers the filed key. check.sh passes. Not sliced.
+
+2026-11-26 (ring bore follows the neck). Jacob: the glass already curves out within the ring's own 6 mm height, so a
+straight bore sits on its bottom edge. New measured table `AMBER_NECK_PROFILE` ((mm below collar, OD), ...), None
+for now. When set, the bore follows it at the running fit's clearance (`hole_for(od, 'running')`), never narrower
+than the 44.5 that passes the thread, and the stand-in glass uses the same points. New checks: wall at the ring's
+underside (fails under 1.6, 4 perimeters) and whether the bore follows the neck. Tried with a made-up test profile
+(not saved): bore 48.75 at the underside, wall 1.88, zero overlaps. Printed upside down the flare opens upwards,
+so no overhang. With None the bore is straight and the build prints a note.
+
+2026-11-26 (ring v3 from estimates). Jacob: no more measuring; adjust from estimates and print a few times if needed.
+`EST_AMBER_NECK_PROFILE` from his two photos (scale from the ring, about 22 px/mm in the side view): 43.5 neck for the
+first ~5 mm under the collar, then a band about 46.5 across and 5 tall right under the ring (the v2 ring's front was
+sitting on its top edge), then a dome out to 65 about 26 below the collar. The bore follows it at the running fit plus
+`NECK_PROFILE_MARGIN_UP` 1 mm: 44.5 at the top, 47.0 at the underside, wall 2.75. Checks with the whole profile 1 mm
+higher (glass 0.4 mm short of lifting the ring) and 1.5 lower: zero overlap. Key `KEY_OVERSIZE` -0.15 (play per side;
+v1 -0.4 hung, v2 +0.1 needed heavy filing); checks and strength now use the key as printed. Ring 6.0 cm³, hoop SF 3.1
+(was 4.7, thinner wall at the flare), the rest unchanged. Sliced with the v2 ring's job settings (100% infill, stock
+speeds): `scratch/amber3_ring-20261126/plate_1.gcode`, 83 layers, 7.18 g, 31 min 22 s; G28 then M420 S1, 60/210,
+heaters and fan off at the end, moves inside the bed. Orca's 3MF export failed (exit 243); the G-code is complete.
+SD card not mounted, so not copied.
+
+### 2026-11-26 Ring v4 from the bare-bottle close-ups
+Jacob said the v3 bottle model was not good enough and sent two close-ups of the bare bottle (`images/amber-neck-bare-2331.jpg`,
+`-2332.jpg`). Traced the silhouettes from the background-removed PNGs. The measured 43.5 neck and 65 body only fit
+the photos with a pinhole camera about 65 mm from the axis (a phone close-up), and both photos give the same distance,
+so the perspective is corrected with it; depth is anchored on the glass rim, collar underside 14.6 below. The two photos
+agree within 0.4 mm in depth. No 46.5 band exists: v3 would have jammed on the shoulder. New `EST_AMBER_NECK_PROFILE`,
+ring 4.5 tall and 54.5 across, wall 2.5 at the underside. Projected the model back onto both photos
+(`images/amber-neck-model-overlay-*.jpg`): the profile sits on the glass edge from the neck to the full body. check.sh
+passes, zero overlap, also with the profile 1 mm higher and 1.5 lower. Hoop SF 3.4. Sliced `scratch/amber4_ring-20261126`,
+29 min, 6.3 g, 100% infill.
+
+### 2026-11-26 Ring v4 printed; v5
+Key: perfect fit at 0.15 per side play. With the pump on the bottle lifted 2.0 mm before catching the ring (model 1.25)
+and was loose. Calibrated the neck profile 0.75 lower, cut the upward margin to 0.3 and made the ring 6.5 tall (2 more
+down the shoulder), wall 5.5. Modelled lift 0.5 (0.2 with the profile 0.3 higher, 1.5 with it 1 lower), zero overlap,
+wall 1.95 at the underside, hoop SF 7.6 with the tapered section summed (`amber_strength.py`). Sliced
+`scratch/amber5_ring-20261126`, 37 min, 9.0 g.
+
+### 2026-11-26 Shim for ring v4
+Jacob would rather add to the printed v4 than reprint the ring. `cad/amber_shim.py`: v5's bottom 2 mm as a loose ring
+(55.5 across, bore 45.4 at the top to 51.6 at the bottom, same cutter as v5), slid on before v4; the shoulder pushes it
+against v4's flat underside, so v4 + shim behaves as v5 (modelled lift 0.5). Sliced `scratch/amber_shim-20261126`,
+6 min, 1.5 g. To print tomorrow.
+
+### 2026-11-27 Shim printed: works, but loose
+Copied to the SD card as `amber_shim.gcode`; Jacob printed and fitted it under v4. It works okay, not amazingly. The
+diameter is a touch large: the 44.5 bore has to pass the 44.0 glass thread, so it has 0.5 radial play on the 43.5 neck.
+A taller shim would only push the ring (and key) up. Next: a split ring that snaps over the thread and closes on the neck.
