@@ -22,6 +22,7 @@ history. Leave a row behind.
 | Picture | Project | Owner | Where | Status |
 |---|---|---|---|---|
 | <img src="dyson-ontrac-bose-qc-ultra-adapter/exports/preview.png" width="220"> | [Dyson OnTrac cushions on Bose QuietComfort Ultra](dyson-ontrac-bose-qc-ultra-adapter/) | Jacob | here | v2 printed, in daily use |
+| <img src="oral-b-single-head-case/exports/preview.png" width="220"> | [Oral-B single brush head travel case](oral-b-single-head-case/) (remix of DrJones's case) | Jacob | here | designed, not printed |
 
 ## Rules for a project here
 

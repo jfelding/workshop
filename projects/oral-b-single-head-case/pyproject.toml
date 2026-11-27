@@ -1,0 +1,12 @@
+[project]
+name = "oral-b-single-head-case"
+version = "0.1.0"
+description = "One-head Oral-B brush head travel case, remixed from DrJones's 2/4/6-head case"
+requires-python = ">=3.11"
+dependencies = ["workshop[cad]", "trimesh>=4.4", "manifold3d>=2.5", "lxml", "networkx"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+workshop = { workspace = true }

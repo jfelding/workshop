@@ -1,0 +1,32 @@
+{
+  "hinge_axis_z": 9.5,
+  "closed_overlap_original_mm3": 2.53,
+  "single_case": {
+    "closed_overlap_mm3": 2.53,
+    "extents_mm": [
+      100.0,
+      69.0,
+      16.0
+    ],
+    "closed_outer_y_mm": [
+      -34.5,
+      34.5
+    ],
+    "fits_bed": true,
+    "watertight": true
+  },
+  "single_case_widetol": {
+    "closed_overlap_mm3": 2.53,
+    "extents_mm": [
+      100.0,
+      69.0,
+      16.0
+    ],
+    "closed_outer_y_mm": [
+      -34.5,
+      34.5
+    ],
+    "fits_bed": true,
+    "watertight": true
+  }
+}
