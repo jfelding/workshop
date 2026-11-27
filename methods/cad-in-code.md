@@ -137,6 +137,36 @@ from below), shaded, outlined, titled with the part's name and size. For an STL 
 of the whole thing (`exports/preview.png`). Without them nobody can tell which file is which part, and a
 reviewer cannot see a wrong part without building it. `ws-check-pictures` enforces this in `check.sh` and CI.
 
+## Keeping build123d current
+
+build123d's `dev` branch moves far faster than its releases, and we take its fixes as they land. The `cad`
+extra still asks for `build123d`; `[tool.uv.sources]` in the root `pyproject.toml` points it at the `dev`
+branch, and `uv.lock` records the exact commit. The branch is the policy, the lock is the build: CI runs
+`uv sync --locked` and never fetches a moving branch.
+
+Refresh at the start of a session, before CAD work, from the repo root:
+
+1. **Baseline.** On the current lock, run every project's `check.sh` and keep a copy of its `exports/`
+   (volumes, bounding boxes, `checks.json`, STEP) to compare against.
+2. **Pick a green commit.** `gh run list -R gumyr/build123d --branch dev -L 12`. Every workflow for the
+   head SHA must say `success`. If the head is still running or failing, keep the current lock and try later,
+   or set `rev = "<last green sha>"` in place of `branch = "dev"` until the head is green again.
+3. **Lock.** `uv lock --upgrade-package build123d`. Read `git diff uv.lock`: it should change build123d's SHA
+   and only what build123d itself added or dropped.
+4. **Check.** `uv sync --locked --extra cad --extra printer`, then `uv run pytest -q`,
+   `uv run ws-check-file-sizes`, `uv run ws-check-pictures --committed projects/*/` and every `check.sh`.
+   Run them with `PYTHONWARNINGS=always::DeprecationWarning` and move deprecated calls to the new API (the
+   [dev docs](https://build123d.readthedocs.io/en/latest/) and the source name the replacement).
+5. **Compare geometry with the baseline**, not bytes. Same volume, bounding box, fit and printability numbers
+   and a zero boolean difference between the old and new STEP mean the part did not change, even when the
+   triangle count did. Keep the committed exports then. When a solid did change, check it as a new part
+   before committing its STL, STEP and pictures.
+6. **PR** with the lock, the source and the fixes together, naming the build123d SHA.
+
+**Rollback.** If a regression cannot be fixed in the session, keep the last good lock
+(`git checkout origin/main -- uv.lock`) and record the failing SHA, the symptom and the follow-up in an issue.
+Stay on `dev`; do not go back to release pins.
+
 ## Sharing a helper
 
 When two projects need the same function, move it into `src/workshop/cad/` through a PR with a test (see

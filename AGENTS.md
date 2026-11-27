@@ -26,6 +26,10 @@ Units are metric and prices are in DKK. Be direct and decisive. Do not hedge eve
 
 - Follow `methods/cad-in-code.md`. Every physical dimension comes from the project's `measurements.py` through
   `workshop.measure.mm()`.
+- **Keep build123d current.** At the start of every new agentic coding session, check upstream `dev` for changes;
+  before CAD work, proactively refresh build123d via `uv lock --upgrade-package build123d` to a recent CI-passing
+  commit, run relevant checks and fix API regressions; if blocked, retain the last working lock and record the
+  failure rather than waiting for the next release. How: `methods/cad-in-code.md`, "Keeping build123d current".
 - An unmeasured value stays `None` and goes into `inventory/to-measure.md`. Never guess it from a photo or a web page.
   Measure interfaces from vendor STEP files.
 - Size fits with `workshop.fits`. If it raises `Uncharacterised`, say so, and propose a cheap real part to measure

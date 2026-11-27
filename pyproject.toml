@@ -30,3 +30,7 @@ members = ["projects/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "equipment/neptune-3-pro/usb-host"]
+
+[tool.uv.sources]
+# build123d tracks upstream dev; uv.lock pins the exact commit. Refresh: methods/cad-in-code.md.
+build123d = { git = "https://github.com/gumyr/build123d.git", branch = "dev" }
