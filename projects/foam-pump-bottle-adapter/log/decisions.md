@@ -42,3 +42,8 @@ tapered section instead of taking the thinnest wall over the full height.
 ## 2026-11-26 Shim under v4 before reprinting the ring
 A 6 minute shim tests v5's calibrated shoulder fit on the v4 ring Jacob already has (its key fits perfectly). Print v5
 only if the shim fails or the stack feels wobbly.
+
+## 2026-11-27 Split ring instead of a screwed-on ring
+The bore must pass the 44.0 thread, leaving 0.5 radial play on the 43.5 neck. A slotted ring springs over the thread
+and closes on the neck with no new measurements; a ring screwed past the thread would need the glass thread's pitch,
+depth and start, all unmeasured. Gauge first, since no split-ring grip fit is characterised.

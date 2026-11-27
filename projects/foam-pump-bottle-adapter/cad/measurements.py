@@ -130,6 +130,11 @@ KEY_LENGTH = 16.0             # key hangs this far below the ring top; also the 
 # measured, and the v2 brace and 3 mm web drop hit the domed glass (Jacob's photos, 2026-11-26). Only the key hangs
 # lower, and it sits outside the glass, in the channel.
 SPINE_ABOVE_RING = 1.0        # spine top above the ring top: the spine stays below the collar's top and out of the spout's way
+# split-ring gauge (2026-11-27): a slot lets the ring spring over the 44.0 glass thread and close on the 43.5 neck.
+# No grip fit is characterised for a split PLA ring on glass, so these bracket the neck; Jacob picks the snug one.
+SPLIT_GAUGE_BORES = (43.2, 43.4, 43.6, 43.8)
+SPLIT_GAUGE_HEIGHT = 3.0      # strain when spreading depends on the wall, not the height, so a short ring tests it
+SPLIT_SLOT = 2.0              # gap through the wall; wider than any squish closing it, narrow under the collar
 
 # --- amber holder: design loads and PLA allowables (Jacob, 2026-11-22), for amber_strength.py ---
 LOAD_BOTTLE = 6.0             # N, full bottle, 0.6 kg

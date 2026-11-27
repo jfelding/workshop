@@ -1,7 +1,7 @@
 # Status
 
 2026-11-24. Main design: our own wall holder for the amber glass bottle with the black pump (C), concept 7,
-**holder v2 printed 2026-11-26; ring v4 printed (key perfect, bottle loose); next: a 2 mm shim under v4 (`cad/amber_shim.py`, sliced), or ring v5 (sliced).** The first print (from seller estimates) was too roomy and its ring
+**holder v2 printed 2026-11-26; v4 ring + shim printed, works but slightly loose (bore 44.5 on a 43.5 neck). Next: split-ring gauge (`cad/amber_split_gauge.py`), then ring v6 with a slot and the gauge's bore.** The first print (from seller estimates) was too roomy and its ring
 sat round the neck instead of the collar. Two printed parts, `cad/amber_holder.py`:
 
 - holder: spine, foot and front lip, one 30 mm wide profile, 112 × 81 × 30 mm, 47.2 cm³, printed on its side.

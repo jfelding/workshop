@@ -182,3 +182,8 @@ against v4's flat underside, so v4 + shim behaves as v5 (modelled lift 0.5). Sli
 Copied to the SD card as `amber_shim.gcode`; Jacob printed and fitted it under v4. It works okay, not amazingly. The
 diameter is a touch large: the 44.5 bore has to pass the 44.0 glass thread, so it has 0.5 radial play on the 43.5 neck.
 A taller shim would only push the ring (and key) up. Next: a split ring that snaps over the thread and closes on the neck.
+
+### 2026-11-27 Split-ring gauge
+`cad/amber_split_gauge.py`: four 3 mm rings with the ring's 5.5 wall and a 2 mm slot, bores 43.2-43.8, tied on one
+plate. Spreading the 43.2 one over the 44.0 thread strains it about 0.2 % (PLA yields at 2-3 %). No grip fit for a
+split PLA ring on glass in `workshop.fits`, hence the gauge.
