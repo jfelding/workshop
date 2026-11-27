@@ -66,7 +66,7 @@ def hook(start_deg, span_deg, kind):
         gap = dim("LIP_GAP_TRAILING") + i / n * (dim("LIP_GAP_LEADING") - dim("LIP_GAP_TRAILING"))
         ang = start_deg + span_deg * i / n
         wires.append(Wire.make_polygon([polar(r, ang, z) for r, z in hook_profile(gap, kind)], close=True))
-    solid = Solid.make_loft(wires, True)
+    solid = Solid.loft(wires, True)
     # 45-degree lead-in on both ends of the lip, seen from above, so it finds the slot.
     r0, r1 = STEM_OUT, lip + 1.0
     ramp = math.degrees(dim("LIP_END_RAMP") / lip)
