@@ -1,0 +1,99 @@
+{
+ "1 foot root at the spine, d=7.9, x Kt 1.5": {
+  "moment_Nmm": 3591.0,
+  "section_modulus_mm3": 313.2,
+  "stress_MPa": 11.46,
+  "layers": "along",
+  "allowable_MPa": 45.0,
+  "safety_factor": 3.9,
+  "safety_factor_vs_weak_25MPa": 2.2,
+  "note": "36 N at the base's front edge, arm 66.5 mm"
+ },
+ "1 lip, base knocked forward, t=3.0": {
+  "moment_Nmm": 120.0,
+  "section_modulus_mm3": 45.0,
+  "stress_MPa": 2.67,
+  "layers": "along",
+  "allowable_MPa": 45.0,
+  "safety_factor": 16.9,
+  "safety_factor_vs_weak_25MPa": 9.4,
+  "note": "20 N at the lip top"
+ },
+ "2 ring hoop, collar pushing, 2.1-5.5 x 6.5": {
+  "moment_Nmm": 160.9,
+  "section_modulus_mm3": 27.2,
+  "stress_MPa": 5.92,
+  "layers": "along",
+  "allowable_MPa": 45.0,
+  "safety_factor": 7.6,
+  "safety_factor_vs_weak_25MPa": 4.2,
+  "note": "thin ring, load and key reaction opposite: M = 0.318 F R; tapered wall summed"
+ },
+ "2 key neck at the spine face, sideways knock, 7.7 x 16.0": {
+  "moment_Nmm": 680.0,
+  "section_modulus_mm3": 158.1,
+  "stress_MPa": 4.3,
+  "layers": "along",
+  "allowable_MPa": 45.0,
+  "safety_factor": 10.5,
+  "safety_factor_vs_weak_25MPa": 5.8,
+  "note": "knock at the bottle axis, arm to the spine face; the web stiffens everything in front"
+ },
+ "2 key, forward knock, bends along its length": {
+  "moment_Nmm": 160.0,
+  "section_modulus_mm3": 40.1,
+  "stress_MPa": 3.99,
+  "layers": "across",
+  "allowable_MPa": 25.0,
+  "safety_factor": 6.3,
+  "safety_factor_vs_weak_25MPa": 6.3,
+  "note": "key printed standing: its length is across the layers; reaction at mid-length"
+ },
+ "2 channel lip, forward knock pulls the key": {
+  "moment_Nmm": 20.3,
+  "section_modulus_mm3": 32.7,
+  "stress_MPa": 0.62,
+  "layers": "across",
+  "allowable_MPa": 25.0,
+  "safety_factor": 40.2,
+  "safety_factor_vs_weak_25MPa": 40.2,
+  "note": "11.6 N per flank; lip root is a layer plane"
+ },
+ "3 glue joint": {
+  "area_mm2": 3360.0,
+  "moment_Nmm": 3789.0,
+  "peel_tension_MPa": 0.06,
+  "shear_MPa": 0.011,
+  "safety_factor_vs_allowed": 7.0
+ },
+ "3 spine above the foot, 30 x 10.0": {
+  "moment_Nmm": 2394.0,
+  "section_modulus_mm3": 500.0,
+  "stress_MPa": 4.79,
+  "layers": "along",
+  "allowable_MPa": 45.0,
+  "safety_factor": 9.4,
+  "safety_factor_vs_weak_25MPa": 5.2,
+  "note": "full foot moment, as if the glue held nothing near the foot"
+ },
+ "3 spine at the channel, forward knock at the ring": {
+  "moment_Nmm": 255.0,
+  "section_modulus_mm3": 500.0,
+  "stress_MPa": 0.51,
+  "layers": "along",
+  "allowable_MPa": 45.0,
+  "safety_factor": 88.2,
+  "safety_factor_vs_weak_25MPa": 49.0,
+  "note": "channel top as a cantilever above the channel floor"
+ },
+ "thicknesses_mm": {
+  "foot_at_lip": 5.15,
+  "foot_at_root": 7.92,
+  "brace": 0.0,
+  "lip": 3.0,
+  "spine": 10.0,
+  "width": 30.0,
+  "ring_wall": 4.92,
+  "ring_height": 6.5
+ }
+}

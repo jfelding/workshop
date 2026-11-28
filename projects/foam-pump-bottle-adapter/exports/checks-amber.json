@@ -1,0 +1,146 @@
+{
+ "stand_in": {
+  "z_cu": 104.0,
+  "z_ct": 121.0,
+  "z_sh0": 78.0,
+  "z_sh1": 87.0,
+  "rb": 32.5,
+  "rn": 21.75
+ },
+ "ring_rest_z": 96.5,
+ "printed_key_material_to_file_mm3": 0.0,
+ "web_back_to_spine_face_mm": 0.5,
+ "shoulder_meets_ring_bore_z": 96.5,
+ "installed_overlap_mm3": {
+  "holder/glass": 0.0,
+  "holder/pump": 0.0,
+  "ring/glass": 0.0,
+  "ring/pump": 0.0,
+  "ring/holder": 0.0
+ },
+ "clearance_mm": {
+  "body to spine": 1.5,
+  "body to foot lip": 1.5,
+  "neck to ring bore, radial": 0.5,
+  "thread to ring bore, radial (getting it on)": 0.25,
+  "ring top below collar": 1.0,
+  "ring outside minus collar outside, radial": 1.5,
+  "spine top below collar top": 17.0
+ },
+ "forward_travel_until_ring_stops_bottle_mm": 0.5,
+ "forward_travel_until_lip_stops_base_mm": 1.75,
+ "ring_forward_travel_in_channel_mm": 0.25,
+ "upward_travel_until_shoulder_lifts_ring_mm": 0.5,
+ "lift_to_remove_mm": 19.5,
+ "insertion_path_contacts": [],
+ "base_above_lip_when_lifted_mm": 13.5,
+ "pump_head_overlap_mm3": {
+  "turn 0\u00b0, pushed 0": 0.0,
+  "turn 0\u00b0, pushed 12": 0.0,
+  "turn 90\u00b0, pushed 0": 0.0,
+  "turn 90\u00b0, pushed 12": 0.0,
+  "turn 180\u00b0, pushed 0": 0.0,
+  "turn 180\u00b0, pushed 12": 0.0
+ },
+ "pump_head_bottom_above_spine_top_pushed_mm": 24.0,
+ "plausible_range": {
+  "body 64.5, shoulder starts 73": {
+   "overlap_mm3": 0.0,
+   "ring_lifted_mm": 0.0,
+   "ring_round_collar_or_neck": true
+  },
+  "body 64.5, shoulder starts 83": {
+   "overlap_mm3": 0.0,
+   "ring_lifted_mm": 0.0,
+   "ring_round_collar_or_neck": true
+  },
+  "body 65, shoulder starts 73": {
+   "overlap_mm3": 0.0,
+   "ring_lifted_mm": 0.0,
+   "ring_round_collar_or_neck": true
+  },
+  "body 65, shoulder starts 83": {
+   "overlap_mm3": 0.0,
+   "ring_lifted_mm": 0.0,
+   "ring_round_collar_or_neck": true
+  },
+  "body 65.5, shoulder starts 73": {
+   "overlap_mm3": 0.0,
+   "ring_lifted_mm": 0.0,
+   "ring_round_collar_or_neck": true
+  },
+  "body 65.5, shoulder starts 83": {
+   "overlap_mm3": 0.0,
+   "ring_lifted_mm": 0.0,
+   "ring_round_collar_or_neck": true
+  },
+  "neck profile +0.3 mm": {
+   "overlap_mm3": 0.0,
+   "glass_rise_until_it_lifts_ring_mm": 0.2
+  },
+  "neck profile -1 mm": {
+   "overlap_mm3": 0.0,
+   "glass_rise_until_it_lifts_ring_mm": 1.5000000000000002
+  }
+ },
+ "ring_volume_below_underside_inside_body_outline_mm3": 0.0,
+ "ring_bore_follows_neck": true,
+ "ring_wall_at_underside_mm": 1.95,
+ "bare_neck_the_ring_needs_mm": 7.5,
+ "walls_mm": {
+  "spine behind the key channel": 6.5,
+  "spine at mid height": 10.0,
+  "foot at the spine (vertical)": 7.87,
+  "foot at the lip (vertical)": 5.1,
+  "channel side wall": 5.0,
+  "ring wall": 5.05
+ },
+ "amber_holder": {
+  "size_mm": [
+   112.0,
+   81.0,
+   30.0
+  ],
+  "volume_cm3": 47.2,
+  "overhang_steeper_than_45_mm2": 0.0,
+  "flat_ceilings_mm2": 0.0,
+  "worst_overhang_deg_from_vertical": 30.5,
+  "mesh": {
+   "triangles": 56,
+   "watertight": true,
+   "nonmanifold_edges": 0,
+   "degenerate_faces": 0,
+   "connected_components": 1,
+   "signed_volume_mm3": 47154.975,
+   "component_bottoms_mm": [
+    0.0
+   ]
+  },
+  "layers_outside_45_mm2": 0.988243,
+  "islands_in_mid_air": 0
+ },
+ "amber_ring": {
+  "size_mm": [
+   55.5,
+   65.1,
+   16.5
+  ],
+  "volume_cm3": 7.4,
+  "overhang_steeper_than_45_mm2": 0.0,
+  "flat_ceilings_mm2": 0.0,
+  "worst_overhang_deg_from_vertical": 0.0,
+  "mesh": {
+   "triangles": 2856,
+   "watertight": true,
+   "nonmanifold_edges": 0,
+   "degenerate_faces": 0,
+   "connected_components": 1,
+   "signed_volume_mm3": 7402.727,
+   "component_bottoms_mm": [
+    0.0
+   ]
+  },
+  "layers_outside_45_mm2": 0,
+  "islands_in_mid_air": 0
+ }
+}

@@ -38,3 +38,4 @@ history. Leave a row behind.
 - A `check.sh` in the project root runs its checks and ends with `uv run ws-check-pictures .`. Run it before
   committing; CI does not rebuild projects, to keep it cheap. It must exit non-zero on failure.
 - Keep a `log/journal.md` once there is anything to remember: measurements, prints, outcomes.
+| <img src="foam-pump-bottle-adapter/images/foam-pump-resting-on-narrow-neck.jpg" width="220"> | [Foaming pump on a narrow-neck wall bracket](foam-pump-bottle-adapter/) | Jacob | here | ideas, waiting on measurements |
